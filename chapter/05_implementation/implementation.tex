@@ -3,48 +3,273 @@
 \section{Backend Architecture}
 \section{Frontend Interface and Features}
 
+Our development journey began with a thorough analysis of the client’s requirements to ensure a clear understanding of the project goals and user needs. This foundational step allowed us to identify both functional and non-functional aspects critical to delivering a seamless multilingual virtual tour assistant. Following this, we carefully evaluated and selected the most suitable technologies to meet these requirements efficiently and maintainably. To visualise the user experience and interface, we created detailed wireframes and interactive prototypes using Figma, which facilitated early feedback and iterative improvements before moving into full development.
+
+\subsection{Client Requirements}
+
+Note: We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
+
+\subsection{Tech Stack Selection and Justification}
+
+With a comprehensive understanding of the client's requirements, our next step was to carefully evaluate and select a technology stack that balances scalability, maintainability, performance, and developer experience. Each layer of the frontend architecture was considered through a comparative analysis of available tools and frameworks, ensuring that the final selections aligned with the project’s long-term goals.
+
+\begin{table}[H]
+\centering
+\caption{Programming Language Comparison}
+\begin{tabular}{|l|p{6cm}|p{6cm}|}
+\hline
+\textbf{Criteria}       & \textbf{JavaScript} & \textbf{TypeScript} \\
+\hline
+Typing                  & Dynamic             & Static             \\
+Ease of Learning        & Easy                & Moderate           \\
+Tooling Support        & Excellent           & Excellent          \\
+Performance            & Good                & Good               \\
+Reason                 & No static typing, harder to maintain large apps & Static typing improves code quality and maintainability \\
+\hline
+\end{tabular}
+\label{tab:programming-language-comparison}
+\end{table}
+
+\textbf{Selected:} TypeScript \par
+\textbf{Reasoning:} TypeScript was selected due to its static typing capabilities, which enhance code reliability, readability, and maintainability, especially for large-scale applications. Unlike JavaScript, TypeScript helps catch errors at compile time, making development more robust and reducing runtime bugs. It also offers better IDE support, including autocompletion and refactoring, improving developer productivity.
+
+\vspace{2em}
+
+\begin{table}[H]
+\centering
+\caption{Frontend Framework/Library Comparison}
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria}       & \textbf{React}                & \textbf{Angular}               & \textbf{Vue.js}               \\
+\hline
+Architecture            & Component-based               & Full framework                & Progressive framework         \\
+Ecosystem Size          & Very Large                   & Large                        & Medium                       \\
+Learning Curve          & Moderate                     & Steep                        & Easy                         \\
+Performance             & Excellent                    & Excellent                    & Excellent                    \\
+Flexibility             & High                         & Low                          & Moderate                     \\
+Reason                  & Balance of flexibility and rich ecosystem & Steeper learning curve, more opinionated & Smaller ecosystem, less corporate support \\
+\hline
+\end{tabular}
+\label{tab:frontend-framework-comparison}
+\end{table}
+
+\textbf{Selected:} React \par
+\textbf{Reasoning:} React offers a balanced trade-off between flexibility and ecosystem maturity. Its component-based architecture allows for modular and reusable UI development. Compared to Angular’s steep learning curve and opinionated structure, React provides more freedom in choosing libraries and tools. While Vue.js is simpler, React has broader community support, more enterprise adoption, and better scalability for complex applications.
+
+\vspace{2em}
+
+\begin{table}[H]
+\centering
+\caption{State Management Comparison}
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria}       & \textbf{Redux}              & \textbf{Zustand}              & \textbf{Context API}          \\
+\hline
+Boilerplate             & High                        & Low                          & Low                          \\
+Learning Curve          & Steep                       & Easy                         & Easy                         \\
+Performance             & Excellent                   & Excellent                    & Good                         \\
+Community Support       & Very Large                  & Growing                      & Built-in React               \\
+Reason                  & Powerful but verbose and complex & Lightweight, less boilerplate & Not ideal for complex state \\
+\hline
+\end{tabular}
+\label{tab:state-management-comparison}
+\end{table}
+
+\textbf{Selected:} Zustand \par
+\textbf{Reasoning:} Zustand was chosen for its minimal boilerplate, simple API, and excellent performance. It enables efficient global state management without the complexity of Redux. While Redux is powerful, it requires a steep learning curve and verbose code. Zustand fits well for modern React apps where simplicity and clarity are valued. Context API is great for light use cases but doesn’t scale effectively for complex state logic, making Zustand a better fit.
+
+\vspace{2em}
+
+\begin{table}[H]
+\centering
+\caption{Styling Solutions Comparison}
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria}       & \textbf{CSS}               & \textbf{Tailwind CSS}        & \textbf{DaisyUI}             \\
+\hline
+Approach                & Traditional                & Utility-first                & Component-based              \\
+Customizability         & High                       & Medium                      & Low                         \\
+Learning Curve          & Easy                       & Moderate                    & Easy                        \\
+Development Speed       & Moderate                   & Fast                        & Very Fast                   \\
+Reason                  & Difficult to maintain large stylesheets & Rapid styling, consistent design system & Provides prebuilt components on Tailwind \\
+\hline
+\end{tabular}
+\label{tab:styling-solutions-comparison}
+\end{table}
+
+\textbf{Selected:} Tailwind CSS + Daisy UI \par
+\textbf{Reasoning:} Tailwind CSS was selected for its utility-first approach, which accelerates development and enforces consistent styling across components. DaisyUI, built on top of Tailwind, adds ready-to-use, customizable UI components that speed up design implementation. This combination reduces the need to write custom CSS while keeping the UI modern and clean. Traditional CSS is harder to scale and maintain, and DaisyUI complements Tailwind without compromising flexibility.
+
+\vspace{2em}
+
+\begin{table}[H]
+\centering
+\caption{Prototyping Tools Comparison}
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria}       & \textbf{Adobe XD}          & \textbf{Sketch}             & \textbf{Figma}               \\
+\hline
+Platform                & Desktop/Web                & macOS Desktop               & Web-based                   \\
+Collaboration           & Limited                   & Limited                    & Excellent                   \\
+Ease of Use             & Easy                      & Moderate                   & Easy                        \\
+Prototyping Features    & Good                      & Good                       & Excellent                   \\
+Reason                  & Less collaborative than Figma & macOS only, less accessible & Cloud-based, real-time collaboration \\
+\hline
+\end{tabular}
+\label{tab:prototyping-tools-comparison}
+\end{table}
+
+\textbf{Selected:} Figma \par
+\textbf{Reasoning:} Figma was chosen for its cloud-based, real-time collaboration capabilities, making it ideal for distributed teams. Unlike Adobe XD and Sketch, Figma runs entirely in the browser, requires no installation, and works across operating systems. It supports efficient design handoff with developers and includes powerful prototyping tools. Its accessibility, ease of use, and collaborative features make it the most suitable option for modern UI/UX workflows.
+
+\vspace{2em}
+
+\subsection{Design and Prototyping}
+
+Design and prototyping served as a crucial bridge between client expectations and the final product. Utilizing Figma, we developed interactive wireframes and clickable prototypes to facilitate early validation, clear communication and encouraged collaborative feedback. This iterative design process helped us align the UI/UX with the multilingual and accessibility requirements of our target audience, significantly reducing rework during development.
+
+\textbf{Note:} Will be adding more information based on figures that we are planning to add.
+
+\subsection{Implementation}
+
+After finalizing the Figma prototype, the implementation phase commenced and was structured into iterative sprints. Each iteration focused on delivering incremental features, incorporating design feedback, and enhancing both performance and usability. The following sections provide a breakdown of the three main development iterations undertaken.
+
+\subsubsection{Iteration 1:}
+
+\subsubsection{Iteration 2:}
+
+\subsubsection{Iteration 3:}
+
 \begin{figure}[h]
     \centering
     \fbox{
     \includegraphics[width=0.5\linewidth]{chapter/05_implementation/Frontend_Usecase_Diagram.pdf}
     }
-    \caption{Frontend Usecase Diagram}
+    \caption{Frontend Use Case Diagram}
     \label{fig:frontend_usecase}
 \end{figure}
 
 \section{API and Integration}
 \subsection{Drafting notes}
 
-Stuff that is relevant to include here + the ideas of what/how to do this from other reports + the common theme to have there
-\begin{itemize}
-    \item I guess the project should be written in a very casual style, with plain English and for the reader that may have a very limited understanding of how to use the software engineering tool and services.
-    \item To be honest, it seems like I can just list the API's that we use, discuss their pros and cons in the context of the alternatives and explain briefly how they work/what they do. Maybe draw some diagrams and insert them here. Can do in that motivation/methods/discussion way, but we'll see how that goes.
-\end{itemize}
-
-Okay, which API's/third party software and services do we actually use:
-\begin{itemize}
-    \item The main page
-    \begin{itemize}
-        \item This zustand thing
-    \end{itemize}
-    \item Maps page
-    \begin{itemize}
-        \item Open street map database + OverPass API -> the primary (and only) choice for the interactive map 
-        \begin{itemize}
-            \item "const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json`);"
-        \end{itemize}
-        \item Leaflet -> displaying actual map to the viewer (there must be some justification for using this software, need to ask Mahesh for details)
-    \end{itemize}
-    \item Cultural tips page
-    \begin{itemize}
-        \item The API call that would generate the text for the page is located in this page: callAgentAPI
-        \item The backend call -> need some more reasoning from Bala that would justify the choice to move away from scraping (I think he said something like inconsistent results were obtained from Wikitravel, or more like inconsistent sections that would prevent the data from being scraped properly)
-    \end{itemize}
-    \item Language page -> not a lot going on in there
-\end{itemize}
+\subsection{maps page}
 
 
+\subsection{How does map work}
 
+\subsection{1) Fetching the data from Open Street Map }
+Two major external services that we use to provide the use with navigational information are Open Street Map (OSM) and Overpass. OSM is an online and open source geographical database. The contents of the database are maintained by a community of enthusiasts and are freely accessible by everyone. However,  since the OSM does not provide a programming interface to interact with the database, our team has adopted Overpass API to solve the problem. It provides 2 types of tools that make interaction with the database possible. The first one is the interpreter that accepts the HTTP requests, that could be made via Javascript fetch api, and returns OSM database entries. Conveniently, the API supports the retrieval of OSM data in JSON format, which eases parsing through and manipulation of the fetched data. (Here we can put an example of the request form the databse) The second tool of Overpass API is the quiery lapgues, that allows for the selection of only those OSM database entries that satifsy specific characteristics. The most used feature of the query language was the selection of OSM nodes based on the tags, that explain the nature of the obejct (here we can put as an example the fetch request that retrieves only the restaurants in the area). 
+
+When the user navigates to the map page and gives permission for his location information to be collected, an Overpass API call is made.
+\begin{minted}{js} 
+const fetchOverPassData = async (query: string): Promise<OverpassElement[]> => {
+  const res = await fetch('https://overpass-api.de/api/interpreter', {
+    method: 'POST',
+    body: query,
+  });
+  const data = await res.json();
+  return data.elements as OverpassElement[];
+};
+\end{minted}
+!!! This specific part is work in progress, so this part could potentially be changed quite drammatically!!!
+
+The query variable contains the Overpass query language string. It is composed with the following steps. Firstly, the list of objects containing the desired nodes is reassembles into a single string. 
+\begin{minted}{js} 
+ [
+  { section: 'Hotel', query: 'node["tourism"="hotel"]' },
+  { section: 'Restaurant', query: 'node["amenity"="restaurant"]' },
+];
+\end{minted}
+The query specifies which exact data that is going to be retrieved. Node is one of 3 basic OSM data types (alongside ways and relations), and it represents the most basic representation of a geolocational object in the OSM database. Each data type in OSM has the following keys: "type", "id" (the serial number of the data entry), "lat" (latitude of the object) and "lon" (longitude of the object). Optionally, the objects may contain "tags" key, but becuase of the way we query the database, we will always have it. In the example "node["tourism"="hotel"]" translates to "return me all nodes, that have a 'tags' key (which value is an object), and in this object there must be a 'tourism' key, which value must be equal to 'hotel'". Conveniently, the query language supports the use of regular expressions, so the query "shop"~"supermarket|convenience|greengrocer" would return respectively the json containing the nodes referencing supermarkets, convenience stores and greengrocer stores.
+
+The list of quieries is iterated over and a single request string is formed:
+\begin{minted}{js} 
+  const filterBlocks = sections
+    .map((section) => `${section.query}(${bbox});`)
+    .join('\n');
+\end{minted}
+bbox holds the bounding-box data: two longitude/latitude pairs that define the coordinates of the viewport’s boundaries for the map the user currently has open on screen. In other words, it captures the map area visible at that moment. When the single string is created, an actual databse query is composed: 
+\begin{minted}{js} 
+  const overpassQuery = `
+            [out:json][timeout:25];
+            (
+            ${filterBlocks}
+            );
+            out center 10;
+          `;
+\end{minted}
+The query could be translated into plain English in the following way: we want to retrieve a file in a JSON format, abort the request if it is not resolved withing 25 seconds, merge the requests for nodes with "tourism"="hotel" key and "amenity"="restaurant" key, provide latitude and longitude of this data entry no mater what the type of the OSM data entry is, and limit the final list of objects to 10 entries. 
+
+Example of a JSON entry representing the Merchant Venturer's building:
+\begin{minted}{JSON} 
+{
+  "type": "way",
+  "id": 483814489,
+  "center": {
+    "lat": 51.4559134,
+    "lon": -2.6029918
+  },
+  "nodes": [
+    10739497700,
+    ...
+    10739497700
+  ],
+  "tags": {
+    "addr:city": "Bristol",
+    "addr:housenumber": "75",
+    "addr:postcode": "BS8 1UB",
+    "addr:street": "Woodland Road",
+    "addr:suburb": "Cotham",
+    "building": "university",
+    "building:levels": "6",
+    "name": "Merchant Venturers Building"
+  }
+}
+\end{minted}
+
+\subsection{Leaflet and interaction with the map}
+----Need to think what to write here-----
+
+\subsection{Nomitam API - how do we do geocoding and reverse geocoding}
+
+\subsection{how does the cultural tip work}
+Introduction to the choice of the APIs.
+
+When this feature of the application was in the early stages of development, we were attempting to integrate Wikitravel data as the source of information. The general idea was that when we get the geolocation information from the user, a web scraper would retrieve the information from the appropriate web page. This information would then be parsed, and the contents of each section (e.g. modes of transportation, landmarks, shops, cafes etc.) would be displayed for the user to explore. However, the section names varied drastically from city to city, making categorization of the information and its uniform presentation to the user near impossible. Moreover, the client decided that the feature would contain only the most essential information, and all of the UI should fit into one page. Hence, we decided to adopt the use of a Large Language Model (LLM) to generate the data for us.  Self-hosting an LLM requires the computations power in the form of a high performing GPU [reference] that our team did not possess. Therefore, we adopted OpenRouter API that handles API calls to a range of available LLMs. Importantly, OpenRouter provides access both to free-to-use and paid options of LLM use, which leaves the choice to the client to scale the application after the project ends or not.  
+
+When the user navigates to the cultural tips page, the following API call is made. 
+\begin{minted}{js} 
+  const response = await fetch(
+    'https://openrouter.ai/api/v1/chat/completions',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'mistralai/mistral-7b-instruct:free',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+      }),
+    }
+  );
+\end{minted}
+Importantly, OpenRouter implements OpenAI API specification for /completions and /chat/completions endpoints \cite{noauthor_openrouter_nodate}. Therefore, we can use OpenAI API terminology \cite{openAI_explanation_onHowToUseTheirApi} to shape the reply we get from the LLM of choice regardless of what the LLM was chosen. To instruct the LLM to provide us with the response that we can automatically parse through, the messages array contains an object { role: 'system', content: systemPrompt }. systemPrompt variable is a string that 1) explains what role the LLM should take 2) what format of data use program expects to receive 3) what shape the resulting JSON file should be in 4) how many values should each entry contain 5) what to do in case teh information does not exist or is not retrievable. Conversely, in the { role: 'user', content: userPrompt } the userPrompt variable is a simple string "Generate JSON for \$\{city\}", where the city variable is a zustand (global) variable created when the user provides their location in the map page. 
+
+Although we have included strict format rules in the system prompt to the LLM, the received data still had to be checked for sections containing data in an inappropriate format, as well as malformed/missing sections. After the format of the data is verified, a backend API call is made:
+\begin{minted}{js} 
+fetch(APIUrl, {
+method: 'POST',
+body: JSON.stringify(verifiedRequestBody),
+headers: {
+  'Content-type': 'application/json',
+},
+})
+\end{minted}
+where the APIUrl is the endpoint of our backend ("process.env.TRANSLATION\_API\_URL") and verifiedRequestBody is a variable that contains the object with has been properly formatted. When the API call is resolved, the data is once again verified using the cade code object checker as before. Finally, it is retured to the page.tsx, where it is parsed through and displayed to the user. 
 
 \section{Deployment of the front end}
 \subsection{Drafting notes}
@@ -59,7 +284,7 @@ What might I include here?
 \end{itemize}
 
 - Why need deployment in the first place
-While containerisation and deployment of the backend servise was a necessary step to ease the development process, the deployment of the front end was necessary for different reasons. Firstly, showcasing an application to testers/focus groups would be more frictionless when people won't have to queue up for the number of computers that have the front-end running with npm run dev. Any person who would like to have a glace at the application could simply follow a website link and start using the application from their device. The second point stems from the first one, namely, the location of people wishing to use the app doesn't matter since the only requirement to use the app is internet connection. And finally, our team was interested to know whether or not the application could be scaled easily, which would inadvertently imply deployment. 
+While containerisation and deployment of the backend service was a necessary step to ease the development process, the deployment of the front end was necessary for different reasons. Firstly, showcasing an application to testers/focus groups would be more frictionless when people won't have to queue up for the number of computers that have the front-end running with npm run dev. Any person who would like to have a glace at the application could simply follow a website link and start using the application from their device. The second point stems from the first one, namely, the location of people wishing to use the app doesn't matter since the only requirement to use the app is internet connection. And finally, our team was interested to know whether or not the application could be scaled easily, which would inadvertently imply deployment. 
 
 - Deploying from Github directly (maybe try to rephrase to include that you wanted to deploy the application from github from the beginning, but you didn't want to change the code so that we wouldn't be restricted in the choice of providers).
 The official Next.js documentation page \cite{vercelMainDeploymentMainPage} provided a number of options to deploy the front end. Initially, we attempted to deploy our project to Vercel \cite{Next.jsonVercel}. The reasoning behind this choice was that the Next.js framework itself was developed and maintained by Vercel (reference), and therefore it was assumed that Vercel would have the most seamless deployment process. However, the major obstable that we encountered at this step was a paywall. One of the major requirement for the entire web app that was stated from the beginning of the project was that we can only use paid software tools and cervices only if for the purposes of the project the free alternatives either don't fit or exit. Therefore, we tried to deploy the front end to the main alternative of Vercel - Cloudfare \cite{cloudflareMainPage}. Like Vercel, Cloudflare Pages and Workers have full support for deployment of Next.js project \cite{cloudflareWorkersMainPage} while having an unlimited free plan with restrictions that didn't significantly impact the project during and post development. Moreover, the platform provided high integration with GitHub, and after every merged pull request an automatic deployment to the server would be triggered, which was a nice addition. However, after setting up and attempting to deploy the project, we have encountered the issue of project not being properly configured for running on edge. After consulting the documentation for this specific issue \cite{APIReferenceEdgeRuntime}, as well as additional way to deploy the project to the same site \cite{Next.jsCloudflareDocs}, we have determined that deploying the application without addition configuration files and code snippets would not be possible. After reviewing the situation and weighing pros and cons of deploying to CloudFlare, we decided that trying to resolve all of the issues and limiting ourselves and the client to only one provider was not worth it. Therefore, we decided change our deployment strategy entirely, and deploy a docker container instead. (Can also waffle about other services having issues with deployment, but not sure if that is even necessary)
@@ -71,3 +296,4 @@ The downside is that there is no obvious solution on how to make an automatic de
 
 -----------Can also create a table for the options and paste it here--------------------------------
 
+This is an absolute dogshit work, but I guess I have to start somewhere
