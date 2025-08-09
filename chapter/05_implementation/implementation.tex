@@ -7,7 +7,7 @@ Our development journey began with a thorough analysis of the client’s require
 
 \subsection{Client Requirements}
 
-Note: We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
+\textbf{Note:} We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
 
 \subsection{Tech Stack Selection and Justification}
 
@@ -54,7 +54,7 @@ Reason                  & Balance of flexibility and rich ecosystem & Steeper le
 \end{table}
 
 \textbf{Selected:} React \par
-\textbf{Reasoning:} React offers a balanced trade-off between flexibility and ecosystem maturity. Its component-based architecture allows for modular and reusable UI development. Compared to Angular’s steep learning curve and opinionated structure, React provides more freedom in choosing libraries and tools. While Vue.js is simpler, React has broader community support, more enterprise adoption, and better scalability for complex applications.
+\textbf{Reasoning:} React offers a balanced trade-off between flexibility and ecosystem maturity. Its component based architecture allows for modular and reusable UI development. Compared to Angular’s steep learning curve and opinionated structure, React provides more freedom in choosing libraries and tools. While Vue.js is simpler, React has broader community support, more enterprise adoption, and better scalability for complex applications.
 
 \vspace{2em}
 
@@ -98,7 +98,7 @@ Reason                  & Difficult to maintain large stylesheets & Rapid stylin
 \end{table}
 
 \textbf{Selected:} Tailwind CSS + Daisy UI \par
-\textbf{Reasoning:} Tailwind CSS was selected for its utility-first approach, which accelerates development and enforces consistent styling across components. DaisyUI, built on top of Tailwind, adds ready-to-use, customizable UI components that speed up design implementation. This combination reduces the need to write custom CSS while keeping the UI modern and clean. Traditional CSS is harder to scale and maintain, and DaisyUI complements Tailwind without compromising flexibility.
+\textbf{Reasoning:} Tailwind CSS was selected for its utility first approach, which accelerates development and enforces consistent styling across components. DaisyUI, built on top of Tailwind, adds ready-to-use, customizable UI components that speed up design implementation. This combination reduces the need to write custom CSS while keeping the UI modern and clean. Traditional CSS is harder to scale and maintain, and DaisyUI complements Tailwind without compromising flexibility.
 
 \vspace{2em}
 
@@ -135,8 +135,83 @@ Design and prototyping served as a crucial bridge between client expectations an
 After finalizing the Figma prototype, the implementation phase commenced and was structured into iterative sprints. Each iteration focused on delivering incremental features, incorporating design feedback, and enhancing both performance and usability. The following sections provide a breakdown of the three main development iterations undertaken.
 
 \subsubsection{Iteration 1:}
+The first iteration focused on standing up a clickable skeleton aligned to the Figma user flows. The goal was to deliver a coherent theme, working navigation, language-scoped routing, page shells for all core areas.
+
+\begin{enumerate}
+    \item \textbf{Project Setup and Theme Baseline} \\
+    Initialised the project with \texttt{Next.js (App Router)}, \texttt{React}, and \texttt{TypeScript} via \texttt{npm}. Established formatting and linting rules to reduce churn. Added \texttt{Tailwind CSS} and defined a global theme (colours, spacing, type scale) applied through \texttt{globals.css}.
+
+    \item \textbf{Routing and Internationalisation} \\
+    Introduced a language-scoped route segment \verb|app/[lang]/...|. Persisted the user’s language in \texttt{localStorage} so choices survive refreshes and deep links; URLs remain shareable in the chosen language.
+
+    \item \textbf{Application Structure} \\
+    Used App Router with feature folders to separate pages and reusable components.
+    \begin{itemize}
+        \item \textit{Pages:} \verb|[lang]/cultural-tips|, \verb|essentials|, \verb|language|, \verb|map|, \verb|recommendations|, plus \verb|layout.tsx| and \verb|page.tsx|.
+        \item \textit{Components:} \texttt{NavigationBar}, \texttt{LanguageList}, \texttt{ActionButton}, \texttt{MapComponent}, \texttt{SearchBar}, \texttt{InfoAccordion}.
+        \item \textit{Support:} \texttt{mockdata/}, \texttt{public/}, \texttt{types/}, \texttt{globals.css}.
+    \end{itemize}
+
+    \item \textbf{Reusable Components (v1)} \\
+    Prioritised primitives used across pages:
+    \begin{itemize}
+        \item \textbf{NavigationBar} — top-level navigation mounted in \verb|app/layout.tsx|.
+        \item \textbf{LanguageList} — renders supported languages; writes selection to \texttt{localStorage}.
+        \item \textbf{ActionButton} — shared CTA styling (``Start'', ``Change language'').
+        \item \textbf{MapComponent} — visual placeholder for the map view.
+        \item \textbf{SearchBar / InfoAccordion} — early building blocks for dense content.
+    \end{itemize}
+
+    \item \textbf{Page Shells Delivered} \\
+    Implemented page frames with one believable mock-driven page:
+    \begin{itemize}
+        \item \textbf{Language selector / Change language} — same component; CTA label differs; language persisted and reflected in \verb|[lang]|.
+        \item \textbf{Cultural Tips} — basic prototype rendering tips from \texttt{mockdata/}; no geo logic or filtering yet.
+        \item \textbf{Map} — page shell with \texttt{MapComponent} stub and placeholder panels.
+        \item \textbf{Recommendations} — placeholder cards seeded from \texttt{mockdata/}.
+        \item \textbf{Essentials} — placeholder sections 
+    \end{itemize}
+
+    \item \textbf{Styling and Layout} \\
+    Tailwind utilities with a global layout (\verb|app/layout.tsx|) ensure a consistent frame; \texttt{NavigationBar} renders globally. Used Tailwind’s default breakpoints; finer responsive tweaks deferred until layouts stabilised.
+
+    \item \textbf{State and Data} \\
+    No backend integration in this iteration. Used mock data to validate layouts and interactions. Persistent state limited to language via localStorage.
+
+    \item \textbf{Stakeholder Feedback} \\
+    Positive response to being able to ``click around'' immediately. Cultural Tips showed too much text at once and felt basic; requested progressive disclosure and clearer grouping.
+
+    \item \textbf{Outcome} \\
+    Delivered a navigable app matching Figma flows with a coherent theme, navigable skeleton with the language flow functional and a Cultural Tips page Map, Recommendations, and Essentials were ready for data wiring and UX refinement in subsequent iterations.
+\end{enumerate}
 
 \subsubsection{Iteration 2:}
+After completing the initial development in Iteration One, the second iteration focused on refining and enhancing the existing features based on testing and client feedback. The following key tasks were accomplished during this phase:
+
+\begin{enumerate}
+    \item \textbf{Bug Fixing from Previous Iteration} \\
+    Several bugs identified in the first iteration were addressed. This included UI glitches, navigation issues, and minor functional problems. All fixes were tested thoroughly to ensure stability moving forward.
+    \item \textbf{Responsive Design Improvement} \\
+    The entire application was reviewed and updated to ensure responsiveness across devices. Tailwind CSS utilities were used to make all pages and components adapt smoothly to various screen sizes including mobile, tablet, and desktop.
+    \item \textbf{Reusable Search Bar Component} \\
+    The search bar that was initially built for the language selection page was converted into a reusable, generic component. This allowed it to be used on the map page and potentially in other parts of the application, promoting code reuse and consistency.
+    \item \textbf{Map Pins Integration} \\
+    Pins were added to the map to represent important locations. This increased the interactivity of the map and provided users with visual cues linked to actual data and categories.
+    \item \textbf{Dynamic Side Panels for Essentials and Recommendations} \\
+    The static Essentials and Recommendations sections were redesigned as side panels. These panels now fetch real data from the backend API and display it with improved visual styling. Categories were introduced to organize the content better and make the user experience more intuitive.
+    \item \textbf{Refining Cultural Tips}
+    \begin{itemize}
+        \item \textbf{Styling:} Several design mock-ups were presented to the client, and the final design was selected based on their feedback. The chosen layout was implemented with improved styling for better visual appeal.
+        \item \textbf{Content Restructuring:} The earlier content was long and descriptive. It was revised and split into clear, digestible sections based on client input. The final sections include:
+        \begin{itemize}
+            \item Etiquette
+            \item Must-know Phrases
+            \item Payment Methods
+            \item Transportation
+            \item Emergency Numbers
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
 
 \subsubsection{Iteration 3:}
 
@@ -228,9 +303,107 @@ Example of a JSON entry representing the Merchant Venturer's building:
 \end{minted}
 
 \subsection{Leaflet and interaction with the map}
-----Need to think what to write here-----
+1) Explain what leaflet is and how it works +  What is react-leaflet and why we need it
+Leaflet is an open source JavaScript library, that provides a broad range of tools to integrate and customise an interactive map into your front-end project. In addition to adopting the Leaflet library itself, we also made use of React Leaflet API. As the name suggests, React Leaflet API adapts the Leaflet library functions to be used in a React app directly as props. (TBF this is the most I understood from reading around the topic. If someone wants to jump into the explanation how react leaflet works from React standpoint, feel free to do so)
 
-\subsection{Nomitam API - how do we do geocoding and reverse geocoding}
+2) Explain how our code works
+- <MapContainer> prop creates the window with the rendered map itself.
+- <TileLayer> prop is the one that actually imports the visual map tiles. Since have chosen the Open Street Map as a provider of geographical and locational data, we chose to utilise the interactive map from the service as well:
+\begin{minted}{HTML}
+<TileLayer
+    attribution='&copy; 
+        <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 
+        contributors'
+    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+/>
+\end{minted}
+The advantage of this choice lies in the fact the the image of the map that is displayed on the screen is built on the geolocation data that OSM posesses. That means that when we query some data from the OSM database with the intent to then display/overlay it on the map, the mapping of the representation (pins) of the queried data is going to be extremely precise. On the other side, because OSM provides raster tiles (i.e prerendered PNG images of the map), extracting the names of the objects on the map, translating them and putting them back on the map essentially is impossible. It is possible to overlay the translations of the points of interest on the map, but that makes the map interface too cluttered and unappealing.
+
+The overlaying of the desired data was done with the <Marker> prop. For example, the following code uses the information from the JSON file that was retireved with the Overpass API and converts it into the graphical information in the form of pins on the map:
+\begin{minted}{HTML}
+  {pins.map((pin) => (
+    <Marker
+      key={pin.id}
+      position={[pin.lat, pin.lon]}
+      icon={createSVGPin(pin.icon)}
+      eventHandlers={{
+        click: () => onPinClick?.(pin),
+      }}
+    >
+      <Popup>
+        <div className="p-2 leading-relaxed">
+          <h3 className="font-bold text-lg mb-2 text-gray-800">
+            {pin.title}
+          </h3>
+          <p className="text-xs text-gray-500 mb-1">{pin.category}</p>
+          <p className="text-xs mb-2 leading-tight text-gray-700">
+            {pin.description}
+          </p>
+          {pin.street && (
+            <p className="text-xs text-gray-500 leading-tight mb-1">
+              Street: {pin.street}
+            </p>
+          )}
+          {pin.postcode && (
+            <p className="text-xs text-gray-500 leading-tight">
+              Postcode: {pin.postcode}
+            </p>
+          )}
+        </div>
+      </Popup>
+    </Marker>
+  ))}
+\end{minted}
+In this example the "pins" array of objects was created after parcing though the OSM JSON file and destructuring the useful information (e.g. entry name, address, coordinates etc.). This information is displayed to the user upon click on the pin, for which the markers <Popup> prop is responsible. 
+
+\subsection{Nomitam API - how do we do geocoding and reverse geocoding (+ point of interest search)}
+Forward geocoding (or simply geocoding), conceptually, is a transformation of a human readable address into a a latitude and longitude number tuple. Hence, reverse geocoding is a process of retrieval of the most appropriate address from the provided coordinates. Both services are standard means to interact with an online map, and there is a number of providers of the geocoding service. Considering our budget limitations and high reliance on OSM, we chose Nomitam API as a provider with an unlimited free plan and which includes high integration with OSM data. Despite the drawback of Nomitam (low volume of requests and no support for high traffic applications) for the purposes small scale development we considered it to be the perfect tool. 
+
+In our application we use both forward and reverse geocoding. When the user navigates to the map page, the geolocation of the device of the user is collected, following permission from the user. The collection is handled by the \mintinline{js}{getCurrentPosition()} method of the Geolocation interface, which belongs to the Document Object Model (DOM) API. Once the coordinated are collected, an Nomitam API call for reverse geocoding is made with said coordinates:
+\begin{minted}{js}
+const res = await fetch(
+  `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+);
+\end{minted}
+Following the parsing of the response of we extract the name of the city and the country that the user is in. This data is then set as a global variable using Zustand library and used, for instance, for generation of a cultural tip by the LLM.
+
+The forward geocoding is implemented in the map page's Search bar. When the user decides to enter any text into the searchbar, the following code is executed:
+\begin{minted}{js}
+useEffect(() => {
+if (!searchByUser.current || searchText.length < 3) {
+  setSearchResults([]);
+  return;
+}
+const controller = new AbortController();
+const timeout = setTimeout(() => {
+  const fetchSearchResults = async () => {
+    setIsfetching(true);
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/
+        search?q=${encodeURIComponent(searchText)}&format=json`,
+        {
+          signal: controller.signal,
+        }
+      );
+      const data: NominatimResult[] = await res.json();
+      setSearchResults(data || []);
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
+      console.error('Search error: ', err);
+    } finally {
+      setIsfetching(false);
+    }
+  };
+  fetchSearchResults();
+}, 100);
+\end{minted}
+This code could be translated into English as follows: when the user types something into the keyboard, try to match the typed text to the names of the existing map objects. If they exist, return JSON objects that would contain the information characterizing these objects. (To be fair, I could spend a couple of pages just describing how the searchbox works, because it's kinda brilliant, but in the context of API and integration, I am not sure how deep I should go tbh)
+
+
+-----Don't forget about the boudning box filtering, or should I forget about it?-----
+
+(https://community.codenewbie.org/ramesh0089/top-7-free-geocoding-apis-every-developer-should-know-in-2025-b74 -> nomitam limitations)
 
 \subsection{how does the cultural tip work}
 Introduction to the choice of the APIs.
@@ -257,7 +430,7 @@ When the user navigates to the cultural tips page, the following API call is mad
     }
   );
 \end{minted}
-Importantly, OpenRouter implements OpenAI API specification for /completions and /chat/completions endpoints \cite{noauthor_openrouter_nodate}. Therefore, we can use OpenAI API terminology \cite{openAI_explanation_onHowToUseTheirApi} to shape the reply we get from the LLM of choice regardless of what the LLM was chosen. To instruct the LLM to provide us with the response that we can automatically parse through, the messages array contains an object { role: 'system', content: systemPrompt }. systemPrompt variable is a string that 1) explains what role the LLM should take 2) what format of data use program expects to receive 3) what shape the resulting JSON file should be in 4) how many values should each entry contain 5) what to do in case teh information does not exist or is not retrievable. Conversely, in the { role: 'user', content: userPrompt } the userPrompt variable is a simple string "Generate JSON for \$\{city\}", where the city variable is a zustand (global) variable created when the user provides their location in the map page. 
+Importantly, OpenRouter implements OpenAI API specification for /completions and /chat/completions endpoints \cite{noauthor_openrouter_nodate}. Therefore, we can use OpenAI API terminology \cite{openAI_explanation_onHowToUseTheirApi} to shape the reply we get from the LLM of choice regardless of what the LLM was chosen. To instruct the LLM to provide us with the response that we can automatically parse through, the messages array contains an object { role: 'system', content: systemPrompt }. systemPrompt variable is a string that 1) explains what role the LLM should take 2) what format of data use program expects to receive 3) what shape the resulting JSON file should be in 4) how many values should each entry contain 5) what to do in case the information does not exist or is not retrievable. Conversely, in the { role: 'user', content: userPrompt } the userPrompt variable is a simple string "Generate JSON for \$\{city\}", where the city variable is a zustand (global) variable created when the user provides their location in the map page. 
 
 Although we have included strict format rules in the system prompt to the LLM, the received data still had to be checked for sections containing data in an inappropriate format, as well as malformed/missing sections. After the format of the data is verified, a backend API call is made:
 \begin{minted}{js} 
@@ -290,10 +463,8 @@ While containerisation and deployment of the backend service was a necessary ste
 The official Next.js documentation page \cite{vercelMainDeploymentMainPage} provided a number of options to deploy the front end. Initially, we attempted to deploy our project to Vercel \cite{Next.jsonVercel}. The reasoning behind this choice was that the Next.js framework itself was developed and maintained by Vercel (reference), and therefore it was assumed that Vercel would have the most seamless deployment process. However, the major obstable that we encountered at this step was a paywall. One of the major requirement for the entire web app that was stated from the beginning of the project was that we can only use paid software tools and cervices only if for the purposes of the project the free alternatives either don't fit or exit. Therefore, we tried to deploy the front end to the main alternative of Vercel - Cloudfare \cite{cloudflareMainPage}. Like Vercel, Cloudflare Pages and Workers have full support for deployment of Next.js project \cite{cloudflareWorkersMainPage} while having an unlimited free plan with restrictions that didn't significantly impact the project during and post development. Moreover, the platform provided high integration with GitHub, and after every merged pull request an automatic deployment to the server would be triggered, which was a nice addition. However, after setting up and attempting to deploy the project, we have encountered the issue of project not being properly configured for running on edge. After consulting the documentation for this specific issue \cite{APIReferenceEdgeRuntime}, as well as additional way to deploy the project to the same site \cite{Next.jsCloudflareDocs}, we have determined that deploying the application without addition configuration files and code snippets would not be possible. After reviewing the situation and weighing pros and cons of deploying to CloudFlare, we decided that trying to resolve all of the issues and limiting ourselves and the client to only one provider was not worth it. Therefore, we decided change our deployment strategy entirely, and deploy a docker container instead. (Can also waffle about other services having issues with deployment, but not sure if that is even necessary)
 
 - Deploying a containerized application (it may be a good idea to docuemnt what steps I made word for work for other people to replicate waht I did)
-Conveniently, Next.js documentation also provides general steps that are can be taken in successful containerization and deployment of the project \cite{vercelMainDeploymentMainPage}\cite{next.js/examples/with-docker}. Conveniently, the only two necessary additions to the code (that also didn't change how the code functioned), were the addition of the Dockerfile \cite{next.js/examples/with-docker/Dockerfile} and "output: "standalone"," line to the next.config.js file, neither of which changed how the application worked. To create an image of the project I used the command "docker build -t tour-de-face-docker .". To create and run a container from the image I use the GUI of Docker Dextop. From there, in terms of deployment there were several options to explore. The easiest and the cheapest one was to expose the localhost port to the web using Ngrok, which is a free software that promises to do this securely \cite{ngrokMain} \cite{ngrokMainDocs}. This approach had several advantages. Firstly, since the application was self-hosted (i.e. was run on one of the personal computers), it was completely free, discounting minimal energy bills that come from operating a laptop. Moreover, containerization allowed for a quick and painless change of a host device, should the need arise. The downside of self-hosting was the questionable security, as well as inability of scaling the applciation. However, for the purposes of demonstrating the application to the end user, it was a successful general proof-of-concept that our application could be deployed. Out of curiosity (mostly), we decided to find out whether the image/containter could be deployed to the cloud. Our initial choice of a cloud container runner was Google Cloud run, as it provided a quite generous free tier plan. However, since a containter runner service does not require any additional configuriations unlike adaptop services, if for some reason we or the client decides to switch the container runner provider, that would be a matter of uploading the image/container to the service. The major donwside of using the cloud runners though is that there is no immediate and seamless way to create a continuous deployment pipeline (although I specualte that would be possible with additional tools such as GitHub actions). Another issue that we ahve noticed is that the 
+Conveniently, Next.js documentation also provides general steps that are can be taken in successful containerization and deployment of the project \cite{vercelMainDeploymentMainPage}\cite{next.js/examples/with-docker}. Conveniently, the only two necessary additions to the code (that also didn't change how the code functioned), were the addition of the Dockerfile \cite{next.js/examples/with-docker/Dockerfile} and "output: "standalone"," line to the next.config.js file, neither of which changed how the application worked. To create an image of the project I used the command "docker build -t tour-de-face-docker .". To create and run a container from the image I use the GUI of Docker Dextop. From there, in terms of deployment there were several options to explore. The easiest and the cheapest one was to expose the localhost port to the web using Ngrok, which is a free software that promises to do this securely \cite{ngrokMain} \cite{ngrokMainDocs}. This approach had several advantages. Firstly, since the application was self-hosted (i.e. was run on one of the personal computers), it was completely free, discounting minimal energy bills that come from operating a laptop. Moreover, containerization allowed for a quick and painless change of a host device, should the need arise. The downside of self-hosting was the questionable security, as well as inability of scaling the applciation. However, for the purposes of demonstrating the application to the end user, it was a successful general proof-of-concept that our application could be deployed. Out of curiosity (mostly), we decided to find out whether the image/containter could be deployed to the cloud. Our initial choice of a cloud container runner was Google Cloud run, as it provided a quite generous free tier plan. However, since a containter runner service does not require any additional configurations unlike adapter services, if for some reason we or the client decides to switch the container runner provider, that would be a matter of uploading the image/container to the service. The major downside of using the cloud runners though is that there is no immediate and seamless way to create a continuous deployment pipeline (although I speculate that would be possible with additional tools such as GitHub actions). Another issue that we have noticed is that the 
 
 The downside is that there is no obvious solution on how to make an automatic deployment upon push to main. (Maybe possible with github actions, but like don't fix what ain't broke)
 
 -----------Can also create a table for the options and paste it here--------------------------------
-
-This is an absolute dogshit work, but I guess I have to start somewhere

@@ -1,90 +1,74 @@
 \chapter{Background and Related Work}
-
+\begin{sloppypar}
 \section{Problem Context}
 Tourlingo is a web-based, multilingual travel assistant designed to help tourists navigate unfamiliar cities without language barriers or cultural missteps. Today, visitors who don’t speak the local language typically juggle multiple tools—switching between a mapping app for directions, a translation app for menus and signs, web searches for local customs, and separate POI queries for essentials like ATMs or hospitals. This fragmented workflow creates four key pain points:
 
 \begin{itemize}
-  \item \textbf{Interrupted Exploration.} Every app switch disrupts the flow of a traveler, costs time and battery, and increases the chance of routing or translation errors. Studies show that context-switching between mobile apps can add up to 20\% extra task time, eroding precious vacation hours.
-  \item \textbf{Persistent Language Gaps.} Although most map services now offer 'translate label' features, place names and menus often appear in the local tongue or in inconsistent transliterations, forcing users to guess context or miss subtle nuances (e.g., 'cola' vs. 'kola', 'restaurante' vs. 'restauránt'
-  \item \textbf{Generic Cultural Advice.} Guidebooks and travel blogs typically deliver high-level etiquette (“In Country X, tipping ranges from 5–10\%”) but overlook neighborhood- or venue-specific norms that matter on the ground—like whether you remove your shoes before entering a shrine, or whether locals expect you to address shopkeepers formally or casually.
-  \item \textbf{Scattered Essentials.} Finding critical services (police stations, hospitals, ATMs, restrooms) requires separate map searches each time—often yielding mismatched categories or outdated listings. In emergencies, this disjointed process can cause dangerous delays.
+  \item \textbf{Interrupted Exploration.} Every app switch disrupts the flow of a traveler, costs time and battery, and increases the chance of routing or translation errors. Studies show that context-switching between mobile apps can add up to 20\% extra task time, eroding precious vacation hours \cite{mobileit2024}.
+  \item \textbf{Persistent Language Gaps.} Although most map services now offer “translate label” features \cite{googlemaps}\cite{applemaps}, place names and menus often appear in the local tongue or in inconsistent transliterations, forcing users to guess context or miss subtle nuances (e.g., “cola” vs. “kola,” “restaurante” vs. “restauránt”).
+  \item \textbf{Generic Cultural Advice.} Guidebooks and travel blogs typically deliver high-level etiquette (“In Country X, tipping ranges from 5–10\%”) but overlook neighborhood- or venue-specific norms that matter on the ground—like whether you remove your shoes before entering a shrine, or whether locals expect you to address shopkeepers formally or casually \cite{lonelyplanet}\cite{culturetrip}.
+  \item \textbf{Scattered Essentials.} Finding critical services (police stations, hospitals, ATMs, restrooms) requires separate map searches each time—often yielding mismatched categories or outdated listings—which in emergencies can cause dangerous delays \cite{googlemaps}.
 \end{itemize}
 
 Behind these friction points lies a deeper problem: tourist anxiety and lost opportunities. Language misunderstandings can lead to accidental disrespect, cultural faux-pas, or unsafe situations. Valuable local experiences, such as chatting with a barista, discovering hidden markets, or participating in a neighborhood festival, fall through the cracks when travelers are tied to their screens, searching for translations or switching apps. Tourlingo addresses these challenges by unifying the following:
-
+\pagebreak 
 \begin{itemize}
-\item Instant, 40+--language translation, POI details.
-\item AI-powered hyperlocal cultural tips, customized by city  ('In temple precinct, remove your hat as well as your shoes').
-\item A single 'Travel Essentials' layer under one tap.
+\item Instant, 40+–language translation, overlaid directly on map labels and POI details.
+\item AI-powered hyper-local cultural tips, customized by city and neighborhood (``In this temple precinct, remove your hat as well as your shoes'').
+\item A single ‘Travel Essentials’ layer under one tap.
 \end{itemize}
 
 \section{Related Work and Existing Solutions}
+\begin{table}[H]
+  \centering
+  \caption{Comparison of Existing Travel Tools}
+  \label{tab:travel-tools-comparison}
+  \begin{tabular}{|p{3cm}|p{3cm}|p{4cm}|p{4cm}|}
+    \hline
+    \textbf{Category} & \textbf{Examples / Coverage} & \textbf{Pros} & \textbf{Cons} \\ 
+    \hline
+    General-Purpose Map \& Navigation Apps &
+      Google Maps \cite{googlemaps}, Apple Maps \cite{applemaps}, HERE\cite{herewego}, OpenStreetMap\cite{openstreetmap} &
+      Industry-leading turn-by-turn directions, live traffic/transit updates, street-view imagery, offline map downloads, extensive user reviews. &
+      POI labels default to local language (“Translate map labels” sometimes delayed/imprecise); no cultural etiquette guidance; no unified “travel essentials” category. \\
+    \hline
+    Citymapper &
+      Select cities \cite{citymapper} &
+      Ultra-detailed public-transit routing, real-time departure boards, disruption alerts. &
+      Limited geographic coverage; lacks translation or cultural-tips features. \\
+    \hline
+    Language \& Translation Tools &
+      Google Translate \cite{googlet}, Microsoft Translator \cite{mstranslator} &
+      Instant text, voice, and camera-based translation in 100+ languages; built-in phrasebooks. &
+      Often literal translations (loss of idiomatic meaning); requires app switching; no location-aware suggestions. \\
+    \hline
+    Phrase-book Apps &
+      TripLingo \cite{triplingo}, iTranslate Voice \cite{itranslate} &
+      Curated travel phrases, offline mode, etiquette tip cards. &
+      Static phrase lists; separate UI; minimal live navigation integration. \\
+    \hline
+    Travel Advice \& Cultural-Insights Platforms &
+      TripAdvisor \cite{tripadvisor}, Yelp \cite{yelp}, Foursquare \cite{foursquare}, Lonely Planet \cite{lonelyplanet}, Culture Trip \cite{culturetrip} &
+      Crowdsourced reviews and professional editorial guides. &
+      Insights often buried or outdated; not tied directly to live navigation. \\
+    \hline
+    All-in-One Tourist Apps &
+      TripLingo \cite{triplingo} &
+      Integrated translation, currency conversion, safety tools. &
+      Rudimentary navigation features; high-level tips only. \\
+    \hline
+    Offline/Privacy-Focused Map Apps &
+      Maps.me \cite{mapsme} &
+      Fully offline, open-source, includes essential POIs. &
+      No built-in translation layer; lacks cultural tips; UI can appear cluttered. \\
+    \hline
+  \end{tabular}
+\end{table}
 
-\subsection{General-Purpose Map \& Navigation Apps}
-\textbf{Examples:} Google Maps, Apple Maps, HERE, OpenStreetMap
-
-\begin{itemize}
-\item \textbf{Pros:} Industry-leading turn-by-turn directions, live traffic/transit updates, street-view imagery, offline map downloads, plus extensive user-generated reviews.
-\item \textbf{Cons:} POI labels default to the local language (“Translate map labels” exists but is often delayed or imprecise); no built-in cultural etiquette guidance;  no unified category of 'travel essentials'.
-\end{itemize}
-
-\subsection{General-Purpose Map \& Navigation Apps}
-
-General-purpose navigation apps provide essential location and routing services for millions of users worldwide. They are commonly used for directions, finding places of interest, and exploring new areas.
-
-These platforms excel at providing industry-leading turn-by-turn navigation, real-time traffic and public transport updates, street-level imagery, and offline map functionality. Many also incorporate extensive user-generated reviews and ratings, helping users make informed choices quickly.
-However, they have some limitations when used by international tourists. Point-of-interest labels often appear in the local language, and while options to translate map labels exist, they are sometimes delayed or inaccurate. Additionally, these apps typically lack cultural etiquette tips and do not organize crucial travel services under a unified 'travel essentials' category.
-
-\textbf{Examples:} Google Maps, Apple Maps, HERE, OpenStreetMap
+\end{sloppypar}
 
 
-\subsection{Citymapper}
-\textbf{Coverage:} Select cities
 
-\begin{itemize}
-\item \textbf{Pros:} Ultra-detailed public-transit routing, real-time departure boards, disruption alerts.
-\item \textbf{Cons:} Limited geographic coverage; lacks translation or cultural-tips features.
-\end{itemize}
-
-\subsection{Language \& Translation Tools}
-\textbf{Examples:} Google Translate, Microsoft Translator
-
-\begin{itemize}
-\item \textbf{Pros:} Instant text, voice, and camera-based translation in 100+ languages; phrasebooks.
-\item \textbf{Cons:} Often literal (loses idiomatic or culturally nuanced meaning); requires switching out of your mapping app; no location-aware suggestions.
-\end{itemize}
-
-\subsection{Phrase-book Apps}
-\textbf{Examples:} TripLingo, iTranslate Voice
-
-\begin{itemize}
-\item \textbf{Pros:} Curated travel phrases, offline mode, etiquette tip cards.
-\item \textbf{Cons:} Static phrase lists; separate UI; minimal integration with live navigation.
-\end{itemize}
-
-\subsection{Travel Advice \& Cultural-Insights Platforms}
-\textbf{Examples:} TripAdvisor, Yelp, Foursquare, Lonely Planet, Culture Trip
-
-\begin{itemize}
-\item \textbf{Pros:} Crowdsourced reviews and professional guides.
-\item \textbf{Cons:} Outdated or buried insights; lack of integration with maps.
-\end{itemize}
-
-\subsection{All-in-One Tourist Apps}
-\textbf{Example:} TripLingo
-
-\begin{itemize}
-\item \textbf{Pros:} Translation, currency converter, safety tools in one place.
-\item \textbf{Cons:} Rudimentary navigation; high-level tips only.
-\end{itemize}
-
-\subsection{Offline/Privacy-Focused Map Apps}
-\textbf{Example:} Maps.me
-
-\begin{itemize}
-\item \textbf{Pros:} Fully offline, open-source, includes POIs.
-\item \textbf{Cons:} No translation layer; lacks cultural tips; UI clutter.
-\end{itemize}
 
 
 
