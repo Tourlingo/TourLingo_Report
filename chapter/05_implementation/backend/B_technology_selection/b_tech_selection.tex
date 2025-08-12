@@ -1,0 +1,86 @@
+\subsection{Technology Selection and Evaluation Framework}
+
+\subsubsection{Decision Methodology}
+
+A multi-criteria decision analysis (MCDA) approach was employed, establishing weighted evaluation criteria based on project priorities and constraints. The methodology ensured objective technology selection while accounting for both quantitative and qualitative factors.
+
+\subsubsection{Weighting Rationale:}
+\begin{itemize}
+    \item \textbf{Cost Efficiency (20\%):} Project budget constraints demanded free/open-source solutions
+    \item \textbf{Usage Scalability (15\%):} High-traffic scenarios required unlimited processing capability
+    \item \textbf{Self-hosting Capability (15\%):} Data privacy and infrastructure control requirements
+    \item \textbf{Performance Characteristics (10\%):} Balanced against cost considerations and deployment complexity
+\end{itemize}
+
+\subsubsection{Application Framework Evaluation}
+
+\subsubsection{Comparative Analysis: Spring Boot vs. Node.js}
+
+The framework selection process evaluated two primary candidates against specific criteria relevant to the translation service requirements.
+
+\begin{table}[h!]
+\centering
+\caption{Application Framework Comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{2.5cm}|p{1cm}|p{4cm}|p{3cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Weight} & \textbf{Spring Boot (Java 21)} & \textbf{Node.js} & \textbf{Selection Rationale} \\
+\hline
+Type Safety & 15\% & 5 - Strong typing reduces runtime errors & 2 - Dynamic typing increases error risk & Critical for production stability \\
+\hline
+Concurrency Model & 20\% & 5 - Virtual threads enable millions of concurrent operations & 3 - Single-threaded event loop limitations & Essential for parallel translation processing \\
+\hline
+Enterprise Features & 10\% & 5 - Comprehensive ecosystem with dependency injection & 3 - Requires third-party package integration & Reduces development complexity \\
+\hline
+Developer Experience & 10\% & 4 - Traditional synchronous coding paradigm & 3 - Asynchronous-first complexity & Maintainability consideration \\
+\hline
+Performance & 15\% & 5 - Excellent I/O-bound task handling & 4 - Strong I/O performance but CPU limitations & Translation service is I/O-intensive \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\textbf{Weighted Score: Spring Boot (4.6/5) vs. Node.js (3.1/5)}
+
+\textbf{Critical Finding:} Java 21's virtual threads provided the decisive advantage, enabling blocking-style code to scale effectively without the complexity overhead of reactive programming patterns. This alignment with the translation service's I/O-intensive workload justified the framework selection.
+
+\subsubsection{Translation Engine Evaluation}
+
+\subsubsection{Decision Matrix Analysis:}
+
+\begin{table}[h!]
+\centering
+\caption{Translation Engine Evaluation Matrix}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{2cm}|p{1cm}|p{2.5cm}|p{2cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Criteria} & \textbf{Weight} & \textbf{LibreTranslate} & \textbf{DeepL} & \textbf{Google Cloud} & \textbf{Azure Translator} \\
+\hline
+Cost Efficiency & 20\% & 5 - Completely free when self-hosted & 3 - Limited free tier, paid structure & 3 - Paid after quota & 3 - Paid after quota \\
+\hline
+Usage Limits & 15\% & 5 - No imposed limits, hardware-bound only & 2 - 5,000 chars/request in free tier & 3 - 500k chars/month free & 4 - 2M chars/month free \\
+\hline
+Self-hosting & 15\% & 5 - Fully self-hostable & 1 - Cloud-only service & 1 - Cloud-only service & 1 - Cloud-only service \\
+\hline
+Data Privacy & 15\% & 5 - Complete local processing control & 3 - Cloud processing with deletion policies & 3 - Google server processing & 3 - Azure server processing \\
+\hline
+Translation Quality & 10\% & 3 - Moderate, suitable for tourism content & 5 - Excellent, especially European languages & 4 - High multilingual support & 4 - High multilingual support \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\textbf{Weighted Scores:} LibreTranslate (4.65/5), DeepL (3.25/5), Google Cloud (3.45/5), Azure (3.55/5)
+
+\subsubsection{Trade-off Analysis:}
+\begin{itemize}
+    \item \textbf{Accepted Risk:} Moderate translation quality versus cost elimination and unlimited usage
+    \item \textbf{Mitigation Strategy:} Focus on tourism-specific phrases where quality differences are minimal
+    \item \textbf{Future Consideration:} Quality assessment framework for potential hybrid approaches using commercial APIs for critical translations
+\end{itemize}
+
+
+
+
+
+
