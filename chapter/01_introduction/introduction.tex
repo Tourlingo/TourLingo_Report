@@ -2,22 +2,31 @@
 
 \section{Motivation}
 
-Tourism is one of the fastest-growing industries worldwide, but international travellers still face common problems when visiting new places. Many struggle with language barriers, unfamiliar local customs, and a lack of digital tools designed specifically for tourists. Most popular navigation apps are made for people who understand global language that is English. Meanwhile, translation tools often work separately from navigation apps. Some of the well-known websites do provide translation upto certain extent, but assume people know local customs \cite{navUX,localizationUX}.
+Tourism is one of the fastest-growing industries worldwide, but international travellers still face common problems when visiting new places. Many struggle with language barriers, unfamiliar local customs, and a lack of digital tools designed specifically for tourists \cite{Liebling2020}. Most popular navigation apps are made for people who understand the global language, English. Meanwhile, translation tools often work separately from navigation apps. Well-known websites do provide translation to a certain extent, but assume that people know local customs \cite{navUX,localizationUX}.
 
-This project aims to solve that gap. We are building a web app that works like a multilingual virtual assistant. It helps tourists find important places on a map, understand local customs, and get translations in real time. We use OpenStreetMap for maps \cite{osm}, LibreTranslate for free and open-source translation \cite{libretranslate}, and AI to provide cultural tips \cite{cultureai}. Our goal is to help tourists feel more confident and informed as they explore, making travel more inclusive and enjoyable \cite{inclusiveTourism}.
+This project aims to solve this gap. We are building a web app that works like a multilingual virtual assistant. It helps tourists find important places on a map, understand local customs, and get translations in real time. We use OpenStreetMap for maps \cite{osm}, LibreTranslate for free and open-source translation \cite{libretranslate}, and AI to provide cultural tips \cite{cultureai}. Our goal is to help tourists feel more confident and informed as they explore, making travel more inclusive and enjoyable \cite{inclusiveTourism}.
 
 \section{Project Aims and Objectives}
 
 The main goal of this project is to design and develop a cross-device web application that acts as a travel assistant for tourists. It combines three features: map navigation, automatic translation, and cultural guidance.
 
-\textbf{Objectives:}
+\textbf{Product Objectives}
 \begin{itemize}
-  \item Design an interactive map using OpenStreetMap that shows useful places for tourists.
-  \item Add real-time translation using LibreTranslate to show place names and directions in the user’s language.
-  \item Provide helpful cultural tips (like etiquette and common phrases) using AI-generated content \cite{gpt_culturetips}.
-  \item Make sure the web app works well on phones, tablets and computers \cite{responsiveDesign}.
-  \item Build the app in a modular way so it can be easily extended to support new languages \cite{modularApps}.
-  \item Work closely with our client, Al Fateh Technologies, to make sure the app meets real-world business needs.
+  \item Design an interactive map interface that highlights tourist-oriented points of interest (POIs) with user-selectable filters (e.g., food, hotels, healthcare).
+  \item Implement static spontaneous translation so that website interface including side panels and directions are shown in the user’s preferred language.
+  \item Provide cultural tips (e.g., etiquette, key phrases, local norms) using dynamically generated and translated content \cite{gpt_culturetips}.
+  \item Ensure responsive performance across mobile, tablet, and desktop devices, meeting recognised accessibility standards \cite{responsiveDesign}.
+  \item Design and implement a modular, loosely coupled architecture so that key components - such as the map rendering engine, POI data source, or translation provider - can be swapped or extended without major rework \cite{modularApps}.
+\end{itemize}
+
+\textbf{Team \& Learning Objectives}
+\begin{itemize}
+  \item \textit{Teamwork \& Collaboration:} Define clear roles (e.g., project manager, development lead, frontend \& backend developer, tester), maintain shared task boards, and hold regular face-to-face and virtual meets to coordinate progress.
+  \item \textit{Client Engagement:} Collaborate with our industrial partner (Al Fateh Technologies) via demos and feedback sessions to ensure alignment with real-world needs.
+  \item \textit{Software Engineering Practice:} Apply methods from software engineering modules from term 2 - defining minimum viable product requirements, user stories, prototyping, iterative development - to structure the build.
+  \item \textit{Technical Growth:} Learn and apply new frameworks, APIs, and integration techniques relevant to geospatial, multilingual, and AI-driven web applications.
+  \item \textit{Quality \& Testing:} Develop a test plan (unit, integration, user), measure against agreed acceptance criteria.
+  \item \textit{Professional Skills:} Schedule regular meetings with client and academic guide with clear agenda and minutes of meetings.
 \end{itemize}
 
 \section{Client Brief and Challenges}
@@ -28,10 +37,10 @@ At the start, the brief was open-ended. This gave us the freedom to explore idea
 
 \textbf{Some key challenges we faced:}
 \begin{itemize}
-  \item Connecting to LibreTranslate’s API in a way that was smooth and fast enough for real-time use \cite{libretranslate}.
+  \item Implementing a translation service that delivers results smoothly and quickly enough for real-time use.
   \item Designing a map that not only looked good but worked well on mobile devices and included tourist-specific points of interest \cite{uxTourism}.
   \item Making sure the cultural tips provided by the AI were appropriate and relevant to the user’s context \cite{aiBias}.
   \item Managing a large team of eight people while keeping up with a short project timeline using agile development methods \cite{agileTeams}.
 \end{itemize}
 
-In some cases, we couldn’t find the data we needed — for example, images for the places as we are using not using some premium paid APIs to receive the data. To keep the project moving, we used placeholder images. But in future, if our client wants to invest in the project and build something scalable and useful for tourists with latest and authentic information, paid versions of APIs could replace currently used open-source APIs \cite{crowdsourcing}.
+In some cases, we could not find the data we needed - for example, images for places as we are not using any premium paid APIs to receive the data. To keep the project moving, we used placeholder images. But in future, if our client wants to invest in the project and build something scalable and useful for tourists with latest and authentic information, paid versions of APIs could replace currently used open-source APIs \cite{crowdsourcing}.
