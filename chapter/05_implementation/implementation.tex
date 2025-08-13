@@ -225,14 +225,10 @@ After completing the initial development in Iteration One, the second iteration 
 \end{figure}
 
 \section{API and Integration}
-\subsection{Drafting notes}
+\subsection{Part of the program responsible for the map UI/UX}
 
-\subsection{maps page}
+\subsubsection{Fetching the data from Open Street Map }
 
-
-\subsection{How does map work}
-
-\subsection{1) Fetching the data from Open Street Map }
 Two major external services that we use to provide the use with navigational information are Open Street Map (OSM) and Overpass. OSM is an online and open source geographical database. The contents of the database are maintained by a community of enthusiasts and are freely accessible by everyone. However,  since the OSM does not provide a programming interface to interact with the database, our team has adopted Overpass API to solve the problem. It provides 2 types of tools that make interaction with the database possible. The first one is the interpreter that accepts the HTTP requests, that could be made via Javascript fetch api, and returns OSM database entries. Conveniently, the API supports the retrieval of OSM data in JSON format, which eases parsing through and manipulation of the fetched data. (Here we can put an example of the request form the databse) The second tool of Overpass API is the quiery lapgues, that allows for the selection of only those OSM database entries that satifsy specific characteristics. The most used feature of the query language was the selection of OSM nodes based on the tags, that explain the nature of the obejct (here we can put as an example the fetch request that retrieves only the restaurants in the area). 
 
 When the user navigates to the map page and gives permission for his location information to be collected, an Overpass API call is made.
