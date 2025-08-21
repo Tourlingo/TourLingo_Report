@@ -1,68 +1,73 @@
 \chapter{Background and Related Work}
 \begin{sloppypar}
+
 \section{Problem Context}
-Tourlingo is a web-based, multilingual travel assistant designed to help tourists navigate unfamiliar cities without language barriers or cultural missteps. Today, visitors who don’t speak the local language typically juggle multiple tools—switching between a mapping app for directions, a translation app for menus and signs, web searches for local customs, and separate POI queries for essentials like ATMs or hospitals. This fragmented workflow creates four key pain points:
+Tourists arrive in a new city and even simple things choosing the right route, understanding station signage and opening hours, or asking for directions often turn into a scavenger hunt across apps. One app shows the map, another helps with basic phrases, blogs explain local manners, and separate searches find essentials like ATMs or hospitals. Using all these tools takes extra time and erodes traveller confidence \cite{mobileit2024}.
 
-\begin{itemize}
-  \item \textbf{Interrupted Exploration.} Every app switch disrupts the flow of a traveler, costs time and battery, and increases the chance of routing or translation errors. Studies show that context-switching between mobile apps can add up to 20\% extra task time, eroding precious vacation hours \cite{mobileit2024}.
-  \item \textbf{Persistent Language Gaps.} Although most map services now offer “translate label” features \cite{googlemaps}\cite{applemaps}, place names and menus often appear in the local tongue or in inconsistent transliterations, forcing users to guess context or miss subtle nuances (e.g., “cola” vs. “kola,” “restaurante” vs. “restauránt”).
-  \item \textbf{Generic Cultural Advice.} Guidebooks and travel blogs typically deliver high-level etiquette (“In Country X, tipping ranges from 5–10\%”) but overlook neighborhood- or venue-specific norms that matter on the ground—like whether you remove your shoes before entering a shrine, or whether locals expect you to address shopkeepers formally or casually \cite{lonelyplanet}\cite{culturetrip}.
-  \item \textbf{Scattered Essentials.} Finding critical services (police stations, hospitals, ATMs, restrooms) requires separate map searches each time—often yielding mismatched categories or outdated listings—which in emergencies can cause dangerous delays \cite{googlemaps}.
-\end{itemize}
+\noindent \textbf{Multilingual understanding.}
+Even with “translate label” features in major map apps, place names, signs, timetables, opening hours, and descriptions often remain in the local language or appear in inconsistent translterations \cite{googlemaps,applemaps}. Our focus is on \emph{multilingual assistance} for the UI and in-app content panels (e.g., POI details), so travellers can understand what they are looking at without leaving the flow. For clarity, Tourlingo does not translate base map labels; the base map language follows the provider. Translations apply to the UI and in-app panels (e.g., POI details and cultural tips).
 
-Behind these friction points lies a deeper problem: tourist anxiety and lost opportunities. Language misunderstandings can lead to accidental disrespect, cultural faux-pas, or unsafe situations. Valuable local experiences, such as chatting with a barista, discovering hidden markets, or participating in a neighborhood festival, fall through the cracks when travelers are tied to their screens, searching for translations or switching apps. Tourlingo addresses these challenges by unifying the following:
-\pagebreak 
-\begin{itemize}
-\item Instant, 40+–language translation, overlaid directly on map labels and POI details.
-\item AI-powered hyper-local cultural tips, customized by city and neighborhood (``In this temple precinct, remove your hat as well as your shoes'').
-\item A single ‘Travel Essentials’ layer under one tap.
-\end{itemize}
+\medskip
+
+\noindent \textbf{Cultural fit.}
+Guidebooks and blogs provide broad etiquette, but rarely the city specific cues that matter on the ground \cite{lonelyplanet,culturetrip}. Concise, city-based cultural tips help visitors avoid Mistake and feel more confident engaging with locals.
+
+\medskip
+
+\noindent \textbf{Fewer apps, fewer detours.}
+A typical journey still involves hopping between a map, a translator, and the web. Every switch breaks focus, drains battery, and prolongs simple tasks; on mobile, context switching alone can add roughly 20\% to task time \cite{mobileit2024}. Reducing that friction is pivotal for short trips where minutes matter.
+
+\medskip
+
+\noindent \textbf{Finding essentials when it matters.}
+Accessing police stations, hospitals, ATMs, and toilets often means repeated, separate searches with uneven categories or freshness—frustrating at best and risky in urgent situations \cite{googlemaps}. A unified “travel essentials” view closes this gap so help is one tap away.
+
+\medskip
+
+These frictions create anxiety and missed opportunities: misunderstandings, breaches of local norms, and time lost to juggling tools instead of enjoying the place.
 
 \section{Related Work and Existing Solutions}
+\paragraph{Scope.}
+The table below compares widely used navigation apps a traveller might choose instead of our system, summarising practical pros/cons and the gaps that matter for language/culture and “travel essentials.”
+
 \begin{table}[H]
   \centering
-  \caption{Comparison of Existing Travel Tools}
-  \label{tab:travel-tools-comparison}
-  \begin{tabular}{|p{3cm}|p{3cm}|p{4cm}|p{4cm}|}
+  \caption{Representative Apps — Pros and Cons}
+  \label{tab:per-app}
+  \begin{tabular}{|p{3cm}|p{5.2cm}|p{5.2cm}|}
     \hline
-    \textbf{Category} & \textbf{Examples / Coverage} & \textbf{Pros} & \textbf{Cons} \\ 
+    \textbf{App} & \textbf{Pros} & \textbf{Cons} \\
     \hline
-    General-Purpose Map \& Navigation Apps &
-      Google Maps \cite{googlemaps}, Apple Maps \cite{applemaps}, HERE\cite{herewego}, OpenStreetMap\cite{openstreetmap} &
-      Industry-leading turn-by-turn directions, live traffic/transit updates, street-view imagery, offline map downloads, extensive user reviews. &
-      POI labels default to local language (“Translate map labels” sometimes delayed/imprecise); no cultural etiquette guidance; no unified “travel essentials” category. \\
+    Google Maps \cite{googlemaps} &
+      Comprehensive POIs, multi-modal routing (drive/walk/transit), reviews, offline areas. &
+      Labels default to local language; “translate labels” coverage can be uneven; no in-flow cultural etiquette; essentials (police, hospitals, ATMs, toilets) require separate searches. \\
     \hline
-    Citymapper &
-      Select cities \cite{citymapper} &
-      Ultra-detailed public-transit routing, real-time departure boards, disruption alerts. &
-      Limited geographic coverage; lacks translation or cultural-tips features. \\
+    Apple Maps \cite{applemaps} &
+      Smooth iOS integration, clear UI, privacy posture; improving transit coverage. &
+      Fewer reviews/POIs in some regions; limited multilingual labelling consistency in some regions; no cultural tips layer. \\
     \hline
-    Language \& Translation Tools &
-      Google Translate \cite{googlet}, Microsoft Translator \cite{mstranslator} &
-      Instant text, voice, and camera-based translation in 100+ languages; built-in phrasebooks. &
-      Often literal translations (loss of idiomatic meaning); requires app switching; no location-aware suggestions. \\
+    HERE WeGo \cite{herewego} &
+      Robust turn-by-turn and strong offline map packs; reliable driving focus. &
+      Smaller review ecosystem; no built-in translation or cultural guidance; essentials via ad-hoc searches. \\
     \hline
-    Phrase-book Apps &
-      TripLingo \cite{triplingo}, iTranslate Voice \cite{itranslate} &
-      Curated travel phrases, offline mode, etiquette tip cards. &
-      Static phrase lists; separate UI; minimal live navigation integration. \\
+    Citymapper \cite{citymapper} &
+      Best-in-class public-transport UX in supported cities; live departures and disruption alerts. &
+      Limited city coverage; no integrated translation; no cultural tips or unified essentials layer. \\
     \hline
-    Travel Advice \& Cultural-Insights Platforms &
-      TripAdvisor \cite{tripadvisor}, Yelp \cite{yelp}, Foursquare \cite{foursquare}, Lonely Planet \cite{lonelyplanet}, Culture Trip \cite{culturetrip} &
-      Crowdsourced reviews and professional editorial guides. &
-      Insights often buried or outdated; not tied directly to live navigation. \\
-    \hline
-    All-in-One Tourist Apps &
-      TripLingo \cite{triplingo} &
-      Integrated translation, currency conversion, safety tools. &
-      Rudimentary navigation features; high-level tips only. \\
-    \hline
-    Offline/Privacy-Focused Map Apps &
-      Maps.me \cite{mapsme} &
-      Fully offline, open-source, includes essential POIs. &
-      No built-in translation layer; lacks cultural tips; UI can appear cluttered. \\
+    Maps.me \cite{mapsme} &
+      Fully offline OSM-based navigation; lightweight; includes many basic POIs. &
+      No integrated translation for UI/POI content; no cultural guidance; UI can feel dense; data freshness varies by region. \\
     \hline
   \end{tabular}
+
+  \vspace{4pt}
+  \footnotesize Availability and performance vary by country/city and app version; we focus on what matters for tourists facing language and culture gaps.
 \end{table}
+
+\noindent\textbf{Implication.}
+These apps are excellent at routing and POIs, but they assume language familiarity, provide little in-flow cultural context, and lack a single, reliable “travel essentials” view—so travellers still end up context-switching. In this release, Tourlingo supports walking, cycling, and driving; public-transport routing is out of scope.
+
+\paragraph{What is missing and what we add.}
+Most mainstream navigation tools still lack integrated multilingual \emph{UI and content panels} (beyond system language), concise location-specific cultural cues, and a one-tap view of essentials such as police, hospitals, ATMs, and toilets. \emph{Tourlingo} combines navigation with multilingual UI and side-panel content, cultural tips, and an essentials layer in a single flow, reducing context switching for non-native speakers and first-time visitors.
 
 \end{sloppypar}

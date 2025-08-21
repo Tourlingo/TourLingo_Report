@@ -1,96 +1,24 @@
 \subsection{Requirements Engineering and Design Constraints}
 
-\subsubsection{Functional Requirements Derivation}
+The backend requirements were delineated from a synthesis of user experience expectations within tourism applications, the technical constraints of mobile frontend integration, and the operational demands of a maintainable software system.\cite{requirements-engineering-process}
 
-The backend requirements emerged from three primary sources: user experience expectations
-for tourism applications, technical constraints of mobile frontend integration, and operational
-requirements for maintainable software systems.
+The primary requirement is the provision of a real-time translation service \textbf{(FR1)}\cite{open-nmt}. This service must process English text inputs and return accurate translations in multiple target languages with sub-second latency. The criticality of this feature is high, as it constitutes the fundamental component of the application's multilingual user experience. Achieving such performance necessitates robust integration with external translation services and efficient data handling. This core functionality is intrinsically linked to the requirement for multi-language support \textbf{(FR2)}. The system architecture was explicitly designed for extensibility, ensuring that additional languages can be incorporated in the future without requiring a fundamental redesign or compromising performance. 
 
-\subsubsection{FR1: Real-time Translation Service}
-\begin{itemize}
-    \item \textbf{Requirement:} Process English text input and return translations in target languages with 
-    sub-second response times.
-    \item \textbf{Criticality:} High - Core application functionality enabling multilingual user experience.
-    \item \textbf{Complexity:} Medium - Requires external service integration, data format handling, and
-parallel processing capabilities.
-\end{itemize}
+To ensure the system is robust and effective in a real-world scenario, it must be capable of concurrent request handling \textbf{(FR3)}. Communication between system components is facilitated through API-based architecture \textbf{(FR4)}, specifically implementing RESTful  endpoints that utilize JSON formatting for seamless frontend integration. The design adheres to established REST (Representational State Transfer) architectural principles and HTTP status code conventions, ensuring standards compliance and interoperability\cite{RESTful}\cite{fullstacktips2023restful}.
 
-\subsubsection{FR2: Multi-language Support}
-\begin{itemize}
-    \item \textbf{Requirement:} Support minimum three languages initially (Spanish, French, German) with
-architectural extensibility for additional languages.
-    \item \textbf{Design Impact:} Influenced service architecture to enable horizontal scaling and languageagnostic processing.
-    \item \textbf{Future Scalability:} Architecture must accommodate language additions without service
-redesign or performance degradation.
-\end{itemize}
+The non-functional requirements for the Tourlingo were systematically categorized using the MoSCoW prioritization methodology\cite{productplan2019moscow}\cite{wikipedia2025moscow}, to effectively scope the project and guide development efforts. This framework classifies requirements into four categories: Must-have, Should-have, Could-have, and Won't-have, ensuring that critical system attributes are addressed first.
 
-\subsubsection{FR3: Concurrent Request Handling}
-\begin{itemize}
-    \item \textbf{Requirement:} Process multiple simultaneous translation requests from different users without
-performance degradation.
-\item \textbf{Technical Specification:} Support minimum 50 concurrent users with linear performance
-scaling.
-\item \textbf{Implementation Challenge:} Required careful consideration of threading models and resource
-allocation strategies.
-\end{itemize}
+The "Must Have"  requirements represent the minimum criteria for the system to be considered successful and operationally viable. The foremost requirements in this category are performance and reliability. The system must provide a sub-second response time for all translation requests under typical load conditions and support a high degree of concurrency with graceful degradation under stress.
 
-\subsubsection{FR4: API-Based Communication}
-\begin{itemize}
-    \item \textbf{Requirement:} Expose RESTful endpoints with JSON format for seamless frontend integration.
-    \item \textbf{Standards Compliance:} Adherence to REST architectural principles and HTTP status code
-conventions.
-    \item \textbf{Data Format:} Structured JSON request/response format maintaining semantic relationships.
-\end{itemize}
+The "SHOULD HAVE" requirements are important but not vital for the initial launch. The system should be architected for horizontal scalability. Horizontal scalability capabilities enable the system to accommodate traffic increases through resource addition rather than architectural modification, supporting the long-term growth trajectory anticipated for tourism applications\cite{cloudzero_horizontal_scaling}\cite{sentinelone_horizontal_scalability}. Comprehensive logging and monitoring capabilities provide essential operational visibility for system performance analysis, troubleshooting, and capacity planning activities\cite{bryant2020observability}\cite{sematext_logging_best_practices}. 
 
-\subsubsection{Non-Functional Requirements Prioritization}
+"COULD HAVE" requirements are considered desirable but are of lower priority and would only be implemented if time and resources permit. These include advanced caching strategies to store results for frequently requested translations, which would further reduce latency and API costs\cite{microsoft2022caching}\cite{tekula2024amazon}\cite{apyflux2024optimising}. The implementation of a fully automated CI/CD pipeline for deployment and rollback, which would improve development operations (DevOps) maturity\cite{zymr_devops_maturity}\cite{redhat2024cicd}\cite{testevolve2025cicd}.
 
-Using the MoSCoW prioritization method, requirements were classified as follows:
+Finally, the Won't-have category explicitly defines what is out of scope for the current project iteration. This includes offline translation capabilities, which would require a fundamentally different architecture involving on-device models. Also excluded is any form of active machine learning-based quality improvement, where the system would learn from user corrections. This decision was made to constrain project complexity and focus on the core functionality of providing a stable, high-performance translation service\cite{on_device_language_models}\cite{real_time_vs_offline_translation}\cite{postediting}.
 
-\subsubsection{Must Have Requirements:}
-\begin{itemize}
-    \item A Sub-second response time for translation requests under normal load conditions.
-    \item Concurrent user support with graceful performance degradation.
-    \item System availability of 99.5\% during operational hours.
-    \item Data security and input validation to prevent injection attacks.
-\end{itemize}
+The project's development and architectural decisions were shaped by a series of critical constraints spanning budgetary, technical, and operational domains. These limitations defined the boundaries within which the solution had to be designed and implemented.
 
-\subsubsection{Should Have Requirements:}
-\begin{itemize}
-    \item Horizontal scalability to accommodate traffic increases.
-    \item Comprehensive logging and monitoring capabilities.
-    \item Modular architecture enabling independent service updates.
-\end{itemize}
+Budgetary constraints represented the most significant limitation, requiring the project to operate with zero recurring API subscription costs. This financial restriction significantly influenced technology selection decisions, effectively eliminating commercial translation services from consideration despite their superior quality metrics and reliability. The constraint necessitated the exploration of open-source alternatives and self-hosted solutions, fundamentally altering the system's architectural approach and requiring additional development effort to achieve comparable functionality. The financial limitation directly influenced the operational constraints, making self-hosting capability a mandatory requirement. Self-hosting not only aligns with the cost-control objective but also addresses the crucial need for enhanced data privacy and sovereignty by ensuring that user-submitted data remains within the project's own infrastructure.
 
-\subsubsection{Could Have Requirements:}
-\begin{itemize}
-    \item Advanced caching strategies for frequently translated content.
-    \item Real-time performance monitoring dashboards.
-    \item Automated deployment and rollback capabilities.
-\end{itemize}
+From a technical perspective, the project was required to be delivered as a containerised application. This ensures deployment portability across various cloud and on-premises environments\cite{zhang2019selfhosted}, simplifies dependency management, and promotes consistency between development and production setups using technologies like Docker\cite{turnbull2018docker}. The backend architecture had to ensure seamless integration compatibility with the project's frontend interface\cite{gupta2021reactintegration}. Finally, the entire system was designed with the resource limitations of the target deployment infrastructure in mind\cite{apriorit2025constraints}.
 
-\subsubsection{Won't Have Requirements:}
-\begin{itemize}
-    \item Offline translation capabilities.
-    \item Machine learning-based translation quality improvement.
-\end{itemize}
-
-\subsubsection{Constraint Analysis}
-
-\subsubsection{Budgetary Constraints:}
-The project operated under strict cost limitations, requiring zero recurring API subscription
-costs. This constraint significantly influenced technology selection, eliminating commercial
-translation services despite their superior quality metrics.
-
-\subsubsection{Technical Constraints:}
-\begin{itemize}
-    \item Containerized deployment requirement for cloud and on-premises environments.
-    \item Integration compatibility with React-based frontend architecture.
-    \item Resource limitations of target deployment infrastructure.
-\end{itemize}
-
-\subsubsection{Operational Constraints:}
-\begin{itemize}
-    \item Self-hosting capability requirement for data privacy and cost control.
-    \item Maintenance burden acceptable within team capacity.
-    \item Scalability requirements without proportional infrastructure cost increases.
-\end{itemize}

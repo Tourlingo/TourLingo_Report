@@ -2,15 +2,11 @@
 
 \subsubsection{Decision Methodology}
 
-A multi-criteria decision analysis (MCDA) approach was employed, establishing weighted evaluation criteria based on project priorities and constraints. The methodology ensured objective technology selection while accounting for both quantitative and qualitative factors.
+A multi-criteria decision analysis (MCDA) approach was used to guide towards the technology selection\cite{mcda}. MCDA is a methodology to evaluate and prioritise options based on multiple potential options. The framework was used to systematically evaluate technology choices based on quantitative and qualitative factors, taking into account the system requirements and constraints.
 
-\subsubsection{Weighting Rationale:}
-\begin{itemize}
-    \item \textbf{Cost Efficiency (20\%):} Project budget constraints demanded free/open-source solutions
-    \item \textbf{Usage Scalability (15\%):} High-traffic scenarios required unlimited processing capability
-    \item \textbf{Self-hosting Capability (15\%):} Data privacy and infrastructure control requirements
-    \item \textbf{Performance Characteristics (10\%):} Balanced against cost considerations and deployment complexity
-\end{itemize}
+TODO --- Add Pairwise comparision methodology to justify below numbers used for weightage
+
+Cost Efficiency was assigned the highest weight (20\%) on the basis of budgetary constraints. Usage Scalability and Self-hosting Capabilities were weighted at 15\% and Performance Characteristics, such as translation speed and accuracy, were weighed at 10\% considering it as a trade-off for the project contraints based on client requirements.
 
 \subsubsection{Application Framework Evaluation}
 
@@ -42,11 +38,11 @@ Performance & 15\% & 5 - Excellent I/O-bound task handling & 4 - Strong I/O perf
 
 \textbf{Weighted Score: Spring Boot (4.6/5) vs. Node.js (3.1/5)}
 
-\textbf{Critical Finding:} Java 21's virtual threads provided the decisive advantage, enabling blocking-style code to scale effectively without the complexity overhead of reactive programming patterns. This alignment with the translation service's I/O-intensive workload justified the framework selection.
+\textbf{Critical Finding:} Springboot with Java 21 came out as a strong candidate for backend service. It perfectly aligned with our objective of handling I/O heavy loads for real time translation. Springboot also provides out of the box configurations for seamlessly creating backend services without writing much of the boilerplate code. With concurrency as our challenge for the backend, Java 21's virtual threads provide more efficiency to handle high traffic requests in multi-threaded environments.
 
 \subsubsection{Translation Engine Evaluation}
 
-\subsubsection{Decision Matrix Analysis:}
+The translation engine evaluation process was conducted using the previsously defined multi-criteria decision analysis (MCDA) framework, applying weighted factors to balance cost, usage, self-hosting capability and translation quality. The selected candidates represent the top available machine translation options, spanning towards both open-source and self-hostable solution like LibreTranslate and major cloud based solutions such as DeepL, Google Cloud Translate, and Azure Translator.
 
 \begin{table}[h!]
 \centering
@@ -72,12 +68,8 @@ Translation Quality & 10\% & 3 - Moderate, suitable for tourism content & 5 - Ex
 
 \textbf{Weighted Scores:} LibreTranslate (4.65/5), DeepL (3.25/5), Google Cloud (3.45/5), Azure (3.55/5)
 
-\subsubsection{Trade-off Analysis:}
-\begin{itemize}
-    \item \textbf{Accepted Risk:} Moderate translation quality versus cost elimination and unlimited usage
-    \item \textbf{Mitigation Strategy:} Focus on tourism-specific phrases where quality differences are minimal
-    \item \textbf{Future Consideration:} Quality assessment framework for potential hybrid approaches using commercial APIs for critical translations
-\end{itemize}
+\textbf{Trade-off Analysis:}
+The evaluation process highlighted a key trade-off between translation quality and cost efficiency. By prioritising budgetary contraints and zero recurring costs, we accepted the risk of moderate translation quality when compared to significantly higher costs associated with commercial providers. This risk was mitigated by the observation that the nature of tourism vocabulary comprised largely of common travel-related expressions and predictable phrase sets, making the LibreTranslate's moderate quality rating proved sufficient for practical application needs\cite{libretranslate}. Additionally, LibreTranslate offers built-in translation improvement and correction functionality giving use promising opportunities for further enhancement of translation quality\cite{open-nmt}.
 
 
 

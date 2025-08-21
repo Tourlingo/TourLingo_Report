@@ -2,65 +2,65 @@
 
 \section{Motivation}
 
-Tourism is one of the fastest-growing industries worldwide, but international travellers still face common problems when visiting new places. Many struggle with language barriers, unfamiliar local customs, and a lack of digital tools designed specifically for tourists \cite{Liebling2020}. Most popular navigation apps are made for people who understand the global language, English. Meanwhile, translation tools often work separately from navigation apps. Well-known websites do provide translation to a certain extent, but assume that people know local customs \cite{navUX,localizationUX}.
+While tourism is one of the world's fastest-growing industries, international travel isn't always straightforward. Visitors to new destinations often run into common hurdles like language barriers, unfamiliar local customs, and a lack of digital tools that really meet their needs \cite{Liebling2020}. Many popular navigation apps are built with English speakers in mind, which creates accessibility problems for a global audience. At the same time, most translation tools are standalone apps that don't integrate smoothly with navigation systems. Even major travel websites, which offer some translation, often assume users already know about local customs and etiquette \cite{navUX,localizationUX}.
 
-This project aims to solve this gap. We are building a web app that works like a multilingual virtual assistant. It helps tourists find important places on a map, understand local customs, and get translations in real time. We use OpenStreetMap for maps \cite{osm}, LibreTranslate for free and open-source translation \cite{libretranslate}, and AI to provide cultural tips \cite{cultureai}. Our goal is to help tourists feel more confident and informed as they explore, making travel more inclusive and enjoyable \cite{inclusiveTourism}.
+This project was born out of that gap. We set out to develop a web application that acts as a multilingual virtual assistant for tourists. Our app combines map-based navigation, real-time translation, and culturally relevant guidance into a single, integrated tool. To build it, we used OpenStreetMap for map data \cite{osm}, LibreTranslate for its open-source translation engine \cite{libretranslate}, and a custom AI integration to provide cultural tips \cite{cultureai}. Our ultimate goal is to help tourists feel more confident and prepared as they explore, making international travel a more inclusive and enjoyable experience for everyone \cite{inclusiveTourism}.
 
 \section{Project Aims and Objectives}
 
-The main goal of this project is to design and develop a cross-device web application that acts as a travel assistant for tourists. It combines three features: map navigation, automatic translation, and cultural guidance.
+The main goal of this project was to design and build a web application that works across different devices and serves as a complete travel assistant. We planned to achieve this by integrating three core features: map navigation, automated translation, and cultural guidance.
 
 \textbf{Product Objectives}
 \begin{itemize}
-  \item Design an interactive map interface that highlights tourist-oriented points of interest (POIs) with user-selectable filters (e.g., food, hotels, healthcare).
-  \item Implement static spontaneous translation so that website interface including side panels and directions are shown in the user’s preferred language.
-  \item Provide cultural tips (e.g., etiquette, key phrases, local norms) using dynamically generated and translated content \cite{gpt_culturetips}.
-  \item Ensure responsive performance across mobile, tablet, and desktop devices, meeting recognised accessibility standards \cite{responsiveDesign}.
-  \item Design and implement a modular, loosely coupled architecture so that key components - such as the map rendering engine, Point of Interest (POI) data source, or translation provider - can be swapped or extended without major rework \cite{modularApps}.
+\item To build an interactive map that highlights points of interest (POIs) for tourists, with filters for categories like food, accommodation, and healthcare.
+\item To add a translation feature for the user interface, ensuring that text elements like side panels and directions are displayed in the user’s preferred language.
+\item To offer helpful cultural tips (such as etiquette, key phrases, and local norms) using dynamically generated and translated content \cite{gpt_culturetips}.
+\item To ensure the app has a responsive design that works reliably on mobile, tablet, and desktop devices, following established accessibility standards \cite{responsiveDesign}.
+\item To create a modular architecture where key components—like the map engine, POI data source, or translation provider—could be replaced or extended later without a complete system overhaul \cite{modularApps}.
 \end{itemize}
 
 \textbf{Team \& Learning Objectives}
 \begin{itemize}
-  \item \textit{Teamwork \& Collaboration:} Define clear roles (e.g., project manager, development lead, frontend \& backend developer, tester), maintain shared task boards, and hold regular face-to-face and virtual meets to coordinate progress.
-  \item \textit{Client Engagement:} Collaborate with our industrial partner (Al Fateh Technologies) via demos and feedback sessions to ensure alignment with real-world needs.
-  \item \textit{Software Engineering Practice:} Apply methods from software engineering modules from term 2 - defining minimum viable product requirements, user stories, prototyping, iterative development - to structure the build.
-  \item \textit{Technical Growth:} Learn and apply new frameworks, APIs, and integration techniques relevant to geospatial, multilingual, and AI-driven web applications.
-  \item \textit{Quality \& Testing:} Develop a test plan (unit, integration, user), measure against agreed acceptance criteria.
-  \item \textit{Professional Skills:} Schedule regular meetings with client and academic guide with clear agenda and minutes of meetings.
+\item \textbf{Teamwork \& Collaboration:} We aimed to work effectively as a team by defining clear roles (e.g., project manager, dev lead), using shared task boards, and holding regular meetings to coordinate our work.
+\item \textbf{Client Engagement:} We planned to work closely with our industrial partner, Al Fateh Technologies, using regular demos and feedback sessions to make sure our final product met real-world industry needs.
+\item \textbf{Software Engineering Practice:} We wanted to apply standard software engineering methods, including defining a minimum viable product (MVP), writing user stories, prototyping, and using an iterative development process.
+\item \textbf{Technical Growth:} A key goal was to expand our technical skills by learning and applying new frameworks, APIs, and techniques relevant for building geospatial, multilingual, and AI-driven web apps.
+\item \textbf{Quality \& Testing:} We planned to develop and run a full test plan, covering unit, integration, and user acceptance testing based on predefined criteria.
+\item \textbf{Professional Skills:} We committed to maintaining professional conduct by scheduling regular meetings with our client and academic supervisor, complete with clear agendas and minutes.
 \end{itemize}
 
 \section{Client Brief and Challenges}
 
-Our client, Al Fateh Technologies, builds digital tools for travellers. They asked us to create an app that helps tourists explore cities without needing to know the local language. But they wanted more than just directions - they also wanted the app to make users know about local customs and social norms. The idea was to help tourists feel less confused and more welcome when visiting unfamiliar places \cite{culturegap}.
+Our client, Al Fateh Technologies, creates digital tools for the travel sector. They asked us to develop an application to help tourists explore cities without needing to know the local language. The brief went beyond simple navigation; it required the app to also inform users about local customs and social etiquette. The main idea was to reduce the "culture shock" some travellers feel and improve their overall experience, helping them feel more comfortable and welcome \cite{culturegap}.
 
-At the start, the brief was open-ended. This gave us the freedom to explore ideas, but we had to limit our scope of the app. After several discussions, we narrowed it down to three key features: smart maps, real-time translation, and AI-generated cultural advice.
+The initial brief was quite open, which gave us a lot of creative freedom but also meant we had to work hard to define and limit the project's scope. After a few meetings with the client, we narrowed our focus to three key features: intelligent map navigation, real-time translation, and AI-generated cultural advice.
 
-\textbf{Some key challenges we faced:}
+We faced a few key challenges during the project:
 \begin{itemize}
-  \item Implementing a translation service that delivers results smoothly and quickly enough for real-time use.
-  \item Designing a map that not only looked good but worked well on mobile devices and included tourist-specific points of interest \cite{uxTourism}.
-  \item Making sure the cultural tips provided by the AI were appropriate and relevant to the user’s context \cite{aiBias}.
-  \item Managing a large team of eight people while keeping up with a short project timeline using agile development methods \cite{agileTeams}.
+\item Getting the translation service to work fast enough for a smooth, real-time user experience.
+\item Designing a map interface that was user-friendly and looked good, especially on mobile devices, while showing relevant, tourist-focused POIs \cite{uxTourism}.
+\item Making sure the AI-generated cultural tips were accurate, relevant, and culturally sensitive, while also trying to mitigate potential biases \cite{aiBias}.
+\item Effectively coordinating a team of eight people within a tight project timeline, which we managed by using agile development methods \cite{agileTeams}.
 \end{itemize}
 
-In some cases, we could not find the data we needed - for example, images for places as we are not using any premium paid APIs to receive the data. To keep the project moving, we used placeholder images. But in future, if our client wants to invest in the project and build something scalable and useful for tourists with latest and authentic information, paid versions of APIs could replace currently used open-source APIs \cite{crowdsourcing}.
+One significant limitation was the lack of certain data, like images for points of interest, because we were relying on free, open-source APIs. To keep the project moving forward, we used placeholder images as a temporary fix. If the client decides to invest more in the future, the app could be improved by integrating premium APIs to provide a richer user experience with up-to-date information \cite{crowdsourcing}.
 
 \section{Scope and Deliverables}
-This project focuses on delivering a functional prototype of a Multilingual Virtual Tour Assistant web app, tested on both mobile and desktop devices. The scope includes:
+This project's focus was to deliver a working prototype of the Multilingual Virtual Tour Assistant web application, fully tested on both mobile and desktop. The scope included:
 \begin{itemize}
-\item Map interface using OpenStreetMap with tourist-focused POIs and category filters.
-\item Real-time translation of UI text, directions, and POI descriptions using LibreTranslate.
-\item AI-generated cultural tips relevant to the user’s selected location.
-\item Cloud-hosted backend for reliable data handling and API integration.
-\item Testing and validation, including two test-a-thons.
+\item A map interface built with OpenStreetMap, featuring POIs relevant to tourists and filters for different categories.
+\item On-the-fly translation of UI text, directions, and POI descriptions, using the LibreTranslate API.
+\item A feature for AI-generated cultural tips tailored to the user’s selected location.
+\item A cloud-hosted backend to handle data management and API integrations reliably.
+\item Thorough testing and validation, including two "test-a-thons" where we gathered direct user feedback.
 \end{itemize}
 
-The following were out of scope due to time and resource limits: customer rating based recommendations, integration with paid premium APIs, and automated image sourcing for all POIs. These could be added in future development.
+Due to time and resource constraints, we decided that a few features were out of scope: user-generated ratings and recommendations, integration with paid premium APIs, and a system for automatically sourcing images for all POIs. We've noted these as potential improvements for future development.
 
-Final deliverables to the client include:
+The final deliverables for this project are:
 \begin{itemize}
-\item A working web application deployed online.
-\item Source code and documentation in a public GitHub repository.
-\item Test results and user feedback reports.
-\item A demo video showing key features.
+    \item A functional web application, which we named "Tourlingo," deployed and accessible at a public URL.
+    \item The complete source code and all technical documentation, available in a public GitHub repository.
+    \item A report detailing our test results and the user feedback we collected.
+    \item A demonstration video that showcases the application's key features.
 \end{itemize}

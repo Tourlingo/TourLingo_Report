@@ -21,6 +21,7 @@
 \usepackage{chemformula}
 \usepackage{cite}
 \usepackage[colorlinks, linkcolor=black, anchorcolor=black, citecolor=black]{hyperref}
+\usepackage{xurl} % lets long URLs break across lines nicely
 \usepackage{graphicx}
 \setlength{\parskip}{0.5em}
 
@@ -33,15 +34,23 @@
 \usepackage{subcaption}
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{float}
+
 \renewcommand {\thefigure} {\thesection{}.\arabic{figure}}
 \renewcommand {\thetable} {\thesection{}.\arabic{table}}
 
 % coding
 \usepackage{listings}
+\lstset{basicstyle=\ttfamily, breaklines=true, breakatwhitespace=false}
 \usepackage{minted}
 \usemintedstyle{vs} 
 % Error fix
 \usepackage{xspace}
+
+% Use pdf as appendix
+\usepackage{pdfpages}
 
 \begin{document}
 
@@ -135,6 +144,7 @@
 \appendix
 \import{chapter/appendix/}{A.tex}
 \import{chapter/appendix/}{B.tex}
+\import{chapter/appendix/}{c.tex}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%% biblio %%%%%%%%%%%%%%%%%%%%%%

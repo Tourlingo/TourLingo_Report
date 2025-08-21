@@ -1,21 +1,7 @@
-\section{Design and Implementation of Backend}
+\section{Design and Implementation of Backend}\label{sec:backend}
 
 \subsection{Introduction}
-This chapter provides details about the design and implementation of the back-end architecture for Tourlingo. The backend's primary responsibilty is to deliver near real-time translations of text into the user's preferred language. The backend was developed to serve the minimum requirement of providing a translated text to the frontend in 
-%%% Need to check if i can use json in this way
-JSON format using a translation engine and progressively enhanced to satisfy both functional and non-functional requirements. This chapter highlights the design decisions taken to implement a scalable, cost-effective back-end to meet system requirements.
-
-\subsection{Chapter Objectives}
-
-This chapter aims to:
-
-\begin{itemize}
-    \item Analyze functional and non-functional requirements that influenced architectural decisions
-    \item Justify technology selection through systematic evaluation frameworks
-    \item Document the iterative development methodology and its effectiveness
-    \item Evaluate performance improvements achieved through architectural evolution
-    \item Assess trade-offs inherent in each design iteration and their long-term implications
-\end{itemize}
+This chapter provides details about the design and implementation of the backend architecture for Tourlingo. The backend refers to the server-side components, infrastructure, and processes that operate behind the scenes to power a software application, ensuring smooth functionality and data processing while remaining invisible to the end-user \cite{Backend-def}. The backend's primary responsibility is to deliver near real-time translations of text into the user's preferred language. The system was initially developed to serve the minimum requirement of providing a translated text to the frontend (the user interface you interact with) through "API (Application Programming Interface)" \cite{what-is-an-api} using a translation engine \cite{machine-translation}\cite{libretranslate}. It was subsequently enhanced to satisfy a broader set of functional and non-functional requirements provided by the client. This chapter aims to analyse these requirements and their influence on architectural decisions\cite{parmar2011architectural}, justify the technology selection through a systematic evaluation framework \cite{mcda}\cite{decision-matrix-software-development}, document the iterative development methodology, and evaluate the performance improvements achieved through the architecture's evolution. Furthermore, it will assess the trade-offs inherent in each design iteration and their long-term implications for scalability and maintainability. 
 
 \import{chapter/05_implementation/backend/B_Requirements}{b_requirements.tex}
 
