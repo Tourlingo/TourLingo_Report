@@ -18,7 +18,7 @@ The framework selection process evaluated two primary candidates against specifi
 \centering
 \caption{Application Framework Comparison}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|p{2.5cm}|p{1cm}|p{4cm}|p{3cm}|p{4cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{1cm}|>{\raggedright\arraybackslash}p{4cm}|p{3cm}|>{\raggedright\arraybackslash}p{4cm}|}
 \hline
 \textbf{Criteria} & \textbf{Weight} & \textbf{Spring Boot (Java 21)} & \textbf{Node.js} & \textbf{Selection Rationale} \\
 \hline
@@ -28,7 +28,7 @@ Concurrency Model & 20\% & 5 - Virtual threads enable millions of concurrent ope
 \hline
 Enterprise Features & 10\% & 5 - Comprehensive ecosystem with dependency injection & 3 - Requires third-party package integration & Reduces development complexity \\
 \hline
-Developer Experience & 10\% & 4 - Traditional synchronous coding paradigm & 3 - Asynchronous-first complexity & Maintainability consideration \\
+Developer \mbox{Experience} & 10\% & 4 - Traditional synchronous coding paradigm & 3 - Asynchronous-first complexity & Maintainability consideration \\
 \hline
 Performance & 15\% & 5 - Excellent I/O-bound task handling & 4 - Strong I/O performance but CPU limitations & Translation service is I/O-intensive \\
 \hline
@@ -48,7 +48,7 @@ The translation engine evaluation process was conducted using the previsously de
 \centering
 \caption{Translation Engine Evaluation Matrix}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|p{2cm}|p{1cm}|p{2.5cm}|p{2cm}|p{2.5cm}|p{2.5cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2cm}|p{1cm}|p{2.5cm}|p{2cm}|p{2.5cm}|p{2.5cm}|}
 \hline
 \textbf{Criteria} & \textbf{Weight} & \textbf{LibreTranslate} & \textbf{DeepL} & \textbf{Google Cloud} & \textbf{Azure Translator} \\
 \hline
@@ -66,13 +66,26 @@ Translation Quality & 10\% & 3 - Moderate, suitable for tourism content & 5 - Ex
 }
 \end{table}
 
+%%%%%%%%%%%%%%% Alternate table design without vertical lines %%%%%%%%%%%%%%
+\begin{table}[h!]
+\centering
+\caption{Translation Engine Evaluation Matrix}
+\begin{tabularx}{\textwidth}{l c Y Y Y Y}
+\toprule
+\textbf{Criteria} & \textbf{Weight} & \textbf{LibreTranslate} & \textbf{DeepL} & \textbf{Google Cloud} & \textbf{Azure Translator} \\
+\midrule
+Cost Efficiency & 20\% & 5 -- Completely free when self-hosted & 3 -- Limited free tier, paid structure & 3 -- Paid after quota & 3 -- Paid after quota \\
+Usage Limits & 15\% & 5 -- No imposed limits, hardware-bound only & 2 -- 5{,}000 chars/request in free tier & 3 -- 500k chars/month free & 4 -- 2M chars/month free \\
+Self-hosting & 15\% & 5 -- Fully self-hostable & 1 -- Cloud-only service & 1 -- Cloud-only service & 1 -- Cloud-only service \\
+Data Privacy & 15\% & 5 -- Complete local processing control & 3 -- Cloud processing with deletion policies & 3 -- Google server processing & 3 -- Azure server processing \\
+Translation Quality & 10\% & 3 -- Moderate, suitable for tourism content & 5 -- Excellent, especially European languages & 4 -- High multilingual support & 4 -- High multilingual support \\
+\bottomrule
+\end{tabularx}
+\label{tab:translation-eval}
+\end{table}
+%%%%%%%%%%%%%%%%
+
 \textbf{Weighted Scores:} LibreTranslate (4.65/5), DeepL (3.25/5), Google Cloud (3.45/5), Azure (3.55/5)
 
 \textbf{Trade-off Analysis:}
 The evaluation process highlighted a key trade-off between translation quality and cost efficiency. By prioritising budgetary contraints and zero recurring costs, we accepted the risk of moderate translation quality when compared to significantly higher costs associated with commercial providers. This risk was mitigated by the observation that the nature of tourism vocabulary comprised largely of common travel-related expressions and predictable phrase sets, making the LibreTranslate's moderate quality rating proved sufficient for practical application needs\cite{libretranslate}. Additionally, LibreTranslate offers built-in translation improvement and correction functionality giving use promising opportunities for further enhancement of translation quality\cite{open-nmt}.
-
-
-
-
-
-

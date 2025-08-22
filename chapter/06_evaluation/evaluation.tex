@@ -41,9 +41,6 @@ highlights that testing goes beyond functionality to also include exploratory ch
 acceptance. By following this model, we made sure both automated verification and user-focused evaluation 
 were built into the workflow from the start, improving reliability and usability of the system.
 
-
-\cleardoublepage
-
 \section{First Test-a-thon}
 \label{sec:testathon-one}
 
@@ -56,7 +53,7 @@ were built into the workflow from the start, improving reliability and usability
 \textbf{Date} & 14.07.2025 \\
 \textbf{Participants} & 15 (desktop) \\
 \textbf{Focus} & Map, Cultural Tips, Essentials, Recommendations \\
-\textbf{Ethics} & Informed consent, anonymous data; withdrawal allowed until 15/02/2026 \\
+\textbf{Ethics} & \raggedright Informed consent, anonymous data; withdrawal allowed until 15/02/2026 \\
 \textbf{Quick read} & Good/Very Good rates — Map: 80\%, Cultural Tips: 67\%, Essentials: 57\%, Recommendations: 47\% \\
 \hline
 \end{tabular}
@@ -97,8 +94,6 @@ We collected consent and kept all responses anonymous; participants could withdr
   \item \textbf{UX polish:} Fixed sideways scrolling; improved section structure to aid findability. 
 \end{itemize}
 
-
-\cleardoublepage
 \section{Frontend Unit Testing}
 \label{sec:fe-unit-tests}
 
@@ -143,7 +138,6 @@ We applied it by:
     \item \textbf{State/hooks:} Mocked Zustand stores and custom hooks to control return values and simulate scenarios without backend calls.  
 \end{itemize}
 
-\clearpage
 \subsection{Representative Test Cases}
 \begin{table}[h!]
 \centering
@@ -189,8 +183,6 @@ remains for future extension.
 These gaps do not undermine the robustness of the tested features but highlight opportunities for deeper 
 validation in future iterations.
 
-
-\cleardoublepage
 \section{Second Test-a-thon}
 \label{sec:testathon-two}
 
@@ -273,8 +265,6 @@ Participants also suggested advanced features for future development, such as an
 
 Overall, the second Test-a-thon validated improvements since the first round and highlighted final adjustments that improved both usability and user satisfaction before project completion.
 
-
-\cleardoublepage
 \section{Backend Testing}
 \label{sec:be-testing}
 
@@ -344,10 +334,6 @@ Runtime checks & Real HTTP requests, headers, auth, typical errors & Postman col
     \item Tests use mocks for external systems; a future step is adding Testcontainers for integration with real dependencies (e.g., DB, message queues) where relevant.
     \item Load and security testing were out of scope for unit tests; these are covered in performance and security evaluation sections.
 \end{itemize}
-
-
-\cleardoublepage
-
 
 \section{Summary and Reflections}
 

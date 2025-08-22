@@ -1,14 +1,58 @@
-\section{ Interface and Features}
+\section{Design and Inplementation of Frontend}
 
-Our development journey began with a thorough analysis of the client’s requirements to ensure a clear understanding of the project goals and user needs. This foundational step allowed us to identify both functional and non-functional aspects critical to delivering a seamless multilingual virtual tour assistant. Following this, we carefully evaluated and selected the most suitable technologies to meet these requirements efficiently and maintainably. To visualise the user experience and interface, we created detailed wireframes and interactive prototypes using Figma, which facilitated early feedback and iterative improvements before moving into full development.
+Our development journey began with a thorough analysis of the client’s requirements to ensure a clear understanding of the project goals and user needs. This foundational step allowed us to identify both functional and non-functional aspects critical to delivering a seamless multilingual virtual tour assistant. Following this, we carefully evaluated and selected the most suitable technologies to meet these requirements efficiently and maintainably. To visualize the user experience and interface, we created detailed wireframes and interactive prototypes using Figma, which facilitated early feedback and iterative improvements before moving into full development.
 
-\subsection{Client Requirements}
+\subsection{Frontend Functional and Non-Functional Requirements}
 
 \textbf{Note:} We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
 
+The frontend requirements for Tourlingo were shaped by the needs of travelers, the feedback collected from early design iterations, and the overall goal of providing a seamless and engaging user experience. Since the frontend is the primary point of interaction, its design had to balance aesthetics, performance, and usability. \\ 
+
+The most essential functional requirement was to provide a \textbf{clear and responsive user interface for real-time translation}. Users needed a simple way to input text through the search bar, where queries related to places, essentials, or recommendations could be entered. The results were then displayed on the map with the corresponding information instantly translated into the user’s chosen language. This ensured that searching and exploring cultural information on the map was intuitive and seamless. Because translation is the heart of Tourlingo, this requirement had the highest priority. In addition, the frontend was designed to support \textbf{multilanguage interfaces}, ensuring that the application itself (menus, buttons, and guidance) can adapt to the preferred language of the user.  \\
+
+Another key requirement was the ability to handle \textbf{smooth communication with the backend APIs}. The frontend had to efficiently send translation requests and render responses almost instantly, minimizing waiting times. To achieve this, it was structured around \textbf{RESTful API integration}, using JSON payloads to keep the exchange consistent and lightweight.  \\
+
+Since Tourlingo also provides cultural insights, the frontend was required to present this information in a \textbf{well-structured and engaging format}. Categories such as etiquette,  must-know phrases, payment methods, transportations, and emergency numbers were displayed using expandable sections, making the content accessible and digestible. To improve usability, components such as the \textbf{search bar} were designed to be \textbf{reusable}, ensuring consistency across different views such as the map and language pages.  
+
+Finally, the \textbf{map-based interface} was developed to bring an interactive dimension/experience to the app. The pins on the map highlight key locations, while the dynamic side panels display contextual information. This combination turned the map into more than a visual element. It became an interactive tool for cultural orientation.  
+
+\subsubsection{Non-Functional Requirements}
+
+The non-functional aspects of the frontend were prioritized using the \textbf{MoSCoW methodology}, ensuring that the most critical user-facing qualities were delivered first.  
+
+\textbf{Must Have:}  
+\begin{itemize}
+    \item \textbf{Responsiveness and performance:} Every screen needed to adapt gracefully to mobile, tablet, and desktop displays using a responsive design approach powered by Tailwind CSS. The frontend needed to display translated results almost immediately after a user request, so the experience felt seamless and gave the impression of real-time communication.
+
+    \item \textbf{Usability and accessibility:}  The interface included a prominent search bar for entering text, intuitive language switching options, and consistent layouts across all screens. Accessibility was considered by ensuring readable font sizes, sufficient color contrast for map overlays, and keyboard navigation support, making the app usable by travelers with varying levels of digital literacy. \\
+    \textbf{** shhhhh **}\\
+    Clear navigation, consistent layouts, and adherence to accessibility guidelines ensured that the app could be used by travelers of different backgrounds and levels of digital literacy.  
+\end{itemize}
+
+\textbf{Should Have:}  
+\begin{itemize}
+    \item The interface should be designed with \textbf{scalability in mind}, so that new features (for example, adding cultural tips or new navigation tools) can be integrated later without requiring a complete redesign.  
+    \item The system should provide \textbf{clear and user-friendly error handling}. For example, if a translation request fails or internet connectivity drops, the app should display an informative message rather than confusing the user.  
+\end{itemize}
+
+\textbf{Could Have:}  
+\begin{itemize}
+    \item An \textbf{offline first mode} could be introduced, where previously translated phrases or cultural notes are cached. This would allow travelers to access some functionality even without a stable Internet connection.  
+    \item Subtle \textbf{animations and micro-interactions} could be added (such as smooth transitions when switching languages) to make the app feel more engaging and polished.  
+\end{itemize}
+
+\textbf{Won’t Have:}  
+\begin{itemize}
+    \item The frontend will not include \textbf{voice-to-text translation}, since it requires complex speech processing libraries and significant resources beyond the current scope of the project.  
+    \item The app will not support \textbf{offline translation of entirely new inputs}, as this would require AI models on the device that are technically demanding and outside of the planned implementation.  
+\end{itemize}
+
+In summary, the frontend requirements for Tourlingo revolved around delivering a \textbf{clean, responsive, and intuitive interface that makes real-time translation and cultural learning effortless}. The non-functional requirements ensured that the system would remain robust, scalable, and pleasant to use, while consciously avoiding unnecessary complexity in the first release.
+
+
 \subsection{Tech Stack Selection and Justification}
 
-With a comprehensive understanding of the client's requirements, our next step was to carefully evaluate and select a technology stack that balances scalability, maintainability, performance, and developer experience. Each layer of the frontend architecture was considered through a comparative analysis of available tools and frameworks, ensuring that the final selections aligned with the project’s long-term goals.
+With a comprehensive understanding of the client's requirements, our next step was to carefully evaluate and select a technology stack that balances scalability, maintainability, performance, and developer experience. Each layer of the frontend architecture was considered through a comparative analysis of available tools and frameworks to ensure that the final selections were aligned with the long-term goals of the project.
 
 \begin{table}[H]
 \centering
@@ -58,28 +102,6 @@ Reason                  & Great flexibility, simple setup & SEO benefits, server
 
 \begin{table}[H]
 \centering
-\caption{State Management Comparison}
-\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
-\hline
-\textbf{Criteria}       & \textbf{Redux}              & \textbf{Zustand}              & \textbf{Context API}          \\
-\hline
-Boilerplate             & High                        & Low                          & Low                          \\
-Learning Curve          & Steep                       & Easy                         & Easy                         \\
-Performance             & Excellent                   & Excellent                    & Good                         \\
-Community Support       & Very Large                  & Growing                      & Built-in React               \\
-Reason                  & Powerful but verbose and complex & Lightweight, less boilerplate & Not ideal for complex state \\
-\hline
-\end{tabular}
-\label{tab:state-management-comparison}
-\end{table}
-
-\textbf{Selected:} Zustand \par
-\textbf{Reasoning:} Zustand was chosen for its minimal boilerplate, simple API, and excellent performance. It enables efficient global state management without the complexity of Redux. While Redux is powerful, it requires a steep learning curve and verbose code. Zustand fits well for modern React apps where simplicity and clarity are valued. Context API is great for light use cases but doesn’t scale effectively for complex state logic, making Zustand a better fit.
-
-\vspace{2em}
-
-\begin{table}[H]
-\centering
 \caption{Styling Solutions Comparison}
 \begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
 \hline
@@ -97,14 +119,6 @@ Reason                  & Difficult to maintain large stylesheets & Rapid stylin
 
 \textbf{Selected:} Tailwind CSS + Daisy UI \par
 \textbf{Reasoning:} Tailwind CSS was selected for its utility first approach, which accelerates development and enforces consistent styling across components. DaisyUI, built on top of Tailwind, adds ready-to-use, customizable UI components that speed up design implementation. This combination reduces the need to write custom CSS while keeping the UI modern and clean. Traditional CSS is harder to scale and maintain, and DaisyUI complements Tailwind without compromising flexibility.
-
-\vspace{2em}
-
-\subsection{Design and Prototyping}
-
-Design and prototyping served as a crucial bridge between client expectations and the final product. Utilizing Figma, we developed interactive wireframes and clickable prototypes to facilitate early validation, clear communication and encouraged collaborative feedback. This iterative design process helped us align the UI/UX with the multilingual and accessibility requirements of our target audience, significantly reducing rework during development.
-
-\textbf{Note:} Will be adding more information based on figures that we are planning to add.
 
 \subsection{Implementation}
 

@@ -2,7 +2,7 @@
 
 \subsection{Microservices Architecture Rationale}
 
-The system's backend was designed to meet the project requirements such as performance, reliability, scalability, flexibility and extensibility. To achieve this, a microservices architecture was selected, where the system is decomposed into collection of loosely coupled services that can be independently deployed\cite{newman2021building}. For communication with the frontend interface, a direct-to-service pattern was implemented via their RESTful APIs.
+The system's backend was designed to meet the project requirements such as performance, reliability, scalability, flexibility and extensibility. To achieve this, a microservices architecture was selected: system is decomposed into collection of loosely coupled services that can be independently deployed\cite{newman2021building}. For communication with the frontend interface, a direct-to-service pattern was implemented via their RESTful APIs.
 
 The core translation service, was internally structured following a 2-tier pattern\cite{fowler2002patterns}. This pattern logically separates the service's code into a controller layer (the API endpoint), a Service Layer (the business logic for translation), and External API Integration (for communication with the self-hosted translation engine). The core service was designed to accept translation request into a custom JSON format from the frontend and send the text for translation in a supported format for the translation engine.
 

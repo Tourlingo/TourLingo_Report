@@ -4,7 +4,7 @@ The backend requirements were delineated from a synthesis of user experience exp
 
 The primary requirement is the provision of a real-time translation service \textbf{(FR1)}\cite{open-nmt}. This service must process English text inputs and return accurate translations in multiple target languages with sub-second latency. The criticality of this feature is high, as it constitutes the fundamental component of the application's multilingual user experience. Achieving such performance necessitates robust integration with external translation services and efficient data handling. This core functionality is intrinsically linked to the requirement for multi-language support \textbf{(FR2)}. The system architecture was explicitly designed for extensibility, ensuring that additional languages can be incorporated in the future without requiring a fundamental redesign or compromising performance. 
 
-To ensure the system is robust and effective in a real-world scenario, it must be capable of concurrent request handling \textbf{(FR3)}. Communication between system components is facilitated through API-based architecture \textbf{(FR4)}, specifically implementing RESTful  endpoints that utilize JSON formatting for seamless frontend integration. The design adheres to established REST (Representational State Transfer) architectural principles and HTTP status code conventions, ensuring standards compliance and interoperability\cite{RESTful}\cite{fullstacktips2023restful}.
+To ensure the system is robust and effective in a real-world scenario, it must be capable of concurrent request handling \textbf{(FR3)}. Communication between system components is facilitated through API-based architecture \textbf{(FR4)}, specifically implementing RESTful endpoints that utilize JSON formatting for seamless frontend integration. The design adheres to established REST (Representational State Transfer) architectural principles and HTTP status code conventions, ensuring standards compliance and interoperability\cite{RESTful}\cite{fullstacktips2023restful}.
 
 The non-functional requirements for the Tourlingo were systematically categorized using the MoSCoW prioritization methodology\cite{productplan2019moscow}\cite{wikipedia2025moscow}, to effectively scope the project and guide development efforts. This framework classifies requirements into four categories: Must-have, Should-have, Could-have, and Won't-have, ensuring that critical system attributes are addressed first.
 
@@ -15,6 +15,64 @@ The "SHOULD HAVE" requirements are important but not vital for the initial launc
 "COULD HAVE" requirements are considered desirable but are of lower priority and would only be implemented if time and resources permit. These include advanced caching strategies to store results for frequently requested translations, which would further reduce latency and API costs\cite{microsoft2022caching}\cite{tekula2024amazon}\cite{apyflux2024optimising}. The implementation of a fully automated CI/CD pipeline for deployment and rollback, which would improve development operations (DevOps) maturity\cite{zymr_devops_maturity}\cite{redhat2024cicd}\cite{testevolve2025cicd}.
 
 Finally, the Won't-have category explicitly defines what is out of scope for the current project iteration. This includes offline translation capabilities, which would require a fundamentally different architecture involving on-device models. Also excluded is any form of active machine learning-based quality improvement, where the system would learn from user corrections. This decision was made to constrain project complexity and focus on the core functionality of providing a stable, high-performance translation service\cite{on_device_language_models}\cite{real_time_vs_offline_translation}\cite{postediting}.
+
+%%%%%%%%%%% Alternate way for MoSCoW %%%%%%%%%%%%%%%%
+% --- MoSCoW Priority Pyramid (TikZ) ---
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[font=\sffamily, every node/.style={align=center}]
+  % styles
+  \tikzset{
+    layer/.style={draw=black, rounded corners=2pt, fill=gray!10},
+    title/.style={font=\bfseries}
+  }
+
+  % dimensions
+  \def\h{1.5}   % layer height
+  \def\wA{11}   % base width
+  \def\wB{9}
+  \def\wC{7}
+  \def\wD{5}
+  \def\gap{0.18}
+
+  % y positions
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (0,\h+\gap);
+  \coordinate (C) at (0,2*\h+2*\gap);
+  \coordinate (D) at (0,3*\h+3*\gap);
+
+  % Must Have
+  \node[layer, minimum width=\wA cm, minimum height=\h cm, anchor=south] (must) at (A)
+    {\textbf{Must Have}\\
+    \footnotesize Sub-second response time (typical load)\\
+    \footnotesize High concurrency \& graceful degradation};
+
+  % Should Have
+  \node[layer, minimum width=\wB cm, minimum height=\h cm, anchor=south] (should) at (B)
+    {\textbf{Should Have}\\
+    \footnotesize Horizontal scalability\\
+    \footnotesize Comprehensive logging \& monitoring};
+
+  % Could Have
+  \node[layer, minimum width=\wC cm, minimum height=\h cm, anchor=south] (could) at (C)
+    {\textbf{Could Have}\\
+    \footnotesize Advanced caching strategies\\
+    \footnotesize Automated CI/CD pipeline};
+
+  % Won't Have
+  \node[layer, minimum width=\wD cm, minimum height=\h cm, anchor=south] (wont) at (D)
+    {\textbf{Won't Have}\\
+    \footnotesize Offline translation\\
+    \footnotesize ML-based quality improvement};
+
+  % subtle outline triangle for pyramid feel
+  \draw[gray!40, line width=0.6pt]
+    ($(must.south west)+(0.2,0)$) -- ($(wont.north)+(0,0.75)$) -- ($(must.south east)+(-0.2,0)$);
+\end{tikzpicture}
+\caption{MoSCoW prioritization for Tourlingo non-functional requirements.}
+\label{fig:moscow-pyramid}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The project's development and architectural decisions were shaped by a series of critical constraints spanning budgetary, technical, and operational domains. These limitations defined the boundaries within which the solution had to be designed and implemented.
 

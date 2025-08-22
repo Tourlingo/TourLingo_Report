@@ -49,6 +49,17 @@
 % Error fix
 \usepackage{xspace}
 
+% For backend
+% Requires: 
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% Optional (for nicer fonts): 
+\usepackage{lmodern}
+\usepackage{booktabs,tabularx,array,ragged2e}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} % ragged-right, auto width
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, fit, shapes.misc}
+
 % Use pdf as appendix
 \usepackage{pdfpages}
 
@@ -142,9 +153,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%% appendices %%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\import{chapter/appendix/}{A.tex}
-\import{chapter/appendix/}{B.tex}
-\import{chapter/appendix/}{c.tex}
+\import{chapter/appendix/}{A_Screenshots.tex}
+\import{chapter/appendix/}{B_Documents.tex}
+\import{chapter/appendix/}{C_Code_snippets.tex}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%% biblio %%%%%%%%%%%%%%%%%%%%%%

@@ -2,9 +2,9 @@
 
 \section{Motivation}
 
-While tourism is one of the world's fastest-growing industries, international travel isn't always straightforward. Visitors to new destinations often run into common hurdles like language barriers, unfamiliar local customs, and a lack of digital tools that really meet their needs \cite{Liebling2020}. Many popular navigation apps are built with English speakers in mind, which creates accessibility problems for a global audience. At the same time, most translation tools are standalone apps that don't integrate smoothly with navigation systems. Even major travel websites, which offer some translation, often assume users already know about local customs and etiquette \cite{navUX,localizationUX}.
+While tourism is one of the world's fastest-growing industries, international travel isn't always straightforward. Visitors to new destinations often run into common hurdles like language barriers, unfamiliar local customs, and a lack of digital tools that really meet their needs \cite{Liebling2020}. Many popular navigation applications are built with English speakers in mind, which creates accessibility problems for a global audience. At the same time, most translation tools are standalone apps that don't integrate smoothly with navigation systems. Even major travel websites, which offer some translation, often assume users already know about local customs and etiquette \cite{navUX,localizationUX}. This project was initialised to fill that gap.
 
-This project was born out of that gap. We set out to develop a web application that acts as a multilingual virtual assistant for tourists. Our app combines map-based navigation, real-time translation, and culturally relevant guidance into a single, integrated tool. To build it, we used OpenStreetMap for map data \cite{osm}, LibreTranslate for its open-source translation engine \cite{libretranslate}, and a custom AI integration to provide cultural tips \cite{cultureai}. Our ultimate goal is to help tourists feel more confident and prepared as they explore, making international travel a more inclusive and enjoyable experience for everyone \cite{inclusiveTourism}.
+We set out to develop a web app that acts as a multilingual virtual assistant for tourists. Our app combines map-based navigation, real-time translation, and culturally relevant guidance into a single, integrated tool. To build it, we used OpenStreetMap for map data \cite{osm}, LibreTranslate for its open-source translation engine \cite{libretranslate}, and a custom AI integration to provide cultural tips \cite{cultureai}. Our ultimate goal is to help tourists feel more confident and prepared as they explore, making international travel a more inclusive and enjoyable experience for everyone \cite{inclusiveTourism}.
 
 \section{Project Aims and Objectives}
 
@@ -16,7 +16,7 @@ The main goal of this project was to design and build a web application that wor
 \item To add a translation feature for the user interface, ensuring that text elements like side panels and directions are displayed in the user’s preferred language.
 \item To offer helpful cultural tips (such as etiquette, key phrases, and local norms) using dynamically generated and translated content \cite{gpt_culturetips}.
 \item To ensure the app has a responsive design that works reliably on mobile, tablet, and desktop devices, following established accessibility standards \cite{responsiveDesign}.
-\item To create a modular architecture where key components—like the map engine, POI data source, or translation provider—could be replaced or extended later without a complete system overhaul \cite{modularApps}.
+\item To create a modular architecture where key components (like the map, POI data cards , or translation engine) could be replaced or extended later without a complete system restructuring \cite{modularApps}.
 \end{itemize}
 
 \textbf{Team \& Learning Objectives}
@@ -31,7 +31,7 @@ The main goal of this project was to design and build a web application that wor
 
 \section{Client Brief and Challenges}
 
-Our client, Al Fateh Technologies, creates digital tools for the travel sector. They asked us to develop an application to help tourists explore cities without needing to know the local language. The brief went beyond simple navigation; it required the app to also inform users about local customs and social etiquette. The main idea was to reduce the "culture shock" some travellers feel and improve their overall experience, helping them feel more comfortable and welcome \cite{culturegap}.
+Our client, Al Fateh Technologies, creates digital tools for the travel sector. They asked us to develop an application to help tourists explore cities without needing to know the local language. The client wanted to have a website specifically for mobile, which can serve purpose of not only providing directions and nearby places in their own language, but also provide information about the city or town they are looking for. The main idea was to reduce the "culture shock" some travellers feel and improve their overall experience, helping them feel more comfortable and welcome \cite{culturegap}.
 
 The initial brief was quite open, which gave us a lot of creative freedom but also meant we had to work hard to define and limit the project's scope. After a few meetings with the client, we narrowed our focus to three key features: intelligent map navigation, real-time translation, and AI-generated cultural advice.
 
@@ -49,13 +49,13 @@ One significant limitation was the lack of certain data, like images for points 
 This project's focus was to deliver a working prototype of the Multilingual Virtual Tour Assistant web application, fully tested on both mobile and desktop. The scope included:
 \begin{itemize}
 \item A map interface built with OpenStreetMap, featuring POIs relevant to tourists and filters for different categories.
-\item On-the-fly translation of UI text, directions, and POI descriptions, using the LibreTranslate API.
+\item Dynamic translation of UI static text, directions, and POI descriptions, using the LibreTranslate API.
 \item A feature for AI-generated cultural tips tailored to the user’s selected location.
 \item A cloud-hosted backend to handle data management and API integrations reliably.
 \item Thorough testing and validation, including two "test-a-thons" where we gathered direct user feedback.
 \end{itemize}
 
-Due to time and resource constraints, we decided that a few features were out of scope: user-generated ratings and recommendations, integration with paid premium APIs, and a system for automatically sourcing images for all POIs. We've noted these as potential improvements for future development.
+Due to time and resource constraints, we decided that a few features were out of scope: user-generated ratings and recommendations, translation of text on the map, and a system for automatically fetching images for all POIs. We've noted these as potential improvements for future development.
 
 The final deliverables for this project are:
 \begin{itemize}

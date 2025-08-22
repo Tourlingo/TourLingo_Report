@@ -31,16 +31,27 @@ Given the international and multicultural nature of our product, UCD was especia
 
 According to the UCD principles, there are four stages: understanding the users and context, specifying user needs, producing design solutions, and evaluating those solutions through testing. As we were unable to directly involve real users during the early phase of the project, we positioned ourselves as representative users by analysing the client's requirements from a user perspective. Each team member translated the functional expectations into short, clear user stories \textbf{\textcolor{red}{(add reference to the appendix of the user story file)}}. These user stories helped us empathise with end users and served as the foundation for creating the potential features and UI elements. We then merged individual user stories into a combined file and used them to explore design directions.
 
-\subsection{Requirements Documentation and MVP}
-Following the user stories and internal brainstorming, we compiled a formal Product Requirements Document (PRD), which outlined both functional and non-functional design for our proposed solution \textbf{\textcolor{red}{(add reference to the appendix of the PRD)}}. During subsequent meetings with the client and our supervisor, we discussed the feasibility of each proposed feature. Ultimately, we agreed on delivering a Minimum Viable Product (MVP) that would form the foundation for future extensions. The MVP included the following five core components:
+\subsection{Requirements Documentation and MVP} 
+Following the user stories and internal brainstorming, we compiled a formal Product Requirements Document (PRD), which outlined both functional and non-functional design for our proposed solution (see Appendix~\ref{appendix:prd}). During subsequent meetings with the client and our supervisor, we discussed the feasibility of each proposed feature. Ultimately, we agreed on delivering a Minimum Viable Product (MVP) that would form the foundation for future extensions. 
 
-\begin{itemize}
-    \item \textbf{Language Selection Page}: Allows users to choose their preferred language for accessing the application, and can change language at anytime.
-    \item \textbf{Map Page}: Enables users to search locations, receive basic navigation support, and show pins of the section items in map.
-    \item \textbf{Recommendation Page}: Shows restaurants, stores and so on near the current or searched location.
-    \item \textbf{Essential Page}: Offers location-based information like pharmacies, hospitals, police stations and so on.
-    \item \textbf{Cultural Tips Page}: Provides culturally sensitive content such as etiquette, local phrases, transportation and payment methods and other practical information.
-\end{itemize}
+The MVP included the following five core components: 
+\begin{itemize} 
+    \item \textbf{Language Selection Page}: Allows users to choose their preferred language for accessing the application, and can change language at anytime. 
+    \item \textbf{Map Page}: Enables users to search locations, receive basic navigation support, and show pins of the section items in map. 
+    \item \textbf{Recommendation Page}: Shows restaurants, stores and so on near the current or searched location. 
+    \item \textbf{Essential Page}: Offers location-based information like pharmacies, hospitals, police stations and so on. 
+    \item \textbf{Cultural Tips Page}: Provides culturally sensitive content such as etiquette, local phrases, transportation and payment methods and other practical information. 
+\end{itemize} 
+
+The overall structure of these components is illustrated in Figure~\ref{fig:frontend-flowchart}.
+
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.5\textwidth]{images/Frontend/Frontend_Flowchart.png} 
+    \caption{Frontend flowchart} 
+    \label{fig:frontend-flowchart} 
+\end{figure} 
+
 The product was designed as a responsive web application, rather than a mobile app. This ensures users can simply open a link or enter the URL without needing to download or register. It also facilitates usage in transportation stations like airports or train stations, aligning well with the 'use and go' nature of our product.
 
 \section{Wireframing and User Experience (UX)}

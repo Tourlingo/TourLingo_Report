@@ -1,0 +1,69 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  node distance=10mm and 12mm,
+  box/.style={draw, rounded corners=2pt, inner sep=6pt, align=center, fill=gray!5},
+  ext/.style={draw, rounded corners=2pt, inner sep=6pt, align=center, fill=blue!5},
+  db/.style={draw, rounded corners=2pt, inner sep=6pt, align=center, fill=green!8},
+  group/.style={draw, rounded corners=3pt, inner sep=6pt, fill=gray!10},
+  arrow/.style={-Latex, thick},
+  dashedarrow/.style={-Latex, thick, dashed}
+]
+
+% --- Frontend (Client) ---
+\node[box] (browser) {User Browser\\(Mobile/Desktop)};
+\node[box, right=of browser, minimum width=34mm] (frontend) {Frontend (Next.js/React)\\UI \& i18n, Map UI};
+
+% --- Backend group ---
+\node[group, right=20mm of frontend, minimum width=70mm, minimum height=55mm, label={[yshift=2mm]above:\textbf{Backend (Spring Boot microservices)}}] (backend) {};
+
+% Place backend nodes relative to the backend group
+\node[box, anchor=west, xshift=5mm, yshift=6mm] at (backend.west) (apigw) {API Gateway /\\BFF Endpoints};
+\node[box, below=of apigw] (tipsvc) {Translation / Tips Service\\(v2 endpoint)};
+\node[db, right=20mm of tipsvc] (cache) {DB Cache\\(City content \&\\ per-language translations)};
+\node[box, below=of tipsvc] (mon) {Logging \&\\ Monitoring};
+
+% --- External APIs group ---
+\node[group, right=20mm of backend, minimum width=70mm, minimum height=58mm, label={[yshift=2mm]above:\textbf{External Services / APIs}}] (extgrp) {};
+\node[ext, anchor=west, xshift=5mm, yshift=6mm] at (extgrp.west) (libre) {LibreTranslate\\(translation engine)};
+\node[ext, below=of libre] (ai) {AI Agent\\(cultural tips generation)};
+\node[ext, below=of ai] (overpass) {Overpass API\\(OSM POIs)};
+\node[ext, right=18mm of overpass] (nominatim) {Nominatim\\(geocoding / reverse)};
+\node[ext, above=of nominatim] (tiles) {OSM/Tile Server\\(map tiles for Leaflet)};
+
+% --- Flows: Frontend <-> Backend ---
+\draw[arrow] (browser) -- node[above]{HTTPS} (frontend);
+\draw[arrow] (frontend) -- node[above]{REST/JSON} (apigw);
+\draw[arrow] (apigw) -- node[right]{/api/v2/tips} (tipsvc);
+\draw[arrow] (tipsvc) -- node[above]{read/write} (cache);
+
+% --- Cache hit / miss hints ---
+\node[align=left, anchor=west] at ($(cache.east)+(4mm,3mm)$) {\footnotesize Cache hit $\Rightarrow$ respond immediately\\\footnotesize Cache miss $\Rightarrow$ fetch/translate \& persist};
+
+% --- Backend -> External services ---
+\draw[arrow] (tipsvc.east) -- ++(6mm,0) |- node[pos=0.25, above]{translate batch} (libre.west);
+\draw[arrow] (tipsvc.east) -- ++(6mm,0) |- node[pos=0.25, above]{generate base content} (ai.west);
+
+% --- Map/POI flows from frontend (direct) ---
+\draw[dashedarrow] (frontend.east) -- ++(6mm,0) |- node[pos=0.25, above]{POIs (bbox queries)} (overpass.west);
+\draw[dashedarrow] (frontend.east) -- ++(6mm,0) |- node[pos=0.25, above]{Geocode / Reverse} (nominatim.west);
+\draw[dashedarrow] (frontend.east) -- ++(6mm,0) |- node[pos=0.25, above]{Map tiles} (tiles.west);
+
+% --- Responses back ---
+\draw[arrow] (tipsvc.west) -- ++(-6mm,0) |- (apigw.south);
+\draw[arrow] (apigw.west) -- node[above]{JSON (translated tips)} (frontend);
+\draw[arrow] (frontend.west) -- node[above]{Rendered UI} (browser);
+
+% --- Legend ---
+\node[box, below=14mm of mon, align=left] (legend) {
+\textbf{Legend}\\
+\raisebox{2pt}{\tikz \draw[arrow] (0,0)--(8mm,0);} Internal REST flow \\
+\raisebox{2pt}{\tikz \draw[dashedarrow] (0,0)--(8mm,0);} Frontend $\leftrightarrow$ External API (client-side) \\
+\textcolor{black}{\bfseries DB Cache}: persistent cache for city base content \& translations
+};
+
+%\caption{End-to-end integration flow between Frontend, Backend microservices, and External APIs. Solid arrows indicate server-side REST flows; dashed arrows indicate client-side calls from the Frontend (e.g., Overpass, Nominatim, tile server).}
+\label{fig:integration_flow}
+\end{tikzpicture}
+\end{figure}
