@@ -62,6 +62,79 @@
 
 % Use pdf as appendix
 \usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\providecommand{\listingautorefname}{Listing}
+\renewcommand{\listingautorefname}{Listing}
+
+\lstset{
+  backgroundcolor=\color{lightgray!10},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{gray},
+  showstringspaces=false,
+  frame=single,
+  breaklines=true
+}
+
+% Define JSON language
+\lstdefinelanguage{json}{
+  basicstyle=\ttfamily\footnotesize,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  literate=
+   *{0}{{{\color{numb}0}}}{1}
+    {1}{{{\color{numb}1}}}{1}
+    {2}{{{\color{numb}2}}}{1}
+    {3}{{{\color{numb}3}}}{1}
+    {4}{{{\color{numb}4}}}{1}
+    {5}{{{\color{numb}5}}}{1}
+    {6}{{{\color{numb}6}}}{1}
+    {7}{{{\color{numb}7}}}{1}
+    {8}{{{\color{numb}8}}}{1}
+    {9}{{{\color{numb}9}}}{1}
+    {:}{{{\color{punct}{:}}}}{1}
+    {,}{{{\color{punct}{,}}}}{1}
+    {\{}{{{\color{delim}{\{}}}}{1}
+    {\}}{{{\color{delim}{\}}}}}{1}
+    {[}{{{\color{delim}{[}}}}{1}
+    {]}{{{\color{delim}{]}}}}{1},
+  morestring=[b]",
+  morecomment=[l]{//},
+  stringstyle=\color{string},
+  commentstyle=\color{comment},
+}
+
+% Colors
+\definecolor{string}{rgb}{0.58,0,0.82}
+\definecolor{comment}{rgb}{0.25,0.5,0.35}
+\definecolor{numb}{rgb}{0.19,0.32,0.72}
+\definecolor{punct}{rgb}{0.8,0.2,0}
+\definecolor{delim}{rgb}{0,0,0}
+
+% Define Java language (already supported but we can style it)
+\lstdefinestyle{java}{
+  language=Java,
+  basicstyle=\ttfamily\footnotesize,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{string},
+  commentstyle=\color{comment},
+}
+
 
 \begin{document}
 
@@ -115,42 +188,38 @@
 
 % Introduction
 \import{chapter/01_introduction/}{introduction.tex}
-\clearpage
+
 
 % Background and Related Work
 \import{chapter/02_background/}{background.tex}
-\clearpage
+
 
 % Methodology
 \import{chapter/03_methodology/}{methodology.tex}
-\clearpage
+
 
 % Design
 \import{chapter/04_design/}{design.tex}
-\clearpage
+
 
 % Implementation
 \import{chapter/05_implementation/}{implementation.tex}
-\clearpage
+
 
 % Evaluation and Testing
 \import{chapter/06_evaluation/}{evaluation.tex}
-\clearpage
 
-% Results and Discussion
-\import{chapter/07_results_discussion/}{results_discussion.tex}
-\clearpage
 
 % Conclusion
-\import{chapter/08_conclusion/}{conclusion.tex}
-\clearpage
+\import{chapter/07_conclusion/}{conclusion.tex}
+
 
 % Future Work
-\import{chapter/09_future_work/}{future_work.tex}
-\clearpage
+\import{chapter/08_future_work/}{future_work.tex}
+
 
 % Contribution Statement
-\import{chapter/10_contribution/}{contribution.tex}
+\import{chapter/09_contribution/}{contribution.tex}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%% appendices %%%%%%%%%%%%%%%%%%%%%%

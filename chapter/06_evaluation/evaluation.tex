@@ -1,4 +1,3 @@
-\cleardoublepage
 \chapter{Testing and Evaluation}
 
 \section{Introduction}
@@ -12,9 +11,8 @@ chapters.
 
 Our evaluation followed an \emph{iterate--measure--improve} cycle:
 \begin{enumerate}
-    \item \textbf{Testing during development:} Continuous checks such as TypeScript type safety and linting were run during daily development. This helped catch errors early and ensured that new features like the navigation bar, search, recommendations, and essentials panels behaved as expected.
+    \item \textbf{Frontend unit testing:} Unit testing was carried out continuously throughout development to keep the system stable and reliable. During daily development, continuous checks such as TypeScript type safety and linting helped catch errors early and ensured that new features like the navigation bar, search, recommendations, and essentials panels behaved as expected. After the first Test-a-thon, we strengthened this approach by adding systematic unit tests for core frontend components and edge cases. These tests provided repeatable verification of key behaviours, prevented old problems from reappearing, and made the system more robust over time.
     \item \textbf{First Test-a-thon:} An exploratory round of user testing was carried out to spot usability issues and missing content at an early stage. The findings directly shaped improvements in the interface and task flows.
-    \item \textbf{Frontend unit testing:} After the first Test-a-thon, we added systematic test cases for core components and edge cases. This prevented old problems from coming back and made the system more reliable.
     \item \textbf{Second Test-a-thon:} A follow-up round of user testing confirmed that earlier issues had been fixed and helped identify a few final improvements before completion.
     \item \textbf{Backend testing:} Automated unit and integration tests were written using JUnit~5, Mockito, and Spring Boot Test utilities. These covered controller endpoints (requests, responses, error handling) and service logic, all run in an isolated test environment (\texttt{application-test.properties}).
 \end{enumerate}
@@ -25,117 +23,37 @@ Across all these activities we focused on tasks that matched real user behaviour
 
 \clearpage
 \cleardoublepage
-\section{Testing During Development Phase}
-\label{sec:dev-phase-testing}
+\section{Unit Testing}
+\label{sec:Unit-testing}
 
-Testing was carried out iteratively during development, following agile principles of early defect detection and continuous feedback. 
-\subsection{Continuous Testing and Development Integration}
-Testing was carried out side by side with development to catch issues early and keep the system stable. 
-Each new feature was paired with its own tests, which were run automatically through the continuous 
-integration pipeline. On the frontend, unit tests checked navigation, search, and recommendations, while 
-on the backend automated tests verified business logic and API responses. Running these tests on every 
-commit gave developers quick feedback, prevented regressions, and reduced delays.
+Unit testing was carried out continuously during development to ensure the system remained reliable as new features were introduced. Following agile principles of early defect detection and fast feedback, every new component or service was paired with its own tests, which were run automatically through the continuous integration pipeline. This meant issues were caught quickly, regressions were prevented, and the system stayed stable across iterations.
 
-To guide this process we used the Agile Testing Quadrants model~\cite{Crispin2009AgileTesting}, which 
-highlights that testing goes beyond functionality to also include exploratory checks, performance, and user 
-acceptance. By following this model, we made sure both automated verification and user-focused evaluation 
-were built into the workflow from the start, improving reliability and usability of the system.
-
-\section{First Test-a-thon}
-\label{sec:testathon-one}
-
-\subsection{Setup and Methodology}
-\begin{table}[h!]
-\centering
-\small
-\begin{tabular}{p{3cm}p{10cm}}
-\hline
-\textbf{Date} & 14.07.2025 \\
-\textbf{Participants} & 15 (desktop) \\
-\textbf{Focus} & Map, Cultural Tips, Essentials, Recommendations \\
-\textbf{Ethics} & \raggedright Informed consent, anonymous data; withdrawal allowed until 15/02/2026 \\
-\textbf{Quick read} & Good/Very Good rates — Map: 80\%, Cultural Tips: 67\%, Essentials: 57\%, Recommendations: 47\% \\
-\hline
-\end{tabular}
-\caption{Overview of Test-a-thon One setup and results.}
-\label{tab:testathon1-overview}
-\end{table}
-
-
-
-\noindent We ran an exploratory user test with a short feedback form (5-point ratings).
-Participants used the app on desktop and completed realistic tasks (find places, read essentials, view cultural tips, check recommendations). We captured quick notes and form scores for each area. 
-We collected consent and kept all responses anonymous; participants could withdraw their data up to 15/02/2026. 
-
-\subsection{User Feedback and Insights}
-
-\textbf{Strengths}
-\begin{itemize}\setlength\itemsep{0.3em}
-    \item The \emph{Map} feature was the most reliable, with 80\% of participants rating it Good or Very Good. 
-    \item Overall \emph{design consistency} was highly rated (4.27/5), reflecting a clear and cohesive interface. 
-    \item \emph{Cultural Tips} were highlighted as a distinctive and practical feature, providing useful local guidance. 
-\end{itemize}
-
-\textbf{Areas for Improvement}
-\begin{itemize}\setlength\itemsep{0.3em}
-    \item \emph{Recommendations} received the lowest ratings (47\% Good or Very Good), with participants noting slow loading and occasional bugs. 
-    \item \emph{Information accessibility} scored an average of 3.73/5, as some users found it difficult to locate certain content. \emph{Reuse intention} was also relatively low (3.4/5), indicating limited motivation to revisit the system. 
-    \item UI concerns included sideways scrolling and cultural tips not maintaining position. Content-related issues were outdated images and vague cultural guidance in some cases. 
-\end{itemize}
-
-
-\subsection{Implemented Improvements}
-
-\noindent Right after Test-a-thon, we implemented focused fixes:
-\begin{itemize}\setlength\itemsep{0.2em}
-  \item \textbf{Performance:} Optimised the recommendations API to reduce load time. 
-  \item \textbf{Localisation:} Completed missing translations across the UI. 
-  \item \textbf{Content:} Updated recommendation images; made cultural tips more specific and actionable. 
-  \item \textbf{UX polish:} Fixed sideways scrolling; improved section structure to aid findability. 
-\end{itemize}
-
-\section{Frontend Unit Testing}
-\label{sec:fe-unit-tests}
-
-Unit testing is a method where individual parts of the code, such as components, hooks, or utility functions, 
-are tested in isolation to ensure they behave as expected. 
-In this project, unit tests were written in TypeScript to check React components (e.g., navigation bar, search bar, recommendations), 
-custom hooks that managed map pins and directions, and utility functions such as distance and text formatting helpers. 
-The goal was to confirm both the visual behaviour of the interface and the correctness of the underlying logic before integration.
-
+Our approach was guided by the Agile Testing Quadrants model~\cite{Crispin2009AgileTesting}, which emphasises that testing should support both technical verification and user needs. Accordingly, we tested individual frontend components, hooks, and utilities in isolation, as well as backend logic and API responses, ensuring that both user-facing behaviour and internal processes were correct.
 
 \subsection{Scope and Goals}
-\begin{itemize}
-    \item Verify component rendering, props handling, and user interactions (typing, clicking, navigation).
-    \item Validate hook logic and side effects in isolation.
-    \item Ensure utility functions return correct results, including edge cases.
-    \item Keep tests fast, deterministic, and easy to maintain, with continuous runs via \texttt{npm test} during development and pull requests.
-\end{itemize}
+The primary goal of unit testing was to confirm that individual parts of the system behaved as expected before integration. Tests covered:
+\begin{itemize} \itemsep0pt \parskip0pt
+    \item \textbf{Frontend components:} navigation bar, search bar, cultural tips, essentials and recommendations overlays.
+    \item \textbf{Hooks:} stateful logic such as map pins and directions.
+    \item \textbf{Utilities:} functions for distance, duration, and text formatting.
+    \item \textbf{Backend logic:} controller endpoints, service methods, and request/response handling.
+    \item \textbf{Testing philosophy:} Keep tests fast, deterministic, and easy to maintain, with continuous runs during development and pull requests.
 
+\end{itemize}
 
 \subsection{Environment and Tools}
-\begin{itemize}
-    \item \textbf{Runner/Assertions:} Jest.
-    \item \textbf{Component testing:} React Testing Library (\texttt{@testing-library/react}) with \texttt{@testing-library/user-event}.
-    \item \textbf{Language:} TypeScript across app and tests.
+\begin{itemize} \itemsep0pt \parskip0pt
+    \item \textbf{Frameworks:} Jest and React Testing Library (\texttt{@testing-library/react}, \texttt{@testing-library/user-event}) for frontend; JUnit~5 and Mockito for backend.
+    \item \textbf{Language:} TypeScript for frontend tests; Java for backend.
+    \item \textbf{Continuous integration:} all tests were run automatically on every commit to provide immediate feedback.
 \end{itemize}
 
-\subsection{Organisation}
-All test code resides under \texttt{\_\_tests\_\_/} with subfolders:
-\begin{itemize}
-    \item \texttt{components/} (e.g., \textit{SearchBar}, \textit{ClientMap}, \textit{InfoSection}, \textit{NavigationBar}, overlays)
-    \item \texttt{hooks/} (e.g., \textit{useMapPins}, \textit{useDirections})
-    \item \texttt{utils/} (e.g., direction and formatting helpers)
-\end{itemize}
-
-\subsection{Mocking Strategy}
-
-Mocking was used to isolate components from external dependencies, making tests faster and more reliable. 
-We applied it by:
-\begin{itemize}
-    \item \textbf{Child components:} Replaced children (e.g., \textit{InfoCard} inside \textit{InfoSection}) with stubs to test parents in isolation.  
-    \item \textbf{Libraries:} Mocked \texttt{next-intl} (string passthrough) and \texttt{react-leaflet}/\texttt{leaflet} (map placeholders) to avoid heavy rendering.  
-    \item \textbf{State/hooks:} Mocked Zustand stores and custom hooks to control return values and simulate scenarios without backend calls.  
+\subsection{Organisation and Strategy}
+Test code was structured in dedicated \texttt{\_\_tests\_\_/} folders for frontend and in \texttt{src/test/java} for backend. Mocking was used extensively to isolate components from external dependencies:
+\begin{itemize} \itemsep0pt \parskip0pt
+    \item Child components replaced with stubs to test parent behaviour in isolation.
+    \item Libraries such as \texttt{next-intl} and \texttt{react-leaflet} mocked to avoid heavy rendering.
+    \item Zustand stores and service dependencies mocked to simulate state changes and backend calls.
 \end{itemize}
 
 \subsection{Representative Test Cases}
@@ -146,42 +64,81 @@ We applied it by:
 \toprule
 \textbf{Unit} & \textbf{What we verified} & \textbf{Outcome}\\
 \midrule
-\textit{SearchBar} & Debounced input updates; clear button behaviour; max length; special/Unicode chars & All pass \\
-\textit{ClientMap} & Pin rendering \& popup content; user/destination markers; pin click callback & All pass \\
-\textit{LanguageList} & Selection styling; keyboard activation; duplicate codes handling & All pass \\
-\textit{NavigationBar} & Active state by route/panel; push to correct paths (multi-language) & All pass \\
-\textit{Recommendations/Essen\-tials Overlays} & Minimise/maximise; loading/error views; expanded-card flow & All pass \\
-\textit{Hooks (e.g., useDirections)} & Return values, formatting helpers, refetch triggers under state changes & All pass \\
-\textit{Utils} & Distance/duration formatting; error conditions & All pass \\
+\textit{SearchBar} & Input debounce, clear button, Unicode handling & All pass \\
+\textit{ClientMap} & Pin rendering, popups, user/destination markers & All pass \\
+\textit{LanguageList} & Styling, keyboard activation, duplicate handling & All pass \\
+\textit{NavigationBar} & Route highlighting, language-aware navigation & All pass \\
+\textit{Recommendations/Essen\-tials} & Loading/error views, expand/minimise flow & All pass \\
+\textit{Hooks (e.g., useDirections)} & Return values, refetch triggers, formatting & All pass \\
+\textit{Utils} & Distance/duration formatting, error conditions & All pass \\
 \bottomrule
 \end{tabular}
-\caption{Sample of covered units and behaviours (full list in \texttt{\_\_tests\_\_/}).}
-\label{tab:fe-unit-coverage}
+\caption{Sample unit tests and outcomes.}
+\label{tab:unit-tests}
 \end{table}
 
-\subsection{Edge Cases and Accessibility}
-\begin{itemize}
-    \item Empty/long inputs, special characters, missing/optional props, long text wrapping.
-    \item Basically checks surfaced via RTL(React Testing Library) queries and keyboard interactions (focus, Enter/Space activation).
+\subsection{Edge Cases and Fixes}
+Tests also covered edge cases such as empty or long inputs, special characters, optional props, and keyboard-only interactions. Several issues were identified and fixed early, for example:
+\begin{itemize} \itemsep0pt \parskip0pt
+    \item Reset logic in the search bar to keep UI and state in sync.
+    \item Refining mocks for map components to prevent brittle tests when Leaflet internals changed.
+    \item Normalising import paths after refactors to stabilise test discovery.
 \end{itemize}
 
-\subsection{Issues Found and Fixes}
-\begin{itemize}
-    \item \textbf{SearchBar clear logic:} clarified state reset to keep UI and value in sync.
-    \item \textbf{Map/store mocks:} refined mocks to prevent brittle tests when Leaflet internals change.
-    \item \textbf{Import paths after refactors:} normalised paths to stabilise test discovery.
+\noindent By integrating unit testing closely with development and covering both frontend and backend logic, the team ensured that the system remained robust, reliable, and easy to extend across iterations.
+\section{First Test-a-thon}
+\label{sec:testathon-one}
+
+\subsection{Setup and Methodology}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{0.9\textwidth}{l X}
+\hline
+\textbf{Date} & 14.07.2025 \\
+\textbf{Participants} & 15 (desktop) \\
+\textbf{Focus} & Map, Cultural Tips, Essentials, Recommendations \\
+\textbf{Ethics} & Informed consent, anonymous data; withdrawal allowed until 15/02/2026 \\
+\textbf{Quick read} & Good/Very Good rates — Map: 80\%, Cultural Tips: 67\%, Essentials: 57\%, Recommendations: 47\% \\
+\hline
+\end{tabularx}
+\caption{Overview of Test-a-thon One setup and results.}
+\label{tab:testathon1-overview}
+\end{table}
+
+
+
+
+\noindent We ran an exploratory user test with a short feedback form (5-point ratings).
+Participants used the app on desktop and completed realistic tasks (find places, read essentials, view cultural tips, check recommendations). We captured quick notes and form scores for each area. 
+We collected consent and kept all responses anonymous; participants could withdraw their data up to 15/02/2026. 
+
+\subsection{User Feedback and Insights}
+
+\textbf{Strengths}
+\begin{itemize} \itemsep0pt \parskip0pt
+    \item The \emph{Map} feature was the most reliable, with 80\% of participants rating it Good or Very Good. 
+    \item Overall \emph{design consistency} was highly rated (4.27/5), reflecting a clear and cohesive interface. 
+    \item \emph{Cultural Tips} were highlighted as a distinctive and practical feature, providing useful local guidance. 
 \end{itemize}
 
-\section{Limitations and Future Work}
+\textbf{Areas for Improvement}
+\begin{itemize}\itemsep0pt \parskip0pt
+    \item \emph{Recommendations} received the lowest ratings (47\% Good or Very Good), with participants noting slow loading and occasional bugs. 
+    \item \emph{Information accessibility} scored an average of 3.73/5, as some users found it difficult to locate certain content. \emph{Reuse intention} was also relatively low (3.4/5), indicating limited motivation to revisit the system. 
+    \item UI concerns included sideways scrolling and cultural tips not maintaining position. Content-related issues were outdated images and vague cultural guidance in some cases. 
+\end{itemize}
 
-While the testing covered core functionality and usability, there were areas beyond the project scope. 
-Full end-to-end cross-browser testing and visual layout checks were not performed, and accessibility 
-validation was limited to basic keyboard interactions rather than a complete WCAG audit. 
-Backend tests relied on mocks for external services, so integration with real systems (e.g., databases or third-party APIs) 
-remains for future extension. 
 
-These gaps do not undermine the robustness of the tested features but highlight opportunities for deeper 
-validation in future iterations.
+\subsection{Implemented Improvements}
+
+\noindent Right after Test-a-thon, we implemented focused fixes:
+\begin{itemize}\itemsep0pt \parskip0pt
+  \item \textbf{Performance:} Optimised the recommendations API to reduce load time. 
+  \item \textbf{Localisation:} Completed missing translations across the UI. 
+  \item \textbf{Content:} Updated recommendation images; made cultural tips more specific and actionable. 
+  \item \textbf{UX polish:} Fixed sideways scrolling; improved section structure to aid findability. 
+\end{itemize}
 
 \section{Second Test-a-thon}
 \label{sec:testathon-two}
@@ -236,14 +193,14 @@ Cultural Tips & +8\% & Useful, but lacked depth \\
 \end{table}
 
 \textbf{Positive feedback:}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Essentials functionality (e.g., toilets, ATMs) was praised as highly practical.
     \item Non-English speakers valued the multilingual support.
     \item Highlighted pins and map guidance made navigation easier.
 \end{itemize}
 
 \textbf{Challenges and issues:}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Tutorial icon was difficult to find for first-time users.
     \item Side panels sometimes covered the map on smaller screens.
     \item Recommendation cards did not give enough detail.
@@ -253,7 +210,7 @@ Cultural Tips & +8\% & Useful, but lacked depth \\
 
 \subsection{Refinements and Final Adjustments}
 Based on the feedback, several refinements were implemented:
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Relocated the tutorial icon to improve visibility for new users.
     \item Adjusted side panel design to prevent overlap on smaller screens.
     \item Enhanced recommendation cards with richer information and automatic centering.
@@ -265,6 +222,11 @@ Participants also suggested advanced features for future development, such as an
 
 Overall, the second Test-a-thon validated improvements since the first round and highlighted final adjustments that improved both usability and user satisfaction before project completion.
 
+\subsection{Performance Testing}
+
+In the final round of performance testing, we used Postman to check how well the latest version of the system could handle increasing traffic. The load was added gradually, starting with a small number of requests and building up to heavier usage, to see how the system reacted at different levels. Overall, the system responded quickly and stayed stable, with most requests being processed smoothly. Even at peak load, when the highest number of requests were sent at once, the system managed to keep up without major slowdowns or errors. This shows that the system can deal with both normal use and busier periods reliably, making it ready for real-world deployment (see Appendix~\ref{appendix:performance-report} ).
+
+
 \section{Backend Testing}
 \label{sec:be-testing}
 
@@ -275,7 +237,7 @@ After each iteration, short user testing sessions confirmed that fixes improved 
 
 
 \subsection{What We Tested}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item \textbf{Controllers (API endpoints):} request/response shapes, status codes, error messages, and edge cases.
     \item \textbf{Services (business logic):} translation flow, cultural information processing, and agent operations.
 \end{itemize}
@@ -291,7 +253,7 @@ We used JUnit 5 and Mockito (\texttt{@ExtendWith(MockitoExtension.class)}) to te
 All tests ran under a dedicated test profile (\texttt{@ActiveProfiles("test")}) that loaded \texttt{application-test.properties}. This prevented accidental use of production settings and allowed safe defaults for timeouts, base URLs, and feature flags.
 
 \subsection{When We Tested (Workflow)}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item \textbf{During development (test-as-you-code):} each new controller or service change came with unit tests. This kept the feedback loop fast and prevented regressions.
     \item \textbf{After each iteration:} we ran short \emph{user tests} to confirm the API changes actually helped the frontend and user flows.
     \item \textbf{Postman checks:} after backend iterations, we verified key endpoints (happy paths and common errors) with Postman to ensure headers, status codes, and payloads matched the contract.
@@ -315,7 +277,7 @@ Runtime checks & Real HTTP requests, headers, auth, typical errors & Postman col
 \end{table}
 
 \subsection{Representative Cases}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item \textbf{TranslationController:} returns correct status and payload for valid requests; sends meaningful error messages for invalid inputs or upstream failures.
     \item \textbf{AgentController:} handles expected prompts and failure modes; ensures timeouts and bad requests return stable responses.
     \item \textbf{LibreTranslateService:} maps external API responses to our internal model; falls back or raises errors when upstream data is missing or malformed.
@@ -323,14 +285,14 @@ Runtime checks & Real HTTP requests, headers, auth, typical errors & Postman col
 \end{itemize}
 
 \subsection{Results (Short Summary)}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Controllers returned consistent status codes and JSON structures under normal and error conditions.
     \item Services produced correct outputs for typical and edge inputs; mocks helped verify branching paths.
     \item Postman runs matched the contract expected by the frontend, which reduced integration friction.
 \end{itemize}
 
 \subsection{Limitations and Follow‑ups}
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Tests use mocks for external systems; a future step is adding Testcontainers for integration with real dependencies (e.g., DB, message queues) where relevant.
     \item Load and security testing were out of scope for unit tests; these are covered in performance and security evaluation sections.
 \end{itemize}
@@ -385,3 +347,5 @@ Cultural Tips & 67\% Good/Very Good & 75\% Good/Very Good & +8\% \\
 
 \noindent The most notable gains were in \textit{Recommendations} (+28\%) and \textit{Essentials} (+18\%), 
 showing that the biggest usability gaps from the first round were successfully addressed.
+
+

@@ -1,45 +1,51 @@
 \chapter{Design}
 
-\section{Introduction}
+\section{Design Process Introduction}
+This section outlines the design methodology and workflow followed during the design phase of Tourlingo. Rather than describing the product itself, it focuses specifically on how the design work was structured and carried out. Importantly, no development work was started before the prototype had been finalised and approved. This ensured that the design was fully validated, iterated through user feedback, and aligned with client expectations before implementation began.
 
-The design of Tourlingo aimed to design not just a map-based website, but a multilingual and culturally sensitive travel assistant. Our design process focused on helping international travellers feel more comfortable and confident in unfamiliar environments by providing accessible, local information in their preferred language.
+We followed a User-Centred Design (UCD) approach \cite{ux_ucd_interaction} to ensure that our solutions were grounded in users' real needs and behaviours. The process began with an initial requirement analysis and idea discussion within the team, followed by the creation of wireframes and interactive prototypes to explore key features. Early evaluation was conducted using a think-aloud method \cite{think_aloud_wiki}, which enabled us to refine the prototypes based on user feedback. The following sections detail the client requirements, UCD methodology, the primary Minimum Viable Product (MVP), UX and wireframing process, and early-stage evaluation leading to our initial prototype.
 
-To achieve our goal, we followed a user-centred design approach, using wireframing and interactive prototyping to explore key features. We then conducted early user evaluation through a think-aloud method, which informed several improvements to the initial prototype. The following sections describe our design requirements, UX process and early-stage evaluation in more detail.
-
-\section{Design Requirements}
-
-\subsection{Overview}
-To ensure that our product effectively supports international tourists navigating unfamiliar environments, we began the design by analysing client's requirements and aligning them with User-Centred Design (UCD) principles. The client's initial product vision highlighted the importance of multilingual support, local cultural guidance and user-friendly User Interface (UI). Based on these inputs, we carried out a systematic prioritisation process to define our Product Requirements Document (PRD) and Minimum Viable Product (MVP).
+\section{Design Requirements and Methodology}
+To develop a product that supports international tourists in navigating unfamiliar environments, our team began the design process with a UCD approach. It is an iterative framework that places users' needs and contexts at the heart of every design decision. This framework guided us from early requirement analysis through Product Requirements Document (PRD) to the delivery of a Minimum Viable Product (MVP).
 
 \subsection{Client Side Requirements}
-The project began with a clear set of high-level requirements proposed by the client \textbf{\textcolor{red}{(can refer to the screenshot of the email from the client)}}, aiming to assist international tourists in navigating unfamiliar environments. These requirements served as the foundation of our design process and were categorised into six key areas:
+The project started with a clear set of high-level requirements proposed by the client, see Appendix~\ref{appendix:client_requirements}. The main goals included multilingual support, cultural adaptation, and a simple User-Interface (UI) for tourists of diverse backgrounds. These requirements served as the foundation of our design process and were categorised into six key areas:
 
 \begin{itemize}
-    \item \textbf{Web-Based and Cross-Device Compatibility}: Instead of developing a native app that requires downloading, the product should be built as a mobile-responsive website. This allows users to access the application instantly without registration or installation. The product should support both smartphone and desktop devices, allowing users to access the website flexibly based on their device of choice.
+    \item \textbf{Web-Based and Cross-Device Compatibility}: Instead of developing a native application that requires downloading, the product should be built as a mobile-responsive platform. This allows users to access the application instantly without registration or installation. The product should support both smartphone and desktop devices, allowing users to access the platform flexibly based on their device of choice.
     \item \textbf{Language Selection and Multilingual Support}: Users should be able to select their preferred language at the beginning of their session, and the application should then present the contents in the selected language.
     \item \textbf{Location-Based Service Recommendations}: GPS functionality should be used to identify and display nearby essential services such as public transport hubs, hospitals, ATMs, and stores. The product optionally provides real-time navigation and estimated arrival times to these services.
     \item \textbf{Local Information and Cultural Tips}: The application should display culturally relevant tips, such as local etiquette, useful phrases, and customs, to help travellers adapt and avoid misunderstandings. Local emergency services and tourist hotlines should be available as well.
-    \item \textbf{User-Friendly and Accessible Design}: The interface should be simplified for ease of use by individuals of various ages and digital literacy levels. Where feasible, accessibility features such as text-to-speech should be included to assist users with visual impairments.
-    \item \textbf{Optional Natural Language Features}: If time permits, natural language processing (NLP) features could be integrated.
+    \item \textbf{Optional User-Friendly and Accessible Design}: The interface should be simplified for ease of use by individuals of various ages and digital literacy levels. Where feasible, accessibility features such as text-to-speech should be included to assist users with visual impairments.
+    \item \textbf{Optional Conversational Query Support}: If time permits, Natural Language Processing (NLP) techniques could be implemented to enable conversational interaction like a chatbot to answer questions more intuitively. This would allow users to enter spoken queries (e.g., "Where is the nearest pharmacy?"), which the system interprets to provide relevant recommendations and navigation results.
 \end{itemize}
 
+From a design perspective, these functional requirements were directly translated into interface considerations. For instance, the demand for cross-device compatibility required us to create responsive layouts in both mobile and desktop prototypes. The multilingual requirement influenced the inclusion of a language selection page at the start of the user flow. Similarly, location-based services and cultural tips shaped the categorisation of content into distinct pages, each with tailored icons and navigation structures. In this way, the client's expectations did not just define what the application should do, but also guided how the user interface should look and behave.
 
-\subsection{User-Centred Design Requirements}
-To ensure our design process was guided by real user needs, we adopted the User-Centred Design (UCD) approach. UCD is defined as an iterative process that places users at the core of each development stage, aiming to improve usability and satisfaction by focusing on how users interact with the product \cite{ux_ucd_interaction}. It has been widely used in digital applications due to its ability to reduce cognitive load, enhance accessibility and deliver solutions aligned with users' expectations.
+\subsection{User-Centred Design Methodology}
+The UCD methodology is often summarised into \textbf{four stages} \cite{ux_ucd_interaction}:
 
-Given the international and multicultural nature of our product, UCD was especially appropriate. It allowed us to design not only for functionality, but also for empathy-addressing needs such as multilingual users, cultural awareness, and ease of use across different cultural backgrounds. Importantly, our team itself consists of international students from diverse cultural backgrounds, which enabled us to bring multiple user perspectives into the design process and more intuitively consider the needs of global travellers.
+\begin{enumerate}
+    \item \textbf{Understand the Context of Use}: Identifying who the users are, their goals, and the situations in which the platform will be used.
+    \item \textbf{Specify User Requirements}: Translating these contextual insights into explicitly functional and non-functional requirements.
+    \item \textbf{Design Solutions}: Creating design artefacts such as wireframes and prototypes to address the requirements.
+    \item \textbf{Evaluate Against Requirements}: Testing solutions through user feedback and usability evaluation to ensure alignment with user needs.
+\end{enumerate}
 
-According to the UCD principles, there are four stages: understanding the users and context, specifying user needs, producing design solutions, and evaluating those solutions through testing. As we were unable to directly involve real users during the early phase of the project, we positioned ourselves as representative users by analysing the client's requirements from a user perspective. Each team member translated the functional expectations into short, clear user stories \textbf{\textcolor{red}{(add reference to the appendix of the user story file)}}. These user stories helped us empathise with end users and served as the foundation for creating the potential features and UI elements. We then merged individual user stories into a combined file and used them to explore design directions.
+This structured approach was particularly suitable for our project, because Tourlingo targets international and multicultural users whose needs vary widely across languages, and cultural norms. Travellers often interact with the system in unfamiliar, time-pressured contexts, so the design must be centred around customer needs. Moreover, UCD's interactive cycle can let us find issues like e.g., ambiguous labels, map-based interaction friction, or inconsistent design. Our team's own diversity, international students with first-hand experience of arriving in a new city, also provides valuable perspectives in the early stages.
 
-\subsection{Requirements Documentation and MVP} 
-Following the user stories and internal brainstorming, we compiled a formal Product Requirements Document (PRD), which outlined both functional and non-functional design for our proposed solution (see Appendix~\ref{appendix:prd}). During subsequent meetings with the client and our supervisor, we discussed the feasibility of each proposed feature. Ultimately, we agreed on delivering a Minimum Viable Product (MVP) that would form the foundation for future extensions. 
+\section{Implementation of UCD in Project}
+The UCD methodology is structured around four iterative stages which were mentioned above, by following these stages, we implemented the design process as below:
 
-The MVP included the following five core components: 
-\begin{itemize} 
+\paragraph{Stage 1: Understanding the users and context.} During the early stages, we were unable to directly involve real end-users due to time and resource limit. Instead, our team formed of international students ourselves, reflected on our own experiences of arriving in a new city of a new country and the high-level requirements of our project from the client. We considered the challenges we faced when navigating an unfamiliar environment, such as using local transportation, finding emergency services, or understanding etiquette and so on. These reflections helped us approximate the perspective of our target users.
+
+\paragraph{Stage 2: Specifying user requirements.} To translate these reflections into more specific requirements, we adopted the user story format, widely used in software engineering: \textit{"As a [type of user], I want [goal] so that [reason]."} \cite{cohn2004userstories}
+Acceptance criteria were defined using the \textit{Given-When-Then} \cite{north2006bdd} structure, which made each requirement atomic, testable and evaluable. Each team member drafted user stories based on our own perspective, and these were later merged into a file in Appendix~\ref{appendix:user_stories}. After finished the user stories document, we produced a formal Product Requirements Document (PRD) that captured functional and non-functional requirements, see Appendix~\ref{appendix:prd}, (The initial project name was MTAP, but we changed the name to Tourlingo at the end). We then held a review meeting with the client and our supervisor to validate the PRD and prioritise what we can do. The outcome of this review was an agreed Minimum Viable Product (MVP), the MVP included the following five core pages: 
+\begin{itemize} \itemsep0pt \parskip0pt
     \item \textbf{Language Selection Page}: Allows users to choose their preferred language for accessing the application, and can change language at anytime. 
     \item \textbf{Map Page}: Enables users to search locations, receive basic navigation support, and show pins of the section items in map. 
-    \item \textbf{Recommendation Page}: Shows restaurants, stores and so on near the current or searched location. 
-    \item \textbf{Essential Page}: Offers location-based information like pharmacies, hospitals, police stations and so on. 
+    \item \textbf{Recommendation Panel}: Shows restaurants, stores and so on near the current or searched location. 
+    \item \textbf{Essential Panel}: Offers location-based information like pharmacies, hospitals, police stations and so on. 
     \item \textbf{Cultural Tips Page}: Provides culturally sensitive content such as etiquette, local phrases, transportation and payment methods and other practical information. 
 \end{itemize} 
 
@@ -52,41 +58,21 @@ The overall structure of these components is illustrated in Figure~\ref{fig:fron
     \label{fig:frontend-flowchart} 
 \end{figure} 
 
-The product was designed as a responsive web application, rather than a mobile app. This ensures users can simply open a link or enter the URL without needing to download or register. It also facilitates usage in transportation stations like airports or train stations, aligning well with the 'use and go' nature of our product.
+\paragraph{Stage 3: Producing design solutions.} With the PRD finalised and the MVP agreed, we moved into the design solution stage. Our process began with group discussions, where we created initial hand-drawn sketches to outline the core structure of the application, see Appendix~\ref{fig:appendix-wireframe-mobile-version-1}. These sketches served as a starting point to visualise the overall layout. To further refine our ideas, we developed a mood board see Appendix~\ref{fig:appendix-mood-board}, which is a collection of inspirational design references that helped us align on the desired look and feel of the interface. The mood board was built by exploring examples from established design platforms Dribbble \cite{dribbble} and Mobbin \cite{mobbin}, which provided valuable insights into mobile and desktop design patterns.
 
-\section{Wireframing and User Experience (UX)}
+Based on the sketches and mood board, we produced the first interactive prototype using Figma \cite{figma}, focusing initially on the mobile version. This prototype represented the first tangible version of our design, incorporating the agreed MVP functionality into a cohesive user interface see Appendix~\ref{fig:appendix-prototype-mobile1}.
 
-\subsection{Purpose of Using Wireframing}
-Wireframing served as a foundational step in our design process, allowing us to explore layout, interaction flow, and feature prioritisation before committing to development. The purpose was to visualise the user journey, test early hypotheses about interface design, and facilitate communication within the team.
-
-We used Figma as our primary tool for wireframing due to its collaborative features and ease of use.
-
-\subsection{Inspiration and Design Exploration}
-To begin our UI design process, the team explored several design websites for inspiration, including Dribbble, Mobbin \textbf{\textcolor{red}{(add reference of the website link)}}. These resources provided a wide range of mobile and web UI/UX patterns, enabling us to understand current trends in travel and map-based applications.
-
-\subsection{Initial Wireframing and UX Consideration}
-Based on the inspirations collected, one of our team members took the lead on the UI design by producing initial wireframes. These wireframes were created using Figma and focused on the overall structure and layout of the key pages in both mobile and desktop views. The wireframes defined the content hierarchy, navigation structure, and component placement before any styling decisions were made.
-
-Throughout the wireframing stages, several UX principles guided our design choices:
-    \begin{itemize}
-        \item \textbf{Clarity and Simplicity}: Ensuring the UI is approachable for users of different age groups and technological backgrounds.
-        \item \textbf{Accessibility}: Maintaining sufficient colour contrast, clear labelling, and considering potential for future features like text-to-speech.
-        \item \textbf{Consistency}: Preserving consistent layout and behaviour across screens to reduce cognitive load.
+\paragraph{Stage 4: Evaluating and refining design solutions.}The initial prototype was then evaluated through a think-aloud study involving four participants. In this method, participants verbalised their thoughts while interacting with the prototype, allowing us to capture immediate reactions and usability concerns. Their feedback was positive, noting the clarity of the interface, intuitive navigation, and overall ease of use. At the same time, participants suggested a number of potential enhancements, including: 
+    \begin{itemize} \itemsep0pt \parskip0pt
+        \item Transparent rating and review system for restaurants and hotels. 
+        \item Clearer indication of local cuisine and highlights. 
+        \item Display of distances and location-based filtering. 
+        \item Automated multi-day route planning. 
+        \item Additional categories such as souvenirs. 
+        \item Improved visibility of emergency contacts on the map. 
+        \item Display of seasonal cultural events. 
+        \item Clarification of ambiguous labels (e.g., "Park" vs. "Parking").
     \end{itemize}
 
-\textbf{\textcolor{red}{insert pics of the wireframing for both mobile and desktop views}}
-
-
-\section{Prototyping and Early Evaluation}
-Building on the wireframes, we created an interactive high-fidelity prototype using Figma. Our approach aimed to visualise the complete flow of the application, enabling realistic testing of the UI and interactions.
-
-Our prototype focused on five core screens defined in the MVP: (1) language selection, (2) interactive map, (3) recommendation page, (4) essentials page, and (5) cultural tips page. These reflected the client's priorities and user-centred insights gathered during requirement analysis.
-
-We conducted an early evaluation using the Think-Aloud \textbf{\textcolor{red}{(should we find a reference article for think-aloud method?)}} method with a small group of student peers. Participants were asked to perform specific tasks (e.g., finding the nearest pharmacy or locating cultural etiquette tips) while verbalising their thought process. This allowed us to gather immediate feedback on usability issues and know where to improve. We wrote a feedback report after the Think-Aloud evaluation \textbf{\textcolor{red}{(add reference to the initial evaluation report appendix)}}.
-
-\textbf{\textcolor{red}{(add pics of the prototypes)}}
-
-Based on these evaluations, we made several changes, such as modifying the misunderstood words, changing the cultural tips page interface, and adding distance from the current location to the searched location in the navigation panel.
-
-\textbf{\textcolor{red}{(add pics of the prototypes after early evaluation)}}
+Given the project’s limited timeframe, not all suggestions could be implemented. We therefore prioritised improvements most critical to usability. The final prototype integrated a navigation bar for clearer page transitions, restructured categories into \textit{Recommendation} and \textit{Essential} pages, applied a consistent theme for better UI coherence, and highlighted emergency services such as hospitals, police, and fire stations in a dedicated top navigation bar see Appendix~\ref{fig:appendix-prototype-mobile2}. These refinements ensured the first version of the prototype was both practical and user-friendly, while leaving room for further development in future iterations.
 

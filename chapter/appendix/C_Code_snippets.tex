@@ -1,73 +1,127 @@
-\chapter{Code snippets and stuff}
+\chapter{Code snippets}
 
-FrontEnd Dockerfile:
-
-\begin{minted}[linenos]{docker}
-FROM node:18-alpine AS base
-
-# Install dependencies only when needed
-FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/
-# b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine 
-# to understand why libc6-compat might be needed.
-
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-
-# Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
-
-ENV NODE_ENV=production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder /app/public ./public
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT=3000
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
-ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+\section{Cultural Tips Request Body:}
+\begin{listing}[H]
+\begin{minted}[linenos,breaklines,breakanywhere,frame=single,fontsize=\footnotesize]{json}
+    {
+    "city": "Araku Valley, India",
+    "target_language": "fr",
+    "language": "Odia (primary local language); English widely understood in tourist areas.",
+    "must_know_phrases": {
+        "Hello": "नमस्ते (Namaste)",
+        "Thank you": "धन्यवाद (Dhanywaad)",
+        "I am sorry": "माफ़ कीजिए (Maafi kiiye)",
+        "Please help me": "कृपया मुझे मदद करें (Kripya mujhe madad karein)",
+        "Where is the nearest hotel?": "नजदीकी में आश्रय स्थल कहाँ है? (Nazdi ki me aashray sthal kahan hai?)"
+    },
+    "etiquette": [
+        "Remove shoes before entering temples and homes for spiritual sites.",
+        "Dress modestly, covering shoulders and knees when visiting religious places.",
+        "Use polite language like 'please' and 'thank you' to show respect.",
+        "Avoid public displays of affection to maintain cultural norms.",
+        "Respect local festivals and ask for permission before taking photos."
+    ],
+    "payment": {
+        "card": "Visa and Mastercard are commonly accepted in hotels, restaurants, and larger shops; however, smaller establishments or rural areas may not accept cards similar to other Indian tourist destinations.",
+        "cash": "Cash is essential for markets, small vendors, and local transportation. Obtain notes from ATMs in Rayagada or Nedumangalam, and exchange currency at banks or authorized money changers; ATMs may not be readily available in Araku Valley centers."
+    },
+    "transportation": {
+        "bus": "Buses from nearby towns like Rayagada connect to Araku Valley; use the bus stop outside Bheemunipeta or Rayagada town, book tickets in advance if long distances are involved; travel time is about 2-4 hours.",
+        "auto-rickshaw": "Affordable, three-wheeled vehicles for short intra-city trips; negotiate fares in advance; available at popular spots like tourist centers and markets.",
+        "taxi": "Private or shared taxis can be hired via local services or online apps; convenient for groups but may offer less bargaining room than buses or auto-rickshaws in the valley.",
+        "car_rental": "Available at hotels in Araku Valley; suitable for self-drive exploration of scenic routes; includes basic insurance but confirm options beforehand.",
+        "train": "Limited train services from Bengaluru or Visakhapatnam to nearby stations; requires transfers to local transport for Araku access, which may be infrequent."
+    },
+    "emergency_numbers": {
+        "Police": "102",
+        "Ambulance": "102",
+        "Fire": "102",
+        "Local Assistance": "102 or nearest police station",
+        "Health Emergency": "102"
+    }
+}
 \end{minted}
+\caption{Translation service request body}
+\label{lst:translation_body}
+\end{listing}
+
+\section{Cultural Tips Response:}
+\begin{listing}[H]
+\begin{minted}[linenos,breaklines,breakanywhere,frame=single,fontsize=\footnotesize]{json}
+    {
+    "city": "Araku Valley, India",
+    "language": "Odia (primary local language); English widely understood in tourist areas.",
+    "etiquette": [
+        "Retirer les chaussures avant d'entrer dans les temples et les maisons pour les sites spirituels.",
+        "Habillez - vous modestement, couvrant les épaules et les genoux en visitant des lieux religieux.",
+        "Utilisez un langage poli comme 's'il vous plaît' et 'merci' pour montrer du respect.",
+        "Éviter les manifestations publiques d'affection pour maintenir les normes culturelles.",
+        "Respectez les festivals locaux et demandez l'autorisation avant de prendre des photos."
+    ],
+    "payment": {
+        "card": "Visa et Mastercard sont généralement acceptés dans les hôtels, les restaurants et les grands magasins; cependant, les petits établissements ou les zones rurales peuvent ne pas accepter de cartes semblables à d'autres destinations touristiques indiennes.",
+        "cash": "L'argent liquide est essentiel pour les marchés, les petits vendeurs et les transports locaux.Obtenez des billets de guichets automatiques à Rayagada ou Nedumangalam et échangez des devises auprès de banques ou de changeurs autorisés; les guichets automatiques peuvent ne pas être facilement disponibles dans les centres de la vallée d'Araku."
+    },
+    "transportation": {
+        "bus": "Les bus des villes voisines comme Rayagada se connectent à la vallée d'Araku; utilisent l'arrêt de bus à l'extérieur de Bheemunipeta ou Rayagada ville, réserver des billets à l'avance si de longues distances sont en jeu; le temps de déplacement est d'environ 2-4 heures.",
+        "pousse-pousse automatique": "Véhicules abordables à trois roues pour de courts voyages à l'intérieur de la ville; négocier les tarifs à l'avance; disponibles dans des endroits populaires comme les centres touristiques et les marchés.",
+        "taxi": "Les taxis privés ou partagés peuvent être loués via des services locaux ou des applications en ligne; ils sont pratiques pour les groupes mais peuvent offrir moins de salle de négociation que les autobus ou les pousse-pousses dans la vallée.",
+        "_location de voiture": "Disponible dans les hôtels de la vallée d'Araku; adapté pour l'exploration auto-drive des itinéraires pittoresques; comprend une assurance de base, mais confirmer les options au préalable.",
+        "train": "Services de trains limités depuis Bengaluru ou Visakhapatnam vers les gares voisines; nécessite des transferts vers les transports locaux pour l'accès Araku, qui peut être rare."
+    },
+    "target_language": "fr",
+    "must_know_phrases": {
+        "Bonjour": "नमस्ते (Namaste)",
+        "Je vous remercie": "धन्यवाद (Dhanywaad)",
+        "Je suis désolé": "माफ़ कीजिए (Maafi kiiye)",
+        "Aidez-moi": "कृपया मुझे मदद करें (Kripya mujhe madad karein)",
+        "Où est l'hôtel le plus proche ?": "नजदीकी में आश्रय स्थल कहाँ है? (Nazdi ki me aashray sthal kahan hai?)"
+    },
+    "emergency_numbers": {
+        "Police": "102",
+        "Ambulance": "102",
+        "Feu": "102",
+        "Aide locale": "102 ou poste de police le plus proche",
+        "Urgence sanitaire": "102"
+    }
+}
+\end{minted}
+\caption{Translation service response}
+\label{lst:translation_response}
+\end{listing}
+
+\section{Sentence Context}
+\begin{listing}[H]
+\begin{minted}{java}
+@Data
+@EqualsAndHashCode
+@Builder
+public class SentenceContext {
+  private String originalText;
+  private String translatedText;
+  private int batchNumber;
+  private int batchIndex;
+  private int textLength;
+}
+\end{minted}
+\caption{Sentence Context Java Class}
+\label{ref:SentenceContext}
+\end{listing}
+
+\section{JSON Context Map}
+\begin{listing}[H]
+\begin{minted}{java}
+@Data
+@EqualsAndHashCode
+@Builder
+public class SentenceContext {
+  private String originalText;
+  private String translatedText;
+  private int batchNumber;
+  private int batchIndex;
+  private int textLength;
+}
+\end{minted}
+\caption{JSON context map}
+\label{ref:context_map}
+\end{listing}

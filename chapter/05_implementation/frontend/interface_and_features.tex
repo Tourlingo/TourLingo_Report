@@ -25,7 +25,6 @@ The non-functional aspects of the frontend were prioritized using the \textbf{Mo
     \item \textbf{Responsiveness and performance:} Every screen needed to adapt gracefully to mobile, tablet, and desktop displays using a responsive design approach powered by Tailwind CSS. The frontend needed to display translated results almost immediately after a user request, so the experience felt seamless and gave the impression of real-time communication.
 
     \item \textbf{Usability and accessibility:}  The interface included a prominent search bar for entering text, intuitive language switching options, and consistent layouts across all screens. Accessibility was considered by ensuring readable font sizes, sufficient color contrast for map overlays, and keyboard navigation support, making the app usable by travelers with varying levels of digital literacy. \\
-    \textbf{** shhhhh **}\\
     Clear navigation, consistent layouts, and adherence to accessibility guidelines ensured that the app could be used by travelers of different backgrounds and levels of digital literacy.  
 \end{itemize}
 
@@ -57,187 +56,88 @@ With a comprehensive understanding of the client's requirements, our next step w
 \begin{table}[H]
 \centering
 \caption{Programming Language Comparison}
-\begin{tabular}{|l|p{6cm}|p{6cm}|}
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|}
 \hline
 \textbf{Criteria}       & \textbf{JavaScript} & \textbf{TypeScript} \\
 \hline
-Typing                  & Dynamic             & Static             \\
-Ease of Learning        & Easy                & Moderate           \\
-Tooling Support        & Excellent           & Excellent          \\
-Performance            & Good                & Good               \\
-Reason                 & No static typing, harder to maintain large apps & Static typing improves code quality and maintainability \\
+Typing                  & Dynamic (checked at runtime) & Static (checked at compile-time) \\
+Error Detection          & Errors appear at runtime     & Errors caught during development \\
+Ease of Learning         & Easy                        & Moderate \\
+Tooling Support          & Basic IDE hints             & Rich IDE support with autocompletion and refactoring \\
+Scalability              & Can be hard to maintain large apps & Easier to manage large codebases with explicit types \\
+Performance              & Good                        & Good \\
+Compatibility            & Runs directly in browsers   & Compiles to JavaScript and fully compatible with JS libraries \\
+Reason                   & Flexible but can lead to runtime bugs in large apps & Helps catch errors early, improves maintainability, and supports large projects \\
 \hline
 \end{tabular}
 \label{tab:programming-language-comparison}
 \end{table}
 
-\textbf{Selected:} TypeScript \par
-\textbf{Reasoning:} TypeScript was selected due to its static typing capabilities, which enhance code reliability, readability, and maintainability, especially for large-scale applications. Unlike JavaScript, TypeScript helps catch errors at compile time, making development more robust and reducing runtime bugs. It also offers better IDE support, including autocompletion and refactoring, improving developer productivity.
+\textbf{Programming Language:} We selected \textbf{TypeScript} for our frontend development because it is built on JavaScript and has static typing capabilities, which enhance code reliability, readability, and maintainability, especially for large-scale applications. Unlike JavaScript, TypeScript catches errors at compile time, making development more robust and reducing runtime bugs. It also offers better IDE support, including autocompletion and refactoring, which improves developer productivity.\cite{javascript-official, typescript}
 
 \vspace{2em}
 
 \begin{table}[H]
 \centering
-\caption{Frontend Framework/Library Comparison}
+\caption{Frontend Framework Comparison}
 \begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
 \hline
-\textbf{Criteria}       & \textbf{React (Vanilla)}      & \textbf{Next.js}               & \textbf{Angular}               \\
+\textbf{Criteria}       & \textbf{Next.js}              & \textbf{Angular}               & \textbf{Vue.js}               \\
 \hline
-Architecture            & Component-based UI library   & React-based framework with SSR/SSG & Full-featured MVC framework    \\
-Ecosystem Size          & Very Large                   & Large (built on React)         & Large                          \\
-Learning Curve          & Moderate                     & Moderate (extra SSR/SSG concepts) & Steep                          \\
-Performance             & Excellent (CSR)              & Excellent (SSR + SSG options)  & Excellent                      \\
-Flexibility             & High                         & Moderate (opinionated file structure) & Low                           \\
-SEO Support             & Limited (CSR)                & Strong (built-in SSR \& SSG)   & Strong (built-in SSR)          \\
-Reason                  & Great flexibility, simple setup & SEO benefits, server rendering, better routing & Steep learning curve, heavier structure \\
+Architecture            & React-based framework with SSR/SSG & Full-featured MVC framework    & Progressive framework         \\
+Ecosystem Size          & Large (React ecosystem)       & Large                          & Medium                       \\
+Learning Curve          & Moderate                      & Steep                          & Easy                         \\
+Performance             & Excellent                     & Excellent                      & Excellent                     \\
+Flexibility             & Moderate (opinionated structure) & Low                           & Moderate                     \\
+SEO Support             & Strong (SSR + SSG)            & Strong (built-in SSR)          & Limited                        \\
+Reason                  & Built-in SSR/SSG, folder-based routing, React integration & Steep learning curve, heavier framework & Smaller ecosystem, less enterprise adoption \\
 \hline
 \end{tabular}
 \label{tab:frontend-framework-comparison}
 \end{table}
 
-\textbf{Selected:} Next.js \par
-\textbf{Reasoning:} Next.js was chosen for its built-in support for server-side rendering (SSR) and static site generation (SSG), which improve performance, search engine optimization (SEO), and initial load times. Its file-based routing simplifies navigation setup and integrates seamlessly with React’s component model. Compared to vanilla React, Next.js provides out-of-the-box optimizations and a more opinionated structure, reducing boilerplate. Angular, while powerful, was not selected due to its steeper learning curve, heavier framework size, and less flexibility for a React-focused tech stack.
+\textbf{Frontend framework:} We chose \textbf{Next.js} as the main frontend framework for our project because it provides built-in support for server-side rendering (SSR) and static site generation (SSG), improving performance and initial load times. The App Router with folder-based routing simplified page organization and navigation setup, making development faster and more maintainable. Since Next.js is React-based, we continue to leverage React’s component model for building modular and reusable UI elements. Other frameworks, such as Angular or Vue, were considered but not selected due to steeper learning curves, heavier frameworks, and less alignment with our project’s React-focused architecture. This combination of features, performance optimizations, and developer productivity made Next.js the best choice for implementing the multilingual virtual tour assistant frontend.\cite{nextjs, angular-official, vue-official}
 
 \vspace{2em}
 
-\begin{table}[H]
-\centering
-\caption{Styling Solutions Comparison}
-\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
-\hline
-\textbf{Criteria}       & \textbf{CSS}               & \textbf{Tailwind CSS}        & \textbf{DaisyUI}             \\
-\hline
-Approach                & Traditional                & Utility-first                & Component-based              \\
-Customizability         & High                       & Medium                      & Low                         \\
-Learning Curve          & Easy                       & Moderate                    & Easy                        \\
-Development Speed       & Moderate                   & Fast                        & Very Fast                   \\
-Reason                  & Difficult to maintain large stylesheets & Rapid styling, consistent design system & Provides prebuilt components on Tailwind \\
-\hline
-\end{tabular}
-\label{tab:styling-solutions-comparison}
-\end{table}
+\textbf{Styling:}
+We chose \textbf{Tailwind CSS} as our styling foundation because its utility-first approach promised efficient styling while maintaining consistency across components, which was critical for scaling the project. DaisyUI, layered on top of Tailwind, influenced our decision further by providing prebuilt, themeable components that reduced design overhead and accelerated prototyping. At the same time, we anticipated the need for fine-grained control, so we kept the option of extending the setup with custom CSS for project-specific adjustments, such as hiding scrollbars and repositioning Leaflet map controls.\cite{tailwindcss, daisyui, css-official}
 
-\textbf{Selected:} Tailwind CSS + Daisy UI \par
-\textbf{Reasoning:} Tailwind CSS was selected for its utility first approach, which accelerates development and enforces consistent styling across components. DaisyUI, built on top of Tailwind, adds ready-to-use, customizable UI components that speed up design implementation. This combination reduces the need to write custom CSS while keeping the UI modern and clean. Traditional CSS is harder to scale and maintain, and DaisyUI complements Tailwind without compromising flexibility.
+\section{Frontend Implementation}
 
-\subsection{Implementation}
+\subsection{Overview}
+The frontend was delivered in various iterations. Each one started with a clear problem, targeted a small set of outcomes, and ended with a working build shown to stakeholders. The implementation followed the Figma prototype, ensuring alignment between design and the application. Reusable components were created and used to maintain consistency throughout the pages. We used Next.js and TypeScript, styled with Tailwind CSS. State began local and was later centralised in a small Zustand store backed by localStorage. The frontend was responsible for navigating throughout the application and integrating the APIs.
 
-After finalizing the Figma prototype, the implementation phase commenced and was structured into iterative sprints. Each iteration focused on delivering incremental features, incorporating design feedback, and enhancing both performance and usability. The following sections provide a breakdown of the three main development iterations undertaken.
+\subsubsection{Iteration 1 - Clickable Prototype}
+\textbf{Problem/Goal:} At project start, we required a navigable prototype that reflected the agreed user flows and visual language. The iteration goal was therefore to match the Figma design and allow end-to-end clicking through the core screens. 
 
-\subsubsection{Iteration 1:}
-The first iteration focused on standing up a clickable skeleton aligned to the Figma user flows. The goal was to deliver a coherent theme, working navigation, language-scoped routing, page shells for all core areas.
+\textbf{Implementation:} We built page flow across the Language, Map, Essentials, Recommendations, and Cultural Tips screens. To de-risk backend dependency, we populated the views with placeholders and realistic mock data so that swapping in API responses later would be simple. The language selection persisted across refreshes via localStorage.
 
-\begin{enumerate}
-    \item \textbf{Project Setup and Theme Baseline} \\
-    Initialised the project with \texttt{Next.js (App Router)}, \texttt{React}, and \texttt{TypeScript} via \texttt{npm}. Established formatting and linting rules to reduce churn. Added \texttt{Tailwind CSS} and defined a global theme (colours, spacing, type scale) applied through \texttt{globals.css}.
+\textbf{Result:} A working, clickable prototype aligned to the Figma flows was delivered. Users could move between Language, Map, Essentials, Recommendations, and Cultural Tips, and their language choice persisted across refreshes via localStorage. Using realistic mock data made each screen demo-ready and let us validate layout. In the review, stakeholders confirmed the flows matched expectations and asked that Cultural Tips be broken into shorter, expandable sections.
 
-    \item \textbf{Routing and Internationalisation} \\
-    Introduced a language-scoped route segment \verb|app/[lang]/...|. Persisted the user’s language in \texttt{localStorage} so choices survive refreshes and deep links; URLs remain shareable in the chosen language.
+\textbf{Known limitations:} No live data; no map directions; Cultural Tips were text-heavy; the map view did not persist between screens.
 
-    \item \textbf{Application Structure} \\
-    Used App Router with feature folders to separate pages and reusable components.
-    \begin{itemize}
-        \item \textit{Pages:} \verb|[lang]/cultural-tips|, \verb|essentials|, \verb|language|, \verb|map|, \verb|recommendations|, plus \verb|layout.tsx| and \verb|page.tsx|.
-        \item \textit{Components:} \texttt{NavigationBar}, \texttt{LanguageList}, \texttt{ActionButton}, \texttt{MapComponent}, \texttt{SearchBar}, \texttt{InfoAccordion}.
-        \item \textit{Support:} \texttt{mockdata/}, \texttt{public/}, \texttt{types/}, \texttt{globals.css}.
-    \end{itemize}
+\subsubsection{Iteration 2 - From placeholders to data-driven pages}
+\textbf{Problem/Goal:} The main goal here was to start showing real data from APIs and to simplify the experience by keeping everything within the Map view and making it responsive.  
 
-    \item \textbf{Reusable Components (v1)} \\
-    Prioritised primitives used across pages:
-    \begin{itemize}
-        \item \textbf{NavigationBar} — top-level navigation mounted in \verb|app/layout.tsx|.
-        \item \textbf{LanguageList} — renders supported languages; writes selection to \texttt{localStorage}.
-        \item \textbf{ActionButton} — shared CTA styling (``Start'', ``Change language'').
-        \item \textbf{MapComponent} — visual placeholder for the map view.
-        \item \textbf{SearchBar / InfoAccordion} — early building blocks for dense content.
-    \end{itemize}
+\textbf{Implementation:} We connected the frontend to our backend, which uses OpenStreetMap and the Overpass API to fetch real points of interest. Essentials and Recommendations, which were originally separate pages, were reworked into slide-out panels that overlay the Map. This change meant users could explore places without losing their map view, and it also reduced the number of separate components we had to maintain. Each item in the panels was linked to category pins on the map, so clicking a place in the list immediately highlighted the right marker.  
 
-    \item \textbf{Page Shells Delivered} \\
-    Implemented page frames with one believable mock-driven page:
-    \begin{itemize}
-        \item \textbf{Language selector / Change language} — same component; CTA label differs; language persisted and reflected in \verb|[lang]|.
-        \item \textbf{Cultural Tips} — basic prototype rendering tips from \texttt{mockdata/}; no geo logic or filtering yet.
-        \item \textbf{Map} — page shell with \texttt{MapComponent} stub and placeholder panels.
-        \item \textbf{Recommendations} — placeholder cards seeded from \texttt{mockdata/}.
-        \item \textbf{Essentials} — placeholder sections 
-    \end{itemize}
+At the same time, we focused on reusable components. Shared UI elements were refined so they could be used consistently throughout the app. To make the experience feel smoother when data was loading, we added a loading animation at the end of this iteration. Finally, Cultural Tips, which had been one long block of text, were restructured into five clear sections (Etiquette, Must-know Phrases, Payment Methods, Transportation, and Emergency Numbers). We added expand/collapse controls to make the page easier to browse. We also made the app responsive, so it adapts to any screen size or device.  
 
-    \item \textbf{Styling and Layout} \\
-    Tailwind utilities with a global layout (\verb|app/layout.tsx|) ensure a consistent frame; \texttt{NavigationBar} renders globally. Used Tailwind’s default breakpoints; finer responsive tweaks deferred until layouts stabilized.
+\textbf{Result:} By the end of this iteration, users could stay on the Map page and see live Essentials and Recommendations with just one tap. The connection between list items and map pins made the interface more intuitive, while Cultural Tips became easier to read in smaller chunks. Reusable components reduced repeated code, and the loading animation gave users clear feedback while waiting for API calls. Quick checks on different devices showed the app was now responsive and worked well across screen sizes.  
 
-    \item \textbf{State and Data} \\
-    No backend integration in this iteration. Used mock data to validate layouts and interactions. Persistent state limited to language via localStorage.
+\textbf{Known limitations:} The map view still reset after moving between screens, zoom controls could overlap the search bar on smaller devices, and directions had not yet been added.
 
-    \item \textbf{Stakeholder Feedback} \\
-    Positive response to being able to ``click around'' immediately. Cultural Tips showed too much text at once and felt basic; requested progressive disclosure and clearer grouping.
+\subsubsection{Iteration 3 - Smoother use, persistent state, and directions}
+\textbf{Problem/Goal:} The goal of this iteration was to make the experience smoother and more practical by keeping state across reloads, speeding up how tips load, adding a simple guide for new users, and introducing walking, cycling, and driving routes.  
 
-    \item \textbf{Outcome} \\
-    Delivered a navigable app that matches Figma flows with a coherent theme, navigable skeleton with the language flow functional and a Cultural Tips page Map, Recommendations and Essentials were ready for data wiring and UX refinement in subsequent iterations.
-\end{enumerate}
+\textbf{Implementation:} We used the Zustand store to manage map state in one place and added persistence with localStorage so that the location and tips remain after reloads. To cut waiting on Cultural Tips, we prefetch tips once the city and language are known, keep a recent copy in the store, and show that immediately when the user navigates to the page. The map now uses distinct markers for the user’s location, the selected destination, and each category in Essentials and Recommendations. To support new users, we added a short, guided tour using intro.js. It ran only on first launch and walked through the main actions: choosing a language, exploring the map, and showing what each button on the navigation bar is responsible for. We also added directions for walking, cycling, and driving, with coloured routes, distance and time estimates, and step-by-step instructions in a side panel. Finally, we repositioned zoom controls and the guide help button to avoid overlap on small screens.  
 
-\subsubsection{Iteration 2:}
-After completing the initial development in Iteration One, the second iteration focused on refining and enhancing the existing features based on testing and client feedback. The following key tasks were performed during this phase:
-
-\begin{enumerate}
-    \item \textbf{Bug Fixing from Previous Iteration} \\
-    Several bugs identified in the first iteration were addressed. This included UI glitches, navigation issues, and minor functional problems. All fixes were thoroughly tested to ensure stability in the future.
-    \item \textbf{Responsive Design Improvement} \\
-    The entire application was reviewed and updated to ensure responsiveness between devices. Tailwind CSS utilities were used to make all pages and components adapted smoothly to various screen sizes, including mobile, tablet, and desktop.
-    \item \textbf{Reusable Search Bar Component} \\
-    The search bar that was originally built for the language selection page was converted to a generic reusable component. This allowed it to be used on the map page and potentially in other parts of the application, promoting code reuse and consistency.
-    \item \textbf{Map Pins Integration} \\
-    Pins were added to the map to represent important locations. This increased the interactivity of the map and provided users with visual cues linked to actual data and categories.
-    \item \textbf{Dynamic Side Panels for Essentials and Recommendations} \\
-    The static Essentials and Recommendations sections were redesigned as side panels. These panels now fetch real data from the backend API and display it with improved visual styling. Categories were introduced to organize the content better and make the user experience more intuitive.
-    \item \textbf{Loading Animation for Backend Data Fetching} \\
-    To enhance the user experience during interactions with the backend, a modern loading animation from \cite{uiverse-loader} was integrated. This provides clear visual feedback while waiting for data from the server (e.g. recommendations, essentials, and cultural tips), ensuring that users are informed of ongoing background processes and preventing the perception of lag.
-
-    \item \textbf{Refining Cultural Tips}
-    \begin{itemize}
-        \item \textbf{Styling:} Several design mock-ups were presented to the client, and the final design was selected based on their feedback. The chosen layout was implemented with improved styling for better visual appeal.
-        \item \textbf{Content Restructuring:} The earlier content was long and descriptive. It was revised and divided into clear and digestible sections on the basis of client's input. The final sections include:
-        \begin{itemize}
-            \item Etiquette
-            \item Must-know Phrases
-            \item Payment Methods
-            \item Transportation
-            \item Emergency Numbers
-        \end{itemize}
-    \end{itemize}
-\end{enumerate}
-
-\subsubsection{Iteration 3:}
-This iteration focused on making the app feel faster, more reliable, easier to read at a glance, and friendlier for first-time users.
-
-\begin{enumerate}
-    \item \textbf{Map state management} \\
-    Previously, when users navigated between pages, the map was automatically updated to their current location. This disrupted the user experience, especially if they were exploring a different area or had selected a destination.  
-
-    We introduced a persistent \texttt{zustand} \cite{zustand-docs} store to manage all key map variables: user’s current location, selected destination, city, country, zoom level and searched text. The map state is now preserved across page navigations.  
-
-    Users now return to the exact map view they left, maintaining continuity and improving usability. This makes exploration more intuitive and reduces frustration caused by unexpected recentering.
+\textbf{Result:} The app feels more responsive, holds its place between screens, and is easier to understand on first use. Cultural Tips appear quickly on return visits and remain visible after a refresh. Point-to-point directions were implemented. From the user’s location to a selected place, the app now offers routes for walking, cycling, and driving.
 
 
-    \item \textbf{Preloading Cultural Tips (lightweight caching)} \\
-    We now fetch cultural tips as soon as the city/language is known and keep a recent copy in a small local cache (zustand \cite{zustand-docs}). Returning users see tips immediately, while fresh data quietly replaces the cached copy in the background.
 
-    \item \textbf{Tips that survive a reload} \\
-    Previously, refreshing the page cleared the tips because they lived only in the component state. We moved them into a persistent \texttt{zustand \cite{zustand-docs}} store (backed by \texttt{localStorage}) and rehydrate on app load. Now, tips are available immediately after reload and refresh in the background once the location is confirmed.
 
-    \item \textbf{Clearer map pins} \\
-    The map uses distinct markers for (a) the current location of a user, (b) the selected destination and (c) each category in \emph{Recommendations} and \emph{Essentials}. This makes it easier to scan the map and match items in the side panel with what you see on the map.
-
-    \item \textbf{First-time guide (intro.js)} \\
-    A short, step-by-step walk-through (via \texttt{intro.js} \cite{introjs-docs}) introduces the basics: choose a language, explore the map, open essentials/recommendations, and view cultural tips. It appears only on first launch and is controlled by a simple \texttt{localStorage} flag.
-
-    \item \textbf{Point-to-point directions (walk/cycle/drive)} \\
-    We added directions from the user’s location to a searched or selected place for walking, cycling, and driving, each displayed in a unique color. For each route, the app now displays the estimated distance and the time required to cover it via the selected mode of transport. In addition, a static set of step-by-step directions is shown in a side panel, allowing users to easily follow the route without interacting with the map. Public-transport routing remains out of scope for this release.
-
-    \item \textbf{Responsive UI improvements for map controls} \\
-    On smaller devices, the map zoom-in and zoom-out buttons are used to overlap with the search bar and navigation bar. We update the layout so that the zoom controls reposition dynamically on the basis of screen size, ensuring that they remain accessible without obstructing other elements.
-\end{enumerate}
-
-\noindent\textbf{Outcome.} Users now return to the exact map view they left due to the persistent map state. Cultural tips load instantly on return visits and survive page reloads. The map pins are easier to interpret at a glance and first-time users receive a gentle guided tour of the core features. Basic point-to-point directions are available for walking, cycling, and driving. Additionally, the map controls are now responsive, with zoom buttons dynamically repositioning on smaller devices to avoid overlap with the search and navigation bars.
 
 \begin{figure}[H]
     \centering

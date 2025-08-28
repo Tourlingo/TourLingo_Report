@@ -4,23 +4,37 @@ This appendix contains screenshots of the developed web application for both
 desktop (1920x1080) and mobile (1290x2796) layouts. For clarity, each screen
 is shown in its desktop version first, followed by the corresponding mobile version.
 
-\section{Wireframings}
+\section{Wireframes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textheight, keepaspectratio]{images/wireframing/firstHandDrawWirefame.jpg}
+    \caption{Hand-Draw Wireframe Mobile View Version 1}
+    \label{fig:appendix-wireframe-mobile-version-1}
+\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.3\textheight, keepaspectratio]{images/wireframing/mobileViewWireframing.png}
-    \caption{Wireframing Mobile View}
-    \label{fig:appendix-wireframing-mobile} 
+    \caption{Wireframe Mobile View Version 2}
+    \label{fig:appendix-wireframe-mobile-version-2} 
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.3\textheight, keepaspectratio]{images/wireframing/desktopViewWireframing.png}
-    \caption{Wireframing Desktop View}
-    \label{fig:appendix-wireframing-desktop} 
+    \caption{Wireframe Desktop View}
+    \label{fig:appendix-wireframe-desktop} 
 \end{figure}
 
 \section{Figma Prototypes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textheight, keepaspectratio]{images/prototype/moodBoard.png}
+    \caption{Prototype Inspiration Mood Board}
+    \label{fig:appendix-mood-board}
+\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -48,6 +62,7 @@ is shown in its desktop version first, followed by the corresponding mobile vers
     \centering
     \includegraphics[height=0.2\textheight,keepaspectratio]{images/Screenshots/0_guide_desktop.png}
     \caption{Guide screen (Desktop)}
+    \label{fig:Guide-screen-(Desktop}
 \end{figure}
 
 \begin{figure}[H]
@@ -87,12 +102,14 @@ is shown in its desktop version first, followed by the corresponding mobile vers
     \centering
     \includegraphics[height=0.3\textheight,keepaspectratio]{images/Screenshots/3_sidepanel_desktop.png}
     \caption{Side Panel screen (Desktop)}
+    \label{fig:Side-Panel-screen-(Desktop)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.3\textheight,keepaspectratio]{images/Screenshots/3_sidepanel_mobile.png}
     \caption{Side Panel screen (Mobile)}
+    \label{fig:Side-Panel-screen-(Mobile)}
 \end{figure}
 
 \section{Directions Screen}
@@ -125,28 +142,28 @@ is shown in its desktop version first, followed by the corresponding mobile vers
 \section{Postman Results}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/Backend/Translation_Service_first_iteration.png}
-    \caption{Initial Response Time}
+    \includegraphics[width=1\linewidth]{images/Backend/Translation_Service_first_iteration.png}
+    \caption{The image shows initial response time for translation of cultural tips data to be 5.27 seconds.}
     \label{fig:intial_response_time}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/Backend/Translation_Service_20_Red.png}
-    \caption{20\% Reduction in Response Time}
+    \includegraphics[width=1\linewidth]{images/Backend/Translation_Service_20_Red.png}
+    \caption{The image shows an improvement from initial iteration of the backend implementation. The response times were down from 5.27s to 4.22s, a 20\% Reduction in Response Time.}
     \label{fig:20_reduction_response}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/Backend/Translation_Service_final_iteration.png}
-    \caption{Final Response Time}
+    \includegraphics[width=1\linewidth]{images/Backend/Translation_Service_final_iteration.png}
+    \caption{Final Response Time after implementing database as a cache layer to store cultural tips data. The image clearly shows a response time of 24ms fetched directly from database layer.}
     \label{fig:final_response_time}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/Backend/Performance_Comparision.png}
-    \caption{Performance comparison of API version 1 and 2}
+    \includegraphics[width=1\linewidth]{images/Backend/Performance_Comparision.png}
+    \caption{Performance comparison report of API version 1 (right side (Libre \#2) - avg. response shown in dotted blue line) and version 2 (left side (Libre \#3) - avg. response time shown in solid blue line). The graph clearly showing constant peaks in response time around 19,130ms, while version 2 showing an initial peak of 8000ms and then a steady performance around 105ms.}
     \label{fig:perf_comp}
 \end{figure}

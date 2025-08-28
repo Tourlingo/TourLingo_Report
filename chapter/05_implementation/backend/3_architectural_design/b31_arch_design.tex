@@ -10,18 +10,14 @@ The core translation service, was internally structured following a 2-tier patte
 
 \subsubsection{Primary Challenge: Data Structure Transformation}
 
-The most significant technical challenge involved converting the cultural tips data received in JSON format into string arrays. The translation engine (LibreTranslate) exposes an API endpoint that only accepts a text string or an array of text strings and the target language in its request body. These texts are then translated and sent back. Sequentially sending one text at a time would have a significant bottleneck to translate the texts, hence there was a need to logically split the received data into an array of texts and send it for translation. But the main challenge is split the received data and flatten them into an array. We needed to preserve the context of the received data that can be used to reconstruct the translated texts back to its original format.
+The most significant technical challenge involved converting the cultural tips data received in JSON format (see request body format \autoref{lst:translation_body}) into string arrays. The translation engine (LibreTranslate) exposes an API endpoint that only accepts a text string or an array of text strings and the target language in its request body\cite{libretranslate_api_translate}. These texts are then translated and sent back. Sequentially sending one text at a time would have a significant bottleneck to translate the texts, hence there was a need to logically split the received data into an array of texts and send it for translation. But the main challenge is split the received data and flatten them into an array. We needed to preserve the context of the received data that can be used to reconstruct the translated texts back to its original format (see response body in \autoref{lst:translation_response}).
 
 \subsubsection{Solution Architecture:}
 
-Each object in the JSON body was split into a map of JSON object name in string format to the list of SentenceContext java objects.
-
-\begin{lstlisting}[language=Java]
-Map<String, List<SentenceContext>> jsonContext = new HashMap<>();
-\end{lstlisting}
+Each object in the JSON body was split into a map of JSON object name in string format to the list of SentenceContext java objects (see Appendix Code Snippets in \autoref{ref:SentenceContext} for Sentence Context object and JSON context Map variable in \autoref{ref:context_map}).
 
 Each JSON object was mapped to a \texttt{SentenceContext} object containing:
-\begin{itemize}
+\begin{itemize} \itemsep0pt \parskip0pt
     \item Original text content
     \item Translated text content
     \item Batch array index position
