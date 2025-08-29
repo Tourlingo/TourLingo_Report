@@ -1,149 +1,143 @@
-\section{Design and Implementation of Frontend}
+\chapter{Design and Implementation of Frontend}
 
-Our development journey began with a thorough analysis of the client’s requirements to ensure a clear understanding of the project goals and user needs. This foundational step allowed us to identify both functional and non-functional aspects critical to delivering a seamless multilingual virtual tour assistant. Following this, we carefully evaluated and selected the most suitable technologies to meet these requirements efficiently and maintainably. To visualize the user experience and interface, we created detailed wireframes and interactive prototypes using Figma, which facilitated early feedback and iterative improvements before moving into full development.
+At the start of the project, we focused on understanding the client's requirements in detail to make sure we were clear about the goals and user needs. This gave us a clear picture of both functional and non-functional requirements. Based on this insight, we carefully evaluated and selected the most suitable technologies to implement the Tourlingo application efficiently and sustainably. To visualize the user experience and interface, we designed detailed wireframes and interactive prototypes using Figma, which was helpful to get early feedback and iterative improvements before moving into full development.
 
-\subsection{Frontend Functional and Non-Functional Requirements}
+% \subsection{Frontend Functional and Non-Functional Requirements}
 
-\textbf{Note:} We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
+% \textbf{Note:} We need to decide whether this section will be here or elsewhere and we have not finalized the clear requirements.
 
-The frontend requirements for Tourlingo were shaped by the needs of travelers, the feedback collected from early design iterations, and the overall goal of providing a seamless and engaging user experience. Since the frontend is the primary point of interaction, its design had to balance aesthetics, performance, and usability. \\ 
+% The frontend requirements for Tourlingo were shaped by the needs of travelers, the feedback collected from early design iterations, and the overall goal of providing a seamless and engaging user experience. Since the frontend is the primary point of interaction, its design had to balance aesthetics, performance, and usability. \\ 
 
-The most essential functional requirement was to provide a \textbf{clear and responsive user interface for real-time translation}. Users needed a simple way to input text through the search bar, where queries related to places, essentials, or recommendations could be entered. The results were then displayed on the map with the corresponding information instantly translated into the user’s chosen language. This ensured that searching and exploring cultural information on the map was intuitive and seamless. Because translation is the heart of Tourlingo, this requirement had the highest priority. In addition, the frontend was designed to support \textbf{multilanguage interfaces}, ensuring that the application itself (menus, buttons, and guidance) can adapt to the preferred language of the user.  \\
+% The most essential functional requirement was to provide a \textbf{clear and responsive user interface for real-time translation}. Users needed a simple way to input text through the search bar, where queries related to places, essentials, or recommendations could be entered. The results were then displayed on the map with the corresponding information instantly translated into the user’s chosen language. This ensured that searching and exploring cultural information on the map was intuitive and seamless. Because translation is the heart of Tourlingo, this requirement had the highest priority. In addition, the frontend was designed to support \textbf{multilanguage interfaces}, ensuring that the application itself (menus, buttons, and guidance) can adapt to the preferred language of the user.  \\
 
-Another key requirement was the ability to handle \textbf{smooth communication with the backend APIs}. The frontend had to efficiently send translation requests and render responses almost instantly, minimizing waiting times. To achieve this, it was structured around \textbf{RESTful API integration}, using JSON payloads to keep the exchange consistent and lightweight.  \\
+% Another key requirement was the ability to handle \textbf{smooth communication with the backend APIs}. The frontend had to efficiently send translation requests and render responses almost instantly, minimizing waiting times. To achieve this, it was structured around \textbf{RESTful API integration}, using JSON payloads to keep the exchange consistent and lightweight.  \\
 
-Since Tourlingo also provides cultural insights, the frontend was required to present this information in a \textbf{well-structured and engaging format}. Categories such as etiquette,  must-know phrases, payment methods, transportations, and emergency numbers were displayed using expandable sections, making the content accessible and digestible. To improve usability, components such as the \textbf{search bar} were designed to be \textbf{reusable}, ensuring consistency across different views such as the map and language pages.  
+% Since Tourlingo also provides cultural insights, the frontend was required to present this information in a \textbf{well-structured and engaging format}. Categories such as etiquette,  must-know phrases, payment methods, transportations, and emergency numbers were displayed using expandable sections, making the content accessible and digestible. To improve usability, components such as the \textbf{search bar} were designed to be \textbf{reusable}, ensuring consistency across different views such as the map and language pages.  
 
-Finally, the \textbf{map-based interface} was developed to bring an interactive dimension/experience to the app. The pins on the map highlight key locations, while the dynamic side panels display contextual information. This combination turned the map into more than a visual element. It became an interactive tool for cultural orientation.  
+% Finally, the \textbf{map-based interface} was developed to bring an interactive dimension/experience to the app. The pins on the map highlight key locations, while the dynamic side panels display contextual information. This combination turned the map into more than a visual element. It became an interactive tool for cultural orientation.  
 
-\subsubsection{Non-Functional Requirements}
+% \subsubsection{Non-Functional Requirements}
 
-The non-functional aspects of the frontend were prioritized using the \textbf{MoSCoW methodology}, ensuring that the most critical user-facing qualities were delivered first.  
+% The non-functional aspects of the frontend were prioritized using the \textbf{MoSCoW methodology}, ensuring that the most critical user-facing qualities were delivered first.  
 
-\textbf{Must Have:}  
-\begin{itemize}
-    \item \textbf{Responsiveness and performance:} Every screen needed to adapt gracefully to mobile, tablet, and desktop displays using a responsive design approach powered by Tailwind CSS. The frontend needed to display translated results almost immediately after a user request, so the experience felt seamless and gave the impression of real-time communication.
+% \textbf{Must Have:}  
+% \begin{itemize}
+%     \item \textbf{Responsiveness and performance:} Every screen needed to adapt gracefully to mobile, tablet, and desktop displays using a responsive design approach powered by Tailwind CSS. The frontend needed to display translated results almost immediately after a user request, so the experience felt seamless and gave the impression of real-time communication.
 
-    \item \textbf{Usability and accessibility:}  The interface included a prominent search bar for entering text, intuitive language switching options, and consistent layouts across all screens. Accessibility was considered by ensuring readable font sizes, sufficient color contrast for map overlays, and keyboard navigation support, making the app usable by travelers with varying levels of digital literacy. \\
-    Clear navigation, consistent layouts, and adherence to accessibility guidelines ensured that the app could be used by travelers of different backgrounds and levels of digital literacy.  
-\end{itemize}
+%     \item \textbf{Usability and accessibility:}  The interface included a prominent search bar for entering text, intuitive language switching options, and consistent layouts across all screens. Accessibility was considered by ensuring readable font sizes, sufficient color contrast for map overlays, and keyboard navigation support, making the app usable by travelers with varying levels of digital literacy. \\
+%     Clear navigation, consistent layouts, and adherence to accessibility guidelines ensured that the app could be used by travelers of different backgrounds and levels of digital literacy.  
+% \end{itemize}
 
-\textbf{Should Have:}  
-\begin{itemize}
-    \item The interface should be designed with \textbf{scalability in mind}, so that new features (for example, adding cultural tips or new navigation tools) can be integrated later without requiring a complete redesign.  
-    \item The system should provide \textbf{clear and user-friendly error handling}. For example, if a translation request fails or internet connectivity drops, the app should display an informative message rather than confusing the user.  
-\end{itemize}
+% \textbf{Should Have:}  
+% \begin{itemize}
+%     \item The interface should be designed with \textbf{scalability in mind}, so that new features (for example, adding cultural tips or new navigation tools) can be integrated later without requiring a complete redesign.  
+%     \item The system should provide \textbf{clear and user-friendly error handling}. For example, if a translation request fails or internet connectivity drops, the app should display an informative message rather than confusing the user.  
+% \end{itemize}
 
-\textbf{Could Have:}  
-\begin{itemize}
-    \item An \textbf{offline first mode} could be introduced, where previously translated phrases or cultural notes are cached. This would allow travelers to access some functionality even without a stable Internet connection.  
-    \item Subtle \textbf{animations and micro-interactions} could be added (such as smooth transitions when switching languages) to make the app feel more engaging and polished.  
-\end{itemize}
+% \textbf{Could Have:}  
+% \begin{itemize}
+%     \item An \textbf{offline first mode} could be introduced, where previously translated phrases or cultural notes are cached. This would allow travelers to access some functionality even without a stable Internet connection.
+%     \item Subtle \textbf{animations and micro-interactions} could be added (such as smooth transitions when switching languages) to make the app feel more engaging and polished.  
+% \end{itemize}
 
-\textbf{Won’t Have:}  
-\begin{itemize}
-    \item The frontend will not include \textbf{voice-to-text translation}, since it requires complex speech processing libraries and significant resources beyond the current scope of the project.  
-    \item The app will not support \textbf{offline translation of entirely new inputs}, as this would require AI models on the device that are technically demanding and outside of the planned implementation.  
-\end{itemize}
+% \textbf{Won’t Have:}  
+% \begin{itemize}
+%     \item The frontend will not include \textbf{voice-to-text translation}, since it requires complex speech processing libraries and significant resources beyond the current scope of the project.  
+%     \item The app will not support \textbf{offline translation of entirely new inputs}, as this would require AI models on the device that are technically demanding and outside of the planned implementation.  
+% \end{itemize}
 
-In summary, the frontend requirements for Tourlingo revolved around delivering a \textbf{clean, responsive, and intuitive interface that makes real-time translation and cultural learning effortless}. The non-functional requirements ensured that the system would remain robust, scalable, and pleasant to use, while consciously avoiding unnecessary complexity in the first release.
+% In summary, the frontend requirements for Tourlingo revolved around delivering a \textbf{clean, responsive, and intuitive interface that makes real-time translation and cultural learning effortless}. The non-functional requirements ensured that the system would remain robust, scalable, and pleasant to use, while consciously avoiding unnecessary complexity in the first release.
 
-
-\subsection{Tech Stack Selection and Justification}
+\section{Tech Stack Selection and Justification}
 
 With a comprehensive understanding of the client's requirements, our next step was to carefully evaluate and select a technology stack that balances scalability, maintainability, performance, and developer experience. Each layer of the frontend architecture was considered through a comparative analysis of available tools and frameworks to ensure that the final selections were aligned with the long-term goals of the project.
 
 \begin{table}[H]
 \centering
 \caption{Programming Language Comparison}
-\begin{tabular}{|l|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|}
-\hline
+\resizebox{\textwidth}{!}{%
+\begin{tabularx}{\textwidth}{Y Y Y}
+\toprule
 \textbf{Criteria}       & \textbf{JavaScript} & \textbf{TypeScript} \\
-\hline
-Typing                  & Dynamic (checked at runtime) & Static (checked at compile-time) \\
-Error Detection          & Errors appear at runtime     & Errors caught during development \\
-Ease of Learning         & Easy                        & Moderate \\
-Tooling Support          & Basic IDE hints             & Rich IDE support with autocompletion and refactoring \\
-Scalability              & Can be hard to maintain large apps & Easier to manage large codebases with explicit types \\
-Performance              & Good                        & Good \\
-Compatibility            & Runs directly in browsers   & Compiles to JavaScript and fully compatible with JS libraries \\
-Reason                   & Flexible but can lead to runtime bugs in large apps & Helps catch errors early, improves maintainability, and supports large projects \\
-\hline
-\end{tabular}
-\label{tab:programming-language-comparison}
+\midrule
+Typing & Dynamic (checked at runtime) & Static (checked at compile-time) \\
+Error Detection & Errors appear at runtime     & Errors caught during development \\
+Ease of Learning & Easy & Moderate \\
+Tooling Support & Basic IDE hints & Rich IDE support with autocompletion and refactoring \\
+Scalability & Can be hard to maintain large apps & Easier to manage large codebases with explicit types \\
+Compatibility & Runs directly in browsers & Compiles to JavaScript and fully compatible with JS libraries \\
+Reason & Flexible but can lead to runtime bugs in large apps & Helps catch errors early, improves maintainability, and supports large projects \\
+\bottomrule
+\end{tabularx}
+}
 \end{table}
 
-\textbf{Programming Language:} We selected \textbf{TypeScript} for our frontend development because it is built on JavaScript and has static typing capabilities, which enhance code reliability, readability, and maintainability, especially for large-scale applications. Unlike JavaScript, TypeScript catches errors at compile time, making development more robust and reducing runtime bugs. It also offers better IDE support, including autocompletion and refactoring, which improves developer productivity.\cite{javascript-official, typescript}
+\textbf{Programming Language:} We selected \textbf{TypeScript} for our frontend development because it is built on JavaScript and has static typing capabilities, which enhance the code reliability, readability, and maintainability, especially for large-scale applications. Unlike JavaScript, TypeScript catches errors at compile time, making development more robust and reducing runtime bugs. It also offers better IDE support, including autocompletion and refactoring, which improves developer productivity.\cite{javascript-official, typescript}
 
 \vspace{2em}
 
 \begin{table}[H]
 \centering
 \caption{Frontend Framework Comparison}
-\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
-\hline
-\textbf{Criteria}       & \textbf{Next.js}              & \textbf{Angular}               & \textbf{Vue.js}               \\
-\hline
-Architecture            & React-based framework with SSR/SSG & Full-featured MVC framework    & Progressive framework         \\
-Ecosystem Size          & Large (React ecosystem)       & Large                          & Medium                       \\
-Learning Curve          & Moderate                      & Steep                          & Easy                         \\
-Performance             & Excellent                     & Excellent                      & Excellent                     \\
-Flexibility             & Moderate (opinionated structure) & Low                           & Moderate                     \\
-SEO Support             & Strong (SSR + SSG)            & Strong (built-in SSR)          & Limited                        \\
-Reason                  & Built-in SSR/SSG, folder-based routing, React integration & Steep learning curve, heavier framework & Smaller ecosystem, less enterprise adoption \\
-\hline
-\end{tabular}
-\label{tab:frontend-framework-comparison}
+\resizebox{\textwidth}{!}{
+\begin{tabularx}{\textwidth}{Y Y Y Y}
+\toprule
+\textbf{Criteria} & \textbf{Next.js} & \textbf{Angular} & \textbf{Vue.js} \\
+\midrule
+Architecture & React-based framework with SSR/SSG & Full-featured MVC framework & Progressive framework \\
+Ecosystem Size & Large (React ecosystem) & Large & Medium \\
+Learning Curve & Moderate & Steep & Easy \\
+Performance & Excellent & Excellent & Excellent \\
+Flexibility & Moderate (opinionated structure) & Low & Moderate \\
+SEO Support & Strong (SSR + SSG) & Strong (built-in SSR) & Limited \\
+Reason & Built-in SSR/SSG, folder-based routing, React integration & Steep learning curve, heavier framework & Smaller ecosystem, less enterprise adoption \\
+\bottomrule
+\end{tabularx}
+}
 \end{table}
 
-\textbf{Frontend framework:} We chose \textbf{Next.js} as the main frontend framework for our project because it provides built-in support for server-side rendering (SSR) and static site generation (SSG), improving performance and initial load times. The App Router with folder-based routing simplified page organization and navigation setup, making development faster and more maintainable. Since Next.js is React-based, we continue to leverage React’s component model for building modular and reusable UI elements. Other frameworks, such as Angular or Vue, were considered but not selected due to steeper learning curves, heavier frameworks, and less alignment with our project’s React-focused architecture. This combination of features, performance optimizations, and developer productivity made Next.js the best choice for implementing the multilingual virtual tour assistant frontend.\cite{nextjs, angular-official, vue-official}
+\textbf{Frontend framework:} We chose \textbf{Next.js} as the main frontend framework for our project because it provides built-in support for server-side rendering (SSR) and static site generation (SSG), improving performance and initial load times. The App Router with folder-based routing simplified page organization and navigation setup, making development faster and more maintainable. Since Next.js is React-based, we continue to leverage React’s component model for building modular and reusable UI elements. Other frameworks, such as Angular or Vue, were considered but not selected due to steeper learning curves, heavier frameworks, and less alignment with our project’s React-focused architecture. This combination of features, performance optimizations, and developer productivity made Next.js the best choice for implementing the \textbf{Tourlingo} frontend.\cite{nextjs, angular-official, vue-official}
 
 \vspace{2em}
 
 \textbf{Styling:}
-We chose \textbf{Tailwind CSS} as our styling foundation because its utility-first approach promised efficient styling while maintaining consistency across components, which was critical for scaling the project. DaisyUI, layered on top of Tailwind, influenced our decision further by providing prebuilt, themeable components that reduced design overhead and accelerated prototyping. At the same time, we anticipated the need for fine-grained control, so we kept the option of extending the setup with custom CSS for project-specific adjustments, such as hiding scrollbars and repositioning Leaflet map controls.\cite{tailwindcss, daisyui, css-official}
+We chose \textbf{Tailwind CSS} as our styling foundation because its utility-first approach promised efficient styling while maintaining consistency across components, which was critical for scaling the project. DaisyUI, layered on top of Tailwind, further influenced our decision by providing prebuilt, themeable components that reduced design overhead and accelerated prototyping. At the same time, we anticipated the need for fine-grained control, so we kept the option of extending the setup with custom CSS for project-specific adjustments, such as hiding scrollbars and repositioning leaflet map controls.\cite{tailwindcss, daisyui, css-official}
 
 \section{Frontend Implementation}
 
 \subsection{Overview}
-The frontend was delivered in various iterations. Each one started with a clear problem, targeted a small set of outcomes, and ended with a working build shown to stakeholders. The implementation followed the Figma prototype, ensuring alignment between design and the application. Reusable components were created and used to maintain consistency throughout the pages. We used Next.js and TypeScript, styled with Tailwind CSS. State began local and was later centralised in a small Zustand store backed by localStorage. The frontend was responsible for navigating throughout the application and integrating the APIs.
+The frontend was delivered in various iterations. Each started with a clear problem, targeted a small set of outcomes, and ended with a working build shown to stakeholders. The implementation followed the Figma prototype, ensuring alignment between design and application. Reusable components were created and used to maintain consistency throughout the pages. We used Next.js and TypeScript, styled with Tailwind CSS. The state began local and was later centralised in a small Zustand store backed by localStorage. The frontend was responsible for navigating the application throughout and integrating the APIs.
 
-\subsubsection{Iteration 1 - Clickable Prototype}
+\subsection{Iteration 1 - Clickable Prototype}
 \textbf{Problem/Goal:} At project start, we required a navigable prototype that reflected the agreed user flows and visual language. The iteration goal was therefore to match the Figma design and allow end-to-end clicking through the core screens. 
 
-\textbf{Implementation:} We built page flow across the Language, Map, Essentials, Recommendations, and Cultural Tips screens. To de-risk backend dependency, we populated the views with placeholders and realistic mock data so that swapping in API responses later would be simple. The language selection persisted across refreshes via localStorage.
+\textbf{Implementation:} We built page flow across the Language, Map, Essentials, Recommendations, and Cultural Tips screens. To reduce risk backend dependency, we populated the views with placeholders and realistic mock data so that swapping in API responses later would be simple. The language selection persisted across refreshes via localStorage.
 
-\textbf{Result:} A working, clickable prototype aligned to the Figma flows was delivered. Users could move between Language, Map, Essentials, Recommendations, and Cultural Tips, and their language choice persisted across refreshes via localStorage. Using realistic mock data made each screen demo-ready and let us validate layout. In the review, stakeholders confirmed the flows matched expectations and asked that Cultural Tips be broken into shorter, expandable sections.
+\textbf{Result:} A working, clickable prototype aligned to the Figma flows was delivered. Users could move between Language, Map, Essentials, Recommendations, and Cultural Tips. The location, tips and language are not lost evn afterreload and  persisted across refreshes via localStorage. Using realistic mock data made each screen demo-ready and let us validate layout. In the review, stakeholders confirmed the flows matched expectations and asked that Cultural Tips be broken into shorter, expandable sections.
 
 \textbf{Known limitations:} No live data; no map directions; Cultural Tips were text-heavy; the map view did not persist between screens.
 
-\subsubsection{Iteration 2 - From placeholders to data-driven pages}
+\subsection{Iteration 2 - From placeholders to data-driven pages}
 \textbf{Problem/Goal:} The main goal here was to start showing real data from APIs and to simplify the experience by keeping everything within the Map view and making it responsive.  
 
-\textbf{Implementation:} We connected the frontend to our backend, which uses OpenStreetMap and the Overpass API to fetch real points of interest. Essentials and Recommendations, which were originally separate pages, were reworked into slide-out panels that overlay the Map. This change meant users could explore places without losing their map view, and it also reduced the number of separate components we had to maintain. Each item in the panels was linked to category pins on the map, so clicking a place in the list immediately highlighted the right marker.  
+\textbf{Implementation:} We connected the frontend to our backend, which uses OpenStreetMap and the Overpass API to fetch real points of interest. Essentials and Recommendations, which were originally separate pages, were reworked into slide-out panels that overlay the Map. This change meant users could explore places without losing their map view. Each item in the panels was linked to category pins on the map, so clicking a place in the list immediately highlighted the right marker.  
 
 At the same time, we focused on reusable components. Shared UI elements were refined so they could be used consistently throughout the app. To make the experience feel smoother when data was loading, we added a loading animation at the end of this iteration. Finally, Cultural Tips, which had been one long block of text, were restructured into five clear sections (Etiquette, Must-know Phrases, Payment Methods, Transportation, and Emergency Numbers). We added expand/collapse controls to make the page easier to browse. We also made the app responsive, so it adapts to any screen size or device.  
 
-\textbf{Result:} By the end of this iteration, users could stay on the Map page and see live Essentials and Recommendations with just one tap. The connection between list items and map pins made the interface more intuitive, while Cultural Tips became easier to read in smaller chunks. Reusable components reduced repeated code, and the loading animation gave users clear feedback while waiting for API calls. Quick checks on different devices showed the app was now responsive and worked well across screen sizes.  
+\textbf{Result:} By the end of this iteration, users could stay on the Map page and see live Essentials and Recommendations with just one tap. The connection between list items and map pins made the interface more intuitive, while Cultural Tips became easier to read in smaller chunks. Reusable components reduced repeated code, and the loading animation gave users feedback while waiting for API calls. Quick checks on different devices showed the app was now responsive and worked well across screen sizes.  
 
 \textbf{Known limitations:} The map view still reset after moving between screens, zoom controls could overlap the search bar on smaller devices, and directions had not yet been added.
 
-\subsubsection{Iteration 3 - Smoother use, persistent state, and directions}
+\subsection{Iteration 3 - Smoother use, persistent state, and directions}
 \textbf{Problem/Goal:} The goal of this iteration was to make the experience smoother and more practical by keeping state across reloads, speeding up how tips load, adding a simple guide for new users, and introducing walking, cycling, and driving routes.  
 
-\textbf{Implementation:} We used the Zustand store to manage map state in one place and added persistence with localStorage so that the location and tips remain after reloads. To cut waiting on Cultural Tips, we prefetch tips once the city and language are known, keep a recent copy in the store, and show that immediately when the user navigates to the page. The map now uses distinct markers for the user’s location, the selected destination, and each category in Essentials and Recommendations. To support new users, we added a short, guided tour using intro.js. It ran only on first launch and walked through the main actions: choosing a language, exploring the map, and showing what each button on the navigation bar is responsible for. We also added directions for walking, cycling, and driving, with coloured routes, distance and time estimates, and step-by-step instructions in a side panel. Finally, we repositioned zoom controls and the guide help button to avoid overlap on small screens.  
+\textbf{Implementation:} We used the Zustand \cite{zustand-docs} store to manage map state in one place and added persistence with localStorage so that the location and tips remain after reloads. To cut waiting on Cultural Tips, we prefetch tips once the city and language are known, keep a recent copy in the store, and show that immediately when the user navigates to the page. The map now uses distinct markers for the user’s location, the selected destination, and each category in Essentials and Recommendations. To support new users, we added a short, guided tour using intro.js\cite{introjs-docs}. It runs only on first launch and walks through the main actions: choosing a language, exploring the map, and showing what each button on the navigation bar is responsible for. We also added directions for walking, cycling, and driving, with coloured routes, distance and time estimates, and step-by-step instructions in a side panel. Finally, we repositioned zoom controls and the guide help button to avoid overlap on small screens.  
 
-\textbf{Result:} The app feels more responsive, holds its place between screens, and is easier to understand on first use. Cultural Tips appear quickly on return visits and remain visible after a refresh. Point-to-point directions were implemented. From the user’s location to a selected place, the app now offers routes for walking, cycling, and driving.
-
-
-
-
+\textbf{Result:} The app feels more responsive, holds its place between screens, and is easier to understand on first use. Cultural Tips appear quickly on return visits and remain visible after a refresh. Point-to-point directions were implemented, now the user can search for a location and get routing options for driving, cycling or walk.
 
 \begin{figure}[H]
     \centering
-    \fbox{
-    \includegraphics[width=0.5\linewidth]{images/Frontend/Frontend_Usecase_Diagram.pdf}
-    }
+    \includegraphics[width=1\linewidth]{images/Frontend/Frontend_Usecase_Diagram.pdf}
     \caption{Frontend Use Case Diagram}
     \label{fig:frontend_usecase}
 \end{figure}

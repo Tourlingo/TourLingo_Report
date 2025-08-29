@@ -1,20 +1,18 @@
-\subsection{Technology Selection and Evaluation Framework}
+\section{Technology Selection and Evaluation Framework}
 
-\subsubsection{Decision Methodology}
+\subsection{Decision Methodology}
 
 A multi-criteria decision analysis (MCDA) approach was used to guide towards the technology selection\cite{mcda}. MCDA is a methodology to evaluate and prioritise options based on multiple potential options. The framework was used to systematically evaluate technology choices based on quantitative and qualitative factors, taking into account the system requirements and constraints.
 
-TODO --- Add Pairwise comparision methodology to justify below numbers used for weightage
+% TODO --- Add Pairwise comparision methodology to justify below numbers used for weightage
 
 Cost Efficiency was assigned the highest weight (20\%) on the basis of budgetary constraints. Usage Scalability and Self-hosting Capabilities were weighted at 15\% and Performance Characteristics, such as translation speed and accuracy, were weighed at 10\% considering it as a trade-off for the project contraints based on client requirements.
 
-\subsubsection{Application Framework Evaluation}
-
-\subsubsection{Comparative Analysis: Spring Boot vs. Node.js}
+\subsection{Application Framework Evaluation : Spring Boot vs. Node.js}
 
 The framework selection process evaluated two primary candidates against specific criteria relevant to the translation service requirements.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Application Framework Comparison}
 \resizebox{\textwidth}{!}{%
@@ -84,4 +82,4 @@ Translation Quality & 10\% & 3 -- Moderate, suitable for tourism content & 5 -- 
 \textbf{Weighted Scores:} LibreTranslate (4.65/5), DeepL (3.25/5), Google Cloud (3.45/5), Azure (3.55/5)
 
 \textbf{Trade-off Analysis:}
-The evaluation process highlighted a key trade-off between translation quality and cost efficiency. By prioritising budgetary contraints and zero recurring costs, we accepted the risk of moderate translation quality when compared to significantly higher costs associated with commercial providers. This risk was mitigated by the observation that the nature of tourism vocabulary comprised largely of common travel-related expressions and predictable phrase sets, making the LibreTranslate's moderate quality rating proved sufficient for practical application needs\cite{libretranslate}. Additionally, LibreTranslate offers built-in translation improvement and correction functionality giving use promising opportunities for further enhancement of translation quality\cite{open-nmt}.
+The evaluation process highlighted a key trade-off between translation quality and cost efficiency. By prioritising budgetary constraints and zero recurring costs, we accepted the risk of moderate translation quality when compared to significantly higher costs associated with commercial providers. This risk was mitigated by the observation that the nature of tourism vocabulary comprised largely of common travel-related expressions and predictable phrase sets, making the LibreTranslate's moderate quality rating proved sufficient for practical application needs\cite{libretranslate}. Additionally, LibreTranslate offers built-in translation improvement and correction functionality giving use promising opportunities for further enhancement of translation quality\cite{open-nmt}.

@@ -24,7 +24,7 @@ Each JSON object was mapped to a \texttt{SentenceContext} object containing:
     \item Batch index position
 \end{itemize}
 
-\textbf{Reconstruction Logic:} JSON recontruction was done by iterating through context lists and retrieving translated texts based on the indices stored in each context object. This ensured no data loss during recontruction.
+\subsubsection{Reconstruction Logic:} JSON reconstruction was done by iterating through context lists and retrieving translated texts. The \emph{translatedText} variable of the \emph{SentenceContext} object was assigned with its respective translation with the help of batch number and batch index. Each \emph{SentenceContext} object is stored in a list in the map with JSON object names as key. With this data \emph{CulturalResponse} object was contructed and returned to the frontend through spring framework. This ensured no data loss during reconstruction.
 
 \begin{figure}[H]
     \centering
